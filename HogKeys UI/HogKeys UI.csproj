@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82625F33-C880-4F17-9741-2723ADA9784F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>net.willshouse.HogKeys.UI</RootNamespace>
+    <AssemblyName>HogKeys UI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BinarySwitchPinManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BinarySwitchPinManager.Designer.cs">
+      <DependentUpon>BinarySwitchPinManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexNumericControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndexNumericControl.Designer.cs">
+      <DependentUpon>IndexNumericControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexPinValueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndexPinValueControl.Designer.cs">
+      <DependentUpon>IndexPinValueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexValueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndexValueControl.Designer.cs">
+      <DependentUpon>IndexValueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSwitchPinManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MultiSwitchPinManager.Designer.cs">
+      <DependentUpon>MultiSwitchPinManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SwitchDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SwitchDetailForm.Designer.cs">
+      <DependentUpon>SwitchDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SwitchStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SwitchStatusForm.Designer.cs">
+      <DependentUpon>SwitchStatusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToggleSwitchPinManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToggleSwitchPinManager.Designer.cs">
+      <DependentUpon>ToggleSwitchPinManager.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BinarySwitchPinManager.resx">
+      <DependentUpon>BinarySwitchPinManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexNumericControl.resx">
+      <DependentUpon>IndexNumericControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexPinValueControl.resx">
+      <DependentUpon>IndexPinValueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexValueControl.resx">
+      <DependentUpon>IndexValueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiSwitchPinManager.resx">
+      <DependentUpon>MultiSwitchPinManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SwitchDetailForm.resx">
+      <DependentUpon>SwitchDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SwitchStatusForm.resx">
+      <DependentUpon>SwitchStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToggleSwitchPinManager.resx">
+      <DependentUpon>ToggleSwitchPinManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HogKeys Devices\HogKeys Devices.csproj">
+      <Project>{286DDA78-FD74-49B1-9FEC-BE19350F0318}</Project>
+      <Name>HogKeys Devices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HogKeys Inputs\HogKeys Inputs.csproj">
+      <Project>{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}</Project>
+      <Name>HogKeys Inputs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
