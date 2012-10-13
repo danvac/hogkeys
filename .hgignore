@@ -1,0 +1,43 @@
+syntax: glob
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.ToggleSwitchPinManager.resources
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.SwitchStatusForm.resources
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.SwitchDetailForm.resources
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.Properties.Resources.resources
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.MultiSwitchPinManager.resources
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.IndexValueControl.resources
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.IndexPinValueControl.resources
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.IndexNumericControl.resources
+HogKeys UI/obj/x86/Debug/net.willshouse.HogKeys.UI.BinarySwitchPinManager.resources
+HogKeys UI/obj/x86/Debug/HogKeys UI.pdb
+HogKeys UI/obj/x86/Debug/HogKeys UI.exe
+HogKeys UI/obj/x86/Debug/HogKeys UI.csprojResolveAssemblyReference.cache
+HogKeys UI/obj/x86/Debug/HogKeys UI.csproj.GenerateResource.Cache
+HogKeys UI/obj/x86/Debug/HogKeys UI.csproj.FileListAbsolute.txt
+HogKeys UI/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+HogKeys UI/obj/x86/Debug/DesignTimeResolveAssemblyReferences.cache
+HogKeys UI/bin/Debug/PoKeysDevice_DLL.dll
+HogKeys UI/bin/Debug/HogKeys.pdb
+HogKeys UI/bin/Debug/HogKeys.dll
+HogKeys UI/bin/Debug/HogKeys UI.vshost.exe.manifest
+HogKeys UI/bin/Debug/HogKeys UI.vshost.exe
+HogKeys UI/bin/Debug/HogKeys UI.pdb
+HogKeys UI/bin/Debug/HogKeys UI.exe
+HogKeys UI/bin/Debug/HogKeys Devices.pdb
+HogKeys UI/bin/Debug/HogKeys Devices.dll
+HogKeys Inputs/obj/Debug/HogKeys.pdb
+HogKeys Inputs/obj/Debug/HogKeys.dll
+HogKeys Inputs/obj/Debug/HogKeys Inputs.csprojResolveAssemblyReference.cache
+HogKeys Inputs/obj/Debug/HogKeys Inputs.csproj.FileListAbsolute.txt
+HogKeys Inputs/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+HogKeys Inputs/bin/Debug/HogKeys.pdb
+HogKeys Inputs/bin/Debug/HogKeys.dll
+HogKeys Devices/obj/Debug/HogKeys Devices.pdb
+HogKeys Devices/obj/Debug/HogKeys Devices.dll
+HogKeys Devices/obj/Debug/HogKeys Devices.csprojResolveAssemblyReference.cache
+HogKeys Devices/obj/Debug/HogKeys Devices.csproj.FileListAbsolute.txt
+HogKeys Devices/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+HogKeys Devices/bin/Debug/PoKeysDevice_DLL.dll
+HogKeys Devices/bin/Debug/HogKeys.pdb
+HogKeys Devices/bin/Debug/HogKeys.dll
+HogKeys Devices/bin/Debug/HogKeys Devices.pdb
+HogKeys Devices/bin/Debug/HogKeys Devices.dll
