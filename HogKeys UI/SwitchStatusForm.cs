@@ -34,7 +34,6 @@ namespace net.willshouse.HogKeys.UI
             NewColumn("ButtonId", "Button Id");
             NewColumn("Type", "Type");
             NewColumn("Description", "Description");
-            //BuildTestData();
             gridStatus.DataSource = switchSource;
             driver.Inputs = switchSource;
             pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
