@@ -21,12 +21,16 @@ namespace net.willshouse.HogKeys.UI
         public SwitchStatusForm()
         {
             InitializeComponent();
-            driver = new TestDriver();
+
         }
 
         private void SwitchStatus_Load(object sender, EventArgs e)
         {
             switchSource = new BindingSource();
+
+            driver = new TestDriver();
+
+
             switchSource.DataSource = typeof(Input);
             NewColumn("Name", "Name");
             NewColumn("State", "Current State");
@@ -35,8 +39,22 @@ namespace net.willshouse.HogKeys.UI
             NewColumn("Type", "Type");
             NewColumn("Description", "Description");
             gridStatus.DataSource = switchSource;
+            //BuildTestData();
+            try
+            {
+                driver.InitializeConnection(0);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No Pokeys Device Found");
+
+            }
             driver.Inputs = switchSource;
             pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
+            if (Properties.Settings.Default.lastOpenedFile != "")
+            {
+                LoadConfig(Properties.Settings.Default.lastOpenedFile);
+            }
         }
 
         private void NewColumn(string dataPropertyName, string headerText)
@@ -93,7 +111,7 @@ namespace net.willshouse.HogKeys.UI
         private void LaunchSwitchDetailForm(Input aSwitch, BindingSource aSource)
         {
             SwitchDetailForm switchDetail = new SwitchDetailForm(aSwitch, aSource);
-            switchDetail.Show();
+            switchDetail.ShowDialog();
         }
 
 
@@ -137,6 +155,15 @@ namespace net.willshouse.HogKeys.UI
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             string fileName = openFileDialog1.FileName;
+
+
+            LoadConfig(fileName);
+            Properties.Settings.Default.lastOpenedFile = fileName;
+            Properties.Settings.Default.Save();
+        }
+
+        private void LoadConfig(string fileName)
+        {
             BindingList<Input> switches;
             XmlSerializer ser = new XmlSerializer(typeof(BindingList<Input>), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch) });
             using (var stream = File.OpenRead(fileName))
@@ -144,7 +171,6 @@ namespace net.willshouse.HogKeys.UI
                 switches = (BindingList<Input>)ser.Deserialize(stream);
             }
             switchSource.DataSource = switches;
-            //driver.Inputs = (BindingList<Input>)switchSource.List;
             MessageBox.Show("Done:" + switches.Count.ToString() + " items loaded");
         }
 
@@ -156,6 +182,13 @@ namespace net.willshouse.HogKeys.UI
         private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             string fileName = saveFileDialog1.FileName;
+            SaveConfig(fileName);
+            Properties.Settings.Default.lastOpenedFile = fileName;
+            Properties.Settings.Default.Save();
+        }
+
+        private void SaveConfig(string fileName)
+        {
             XmlSerializer ser = new XmlSerializer(typeof(BindingList<Input>), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch) });
             using (var stream = File.Create(fileName))
             {

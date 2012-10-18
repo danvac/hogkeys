@@ -30,7 +30,7 @@ namespace net.willshouse.HogKeys.Devices
             currentPokeysValues = new bool[55];
             previousPokeysValues = new bool[55];
             device = new PoKeysDevice_DLL.PoKeysDevice();
-            InitializeConnection();
+            
         }
 
         public BindingSource Inputs 
@@ -66,10 +66,10 @@ namespace net.willshouse.HogKeys.Devices
             device.DisconnectDevice();
         }
 
-        private void InitializeConnection()
+        public void InitializeConnection( int deviceIndex)
         {
             int numberPokeysDevices = device.EnumerateDevices();
-            int deviceIndex = 0; // the first pokeys device
+            
             if (numberPokeysDevices == 0)
             {
                 throw new Exception("No Pokeys Devices Found");

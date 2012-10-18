@@ -27,6 +27,12 @@ namespace net.willshouse.HogKeys.Inputs
             Type = InputType.ToggleSwitch;
         }
 
+        public override string generateState(bool[] pokeysValues)
+        {
+            return pokeysValues[Pins[0]] ? Values[1] : Values[0];
+        }
+
+
         public override void setSwitchPositionData(List<string> positionsData)
         {
             Values = new System.ComponentModel.BindingList<string>()
@@ -36,6 +42,6 @@ namespace net.willshouse.HogKeys.Inputs
            };
         }
 
-        
+
     }
 }

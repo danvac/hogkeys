@@ -35,7 +35,13 @@ namespace net.willshouse.HogKeys.Inputs
 
         public override string generateState(bool[] pokeysValues)
         {
-            throw new NotImplementedException();
+            int valueIndex = 0;
+            for (int i = 0; i < Pins.Count(); i++)
+            {
+                if (pokeysValues[Pins[i]])
+                    valueIndex = i;
+            }
+            return Values[valueIndex];
         }
 
 

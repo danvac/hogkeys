@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("HogKeys")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ALCATEL-LUCENT")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HogKeys")]
-[assembly: AssemblyCopyright("Copyright © ALCATEL-LUCENT 2012")]
+[assembly: AssemblyCopyright("Copyright © 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

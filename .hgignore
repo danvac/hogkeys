@@ -42,3 +42,46 @@ HogKeys Devices/bin/Debug/HogKeys.dll
 HogKeys Devices/bin/Debug/HogKeys Devices.pdb
 HogKeys Devices/bin/Debug/HogKeys Devices.dll
 HogKeys UI/obj/x86/Debug/TempPE/Properties.Resources.Designer.cs.dll
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.ToggleSwitchPinManager.resources
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.SwitchStatusForm.resources
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.SwitchDetailForm.resources
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.Properties.Resources.resources
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.MultiSwitchPinManager.resources
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.IndexValueControl.resources
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.IndexPinValueControl.resources
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.IndexNumericControl.resources
+HogKeys UI/obj/x86/Release/net.willshouse.HogKeys.UI.BinarySwitchPinManager.resources
+HogKeys UI/obj/x86/Release/TempPE/Properties.Resources.Designer.cs.dll
+HogKeys UI/obj/x86/Release/ResolveAssemblyReference.cache
+HogKeys UI/obj/x86/Release/HogKeys UI.pdb
+HogKeys UI/obj/x86/Release/HogKeys UI.exe.manifest
+HogKeys UI/obj/x86/Release/HogKeys UI.exe
+HogKeys UI/obj/x86/Release/HogKeys UI.csproj.FileListAbsolute.txt
+HogKeys UI/obj/x86/Release/HogKeys UI.application
+HogKeys UI/obj/x86/Release/HogKeys UI.TrustInfo.xml
+HogKeys UI/obj/x86/Release/GenerateResource.write.1.tlog
+HogKeys UI/obj/x86/Release/GenerateResource.read.1.tlog
+HogKeys UI/obj/x86/Release/DesignTimeResolveAssemblyReferencesInput.cache
+HogKeys UI/obj/x86/Release/DesignTimeResolveAssemblyReferences.cache
+HogKeys UI/obj/x86/Debug/ResolveAssemblyReference.cache
+HogKeys UI/obj/x86/Debug/GenerateResource.write.1.tlog
+HogKeys UI/obj/x86/Debug/GenerateResource.read.1.tlog
+HogKeys UI/bin/Release/PoKeysDevice_DLL.dll
+HogKeys UI/bin/Release/Installer/HogKeys.iit
+HogKeys UI/bin/Release/Installer/HogKeys.exe
+HogKeys UI/bin/Release/HogKeys.pdb
+HogKeys UI/bin/Release/HogKeys.dll
+HogKeys UI/bin/Release/HogKeys UI.pdb
+HogKeys UI/bin/Release/HogKeys UI.exe.manifest
+HogKeys UI/bin/Release/HogKeys UI.exe.config
+HogKeys UI/bin/Release/HogKeys UI.exe
+HogKeys UI/bin/Release/HogKeys UI.application
+HogKeys UI/bin/Release/HogKeys Devices.pdb
+HogKeys UI/bin/Release/HogKeys Devices.dll
+HogKeys UI/bin/Debug/HogKeys UI.vshost.exe.config
+HogKeys UI/Properties/app.manifest
+HogKeys UI/HogKeys UI_TemporaryKey.pfx
+HogKeys UI/HogKeys UI.csproj.user
+HogKeys Inputs/obj/Release/HogKeys.pdb
+HogKeys Inputs/obj/Release/HogKeys.dll
+HogKeys Inputs/obj/Release/HogKeys Inputs.csproj.FileListAbsolute.txt
