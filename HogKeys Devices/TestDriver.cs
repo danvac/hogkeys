@@ -27,13 +27,15 @@ namespace net.willshouse.HogKeys.Devices
             host = "127.0.0.1";
             port = 9089;
             client = new UdpClient();
-            currentPokeysValues = new bool[55];
-            previousPokeysValues = new bool[55];
+            // http://code.google.com/p/hogkeys/issues/detail?id=3
+            currentPokeysValues = new bool[128];
+            previousPokeysValues = new bool[128];
+            //
             device = new PoKeysDevice_DLL.PoKeysDevice();
-            
+
         }
 
-        public BindingSource Inputs 
+        public BindingSource Inputs
         {
             set
             {
@@ -44,8 +46,9 @@ namespace net.willshouse.HogKeys.Devices
         {
             if ((inputs != null) && (inputs.Count > 0))
             {
-
-                device.BlockGetInputAll55(ref currentPokeysValues);
+                // http://code.google.com/p/hogkeys/issues/detail?id=3
+                // changed to get matrix status
+                device.GetMatrixKeyboardKeyStatus(ref currentPokeysValues);
                 if (previousPokeysValues == null)
                 {
                     ProcessInputs();
@@ -58,7 +61,7 @@ namespace net.willshouse.HogKeys.Devices
             }
         }
 
-        
+
 
 
         ~TestDriver()
@@ -66,10 +69,10 @@ namespace net.willshouse.HogKeys.Devices
             device.DisconnectDevice();
         }
 
-        public void InitializeConnection( int deviceIndex)
+        public void InitializeConnection(int deviceIndex)
         {
             int numberPokeysDevices = device.EnumerateDevices();
-            
+
             if (numberPokeysDevices == 0)
             {
                 throw new Exception("No Pokeys Devices Found");
