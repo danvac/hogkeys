@@ -172,7 +172,6 @@
       <DependentUpon>ToggleSwitchPinManager.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="HogKeys UI_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
