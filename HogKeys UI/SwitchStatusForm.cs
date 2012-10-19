@@ -132,7 +132,13 @@ namespace net.willshouse.HogKeys.UI
 
         private void gridStatus_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            LaunchSwitchDetailForm((Input)switchSource[e.RowIndex]);
+            //http://code.google.com/p/hogkeys/issues/detail?id=1
+            // check to make sure the row we selected is in bounds
+            if (e.RowIndex > -1)
+            {
+                LaunchSwitchDetailForm((Input)switchSource[e.RowIndex]);    
+            }
+            
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
