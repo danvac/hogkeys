@@ -49,6 +49,7 @@ namespace net.willshouse.HogKeys.Devices
                 // http://code.google.com/p/hogkeys/issues/detail?id=3
                 // changed to get matrix status
                 device.GetMatrixKeyboardKeyStatus(ref currentPokeysValues);
+                //DumpValues();
                 if (previousPokeysValues == null)
                 {
                     ProcessInputs();
@@ -84,12 +85,22 @@ namespace net.willshouse.HogKeys.Devices
         {
             foreach (Input input in inputs)
             {
+                
                 if (input.isStateChanged(currentPokeysValues))
                 {
                     Byte[] message = Encoding.ASCII.GetBytes("C" + input.DeviceId + "," + input.ButtonId + "," + input.State);
                     client.Send(message, message.Length, host, port);
                 }
             }
+        }
+        public void DumpValues()
+        {
+            string values = String.Empty;
+            foreach (bool value in currentPokeysValues)
+            {
+                values += value.ToString() + ",";
+            }
+            MessageBox.Show(values);
         }
     }
 }
