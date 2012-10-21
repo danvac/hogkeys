@@ -50,11 +50,32 @@ namespace net.willshouse.HogKeys.UI
 
             }
             driver.Inputs = switchSource;
-            pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
+            GetUserSettings();
+            hostTextBox.DataBindings.Add("Text", driver, "Host");
+            portTextBox.DataBindings.Add("Text", driver, "Port");
+
             if (Properties.Settings.Default.lastOpenedFile != "")
             {
                 LoadConfig(Properties.Settings.Default.lastOpenedFile);
             }
+        }
+
+        private void GetUserSettings()
+        {
+            driver.Host = Properties.Settings.Default.Host;
+            driver.Port = Properties.Settings.Default.Port;
+            pollingIntervalTrackBar.Value = Properties.Settings.Default.PollingInterval;
+            hostTextBox.Text = driver.Host;
+            portTextBox.Text = driver.Port.ToString();
+            pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
+        }
+
+        private void SetUserSettings()
+        {
+            Properties.Settings.Default.Host = driver.Host;
+            Properties.Settings.Default.Port = driver.Port;
+            Properties.Settings.Default.PollingInterval = pollingIntervalTrackBar.Value;
+            Properties.Settings.Default.Save();
         }
 
         private void NewColumn(string dataPropertyName, string headerText)
@@ -136,9 +157,9 @@ namespace net.willshouse.HogKeys.UI
             // check to make sure the row we selected is in bounds
             if (e.RowIndex > -1)
             {
-                LaunchSwitchDetailForm((Input)switchSource[e.RowIndex]);    
+                LaunchSwitchDetailForm((Input)switchSource[e.RowIndex]);
             }
-            
+
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -235,6 +256,17 @@ namespace net.willshouse.HogKeys.UI
         {
             pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
             timer1.Interval = (1000 / pollingIntervalTrackBar.Value);
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            GetUserSettings();
+            MessageBox.Show(driver.Host);
+        }
+
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+            SetUserSettings();
         }
 
 

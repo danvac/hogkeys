@@ -15,8 +15,6 @@ namespace net.willshouse.HogKeys.Devices
         private BindingSource inputs;
         private PoKeysDevice_DLL.PoKeysDevice device;
         private UdpClient client;
-        private string host;
-        private int port;
         private bool[] currentPokeysValues;
         private bool[] previousPokeysValues;
 
@@ -24,16 +22,15 @@ namespace net.willshouse.HogKeys.Devices
         {
             //pokeys bulk pin get uses 55 values
             // pokeys bulk matrix pin get is 128 values
-            host = "127.0.0.1";
-            port = 9089;
             client = new UdpClient();
             // http://code.google.com/p/hogkeys/issues/detail?id=3
             currentPokeysValues = new bool[128];
             previousPokeysValues = new bool[128];
-            //
             device = new PoKeysDevice_DLL.PoKeysDevice();
-
         }
+
+        public int Port { get; set; }
+        public string Host { get; set; }
 
         public BindingSource Inputs
         {
@@ -85,11 +82,11 @@ namespace net.willshouse.HogKeys.Devices
         {
             foreach (Input input in inputs)
             {
-                
+
                 if (input.isStateChanged(currentPokeysValues))
                 {
                     Byte[] message = Encoding.ASCII.GetBytes("C" + input.DeviceId + "," + input.ButtonId + "," + input.State);
-                    client.Send(message, message.Length, host, port);
+                    client.Send(message, message.Length, Host, Port);
                 }
             }
         }

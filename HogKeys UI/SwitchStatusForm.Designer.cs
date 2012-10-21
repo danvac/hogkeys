@@ -43,29 +43,37 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pollOnceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.pollingStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.startPollingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopPollingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.pollingStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.inputStatusTabPage = new System.Windows.Forms.TabPage();
             this.setupTabPage = new System.Windows.Forms.TabPage();
-            this.timer1 = new System.Timers.Timer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pollingIntervalTrackBar = new System.Windows.Forms.TrackBar();
             this.PollingIntervalLabel = new System.Windows.Forms.Label();
             this.pollingIntervalTextBox = new System.Windows.Forms.TextBox();
+            this.pollingIntervalTrackBar = new System.Windows.Forms.TrackBar();
+            this.timer1 = new System.Timers.Timer();
+            this.UDPSetupGroupBox = new System.Windows.Forms.GroupBox();
+            this.hostLabel = new System.Windows.Forms.Label();
+            this.PortLabel = new System.Windows.Forms.Label();
+            this.hostTextBox = new System.Windows.Forms.TextBox();
+            this.portTextBox = new System.Windows.Forms.TextBox();
+            this.applyButton = new System.Windows.Forms.Button();
+            this.resetButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatus)).BeginInit();
             this.switchMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.inputStatusTabPage.SuspendLayout();
             this.setupTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.timer1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timer1)).BeginInit();
+            this.UDPSetupGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridStatus
@@ -104,13 +112,13 @@
             this.newToolStripMenuItem1,
             this.saveToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(35, 20);
             this.toolStripMenuItem1.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -119,7 +127,7 @@
             this.newToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.switchToolStripMenuItem});
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(111, 22);
             this.newToolStripMenuItem1.Text = "New";
             // 
             // switchToolStripMenuItem
@@ -127,7 +135,7 @@
             this.switchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.switchToolStripMenuItem1});
             this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
-            this.switchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.switchToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.switchToolStripMenuItem.Text = "Input";
             // 
             // switchToolStripMenuItem1
@@ -137,14 +145,14 @@
             this.multiPositionToolStripMenuItem,
             this.toggleToolStripMenuItem});
             this.switchToolStripMenuItem1.Name = "switchToolStripMenuItem1";
-            this.switchToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.switchToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
             this.switchToolStripMenuItem1.Text = "Switch";
             // 
             // binaryToolStripMenuItem
             // 
             this.binaryToolStripMenuItem.Name = "binaryToolStripMenuItem";
             this.binaryToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.binaryToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
+            this.binaryToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.binaryToolStripMenuItem.Text = "BinarySwitch Switch";
             this.binaryToolStripMenuItem.Click += new System.EventHandler(this.binaryToolStripMenuItem_Click);
             // 
@@ -152,7 +160,7 @@
             // 
             this.multiPositionToolStripMenuItem.Name = "multiPositionToolStripMenuItem";
             this.multiPositionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.multiPositionToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
+            this.multiPositionToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.multiPositionToolStripMenuItem.Text = "MultiSwitch-Position Switch";
             this.multiPositionToolStripMenuItem.Click += new System.EventHandler(this.multiPositionToolStripMenuItem_Click);
             // 
@@ -160,14 +168,14 @@
             // 
             this.toggleToolStripMenuItem.Name = "toggleToolStripMenuItem";
             this.toggleToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.toggleToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
+            this.toggleToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
             this.toggleToolStripMenuItem.Text = "ToggleSwitch Switch";
             this.toggleToolStripMenuItem.Click += new System.EventHandler(this.toggleToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -176,14 +184,14 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -194,16 +202,34 @@
             this.startPollingToolStripMenuItem,
             this.stopPollingToolStripMenuItem});
             this.deviceToolStripMenuItem.Name = "deviceToolStripMenuItem";
-            this.deviceToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.deviceToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.deviceToolStripMenuItem.Text = "Device";
             // 
             // pollOnceToolStripMenuItem
             // 
             this.pollOnceToolStripMenuItem.Name = "pollOnceToolStripMenuItem";
             this.pollOnceToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.pollOnceToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
+            this.pollOnceToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.pollOnceToolStripMenuItem.Text = "Poll Once";
             this.pollOnceToolStripMenuItem.Click += new System.EventHandler(this.pollOnceToolStripMenuItem_Click);
+            // 
+            // startPollingToolStripMenuItem
+            // 
+            this.startPollingToolStripMenuItem.Name = "startPollingToolStripMenuItem";
+            this.startPollingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.startPollingToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.startPollingToolStripMenuItem.Text = "Start Polling";
+            this.startPollingToolStripMenuItem.Click += new System.EventHandler(this.startPollingToolStripMenuItem_Click);
+            // 
+            // stopPollingToolStripMenuItem
+            // 
+            this.stopPollingToolStripMenuItem.Enabled = false;
+            this.stopPollingToolStripMenuItem.Name = "stopPollingToolStripMenuItem";
+            this.stopPollingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
+                        | System.Windows.Forms.Keys.P)));
+            this.stopPollingToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.stopPollingToolStripMenuItem.Text = "Stop Polling";
+            this.stopPollingToolStripMenuItem.Click += new System.EventHandler(this.stopPollingToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -215,6 +241,12 @@
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // pollingStatusLabel
+            // 
+            this.pollingStatusLabel.Name = "pollingStatusLabel";
+            this.pollingStatusLabel.Size = new System.Drawing.Size(61, 17);
+            this.pollingStatusLabel.Text = "Polling:OFF";
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -223,30 +255,6 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
-            // 
-            // pollingStatusLabel
-            // 
-            this.pollingStatusLabel.Name = "pollingStatusLabel";
-            this.pollingStatusLabel.Size = new System.Drawing.Size(68, 17);
-            this.pollingStatusLabel.Text = "Polling:OFF";
-            // 
-            // startPollingToolStripMenuItem
-            // 
-            this.startPollingToolStripMenuItem.Name = "startPollingToolStripMenuItem";
-            this.startPollingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.startPollingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.startPollingToolStripMenuItem.Text = "Start Polling";
-            this.startPollingToolStripMenuItem.Click += new System.EventHandler(this.startPollingToolStripMenuItem_Click);
-            // 
-            // stopPollingToolStripMenuItem
-            // 
-            this.stopPollingToolStripMenuItem.Enabled = false;
-            this.stopPollingToolStripMenuItem.Name = "stopPollingToolStripMenuItem";
-            this.stopPollingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.P)));
-            this.stopPollingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
-            this.stopPollingToolStripMenuItem.Text = "Stop Polling";
-            this.stopPollingToolStripMenuItem.Click += new System.EventHandler(this.stopPollingToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -272,6 +280,9 @@
             // 
             // setupTabPage
             // 
+            this.setupTabPage.Controls.Add(this.resetButton);
+            this.setupTabPage.Controls.Add(this.applyButton);
+            this.setupTabPage.Controls.Add(this.UDPSetupGroupBox);
             this.setupTabPage.Controls.Add(this.groupBox1);
             this.setupTabPage.Location = new System.Drawing.Point(4, 22);
             this.setupTabPage.Name = "setupTabPage";
@@ -280,11 +291,6 @@
             this.setupTabPage.TabIndex = 1;
             this.setupTabPage.Text = "Setup";
             this.setupTabPage.UseVisualStyleBackColor = true;
-            // 
-            // timer1
-            // 
-            this.timer1.SynchronizingObject = this;
-            this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
             // 
             // groupBox1
             // 
@@ -298,23 +304,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Polling Interval";
             // 
-            // pollingIntervalTrackBar
-            // 
-            this.pollingIntervalTrackBar.Location = new System.Drawing.Point(39, 70);
-            this.pollingIntervalTrackBar.Maximum = 50;
-            this.pollingIntervalTrackBar.Minimum = 1;
-            this.pollingIntervalTrackBar.Name = "pollingIntervalTrackBar";
-            this.pollingIntervalTrackBar.Size = new System.Drawing.Size(104, 45);
-            this.pollingIntervalTrackBar.TabIndex = 0;
-            this.pollingIntervalTrackBar.TickFrequency = 5;
-            this.pollingIntervalTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.pollingIntervalTrackBar.Value = 25;
-            this.pollingIntervalTrackBar.Scroll += new System.EventHandler(this.pollingIntervalTrackBar_Scroll);
-            // 
             // PollingIntervalLabel
             // 
             this.PollingIntervalLabel.AutoSize = true;
-            this.PollingIntervalLabel.Location = new System.Drawing.Point(80, 33);
+            this.PollingIntervalLabel.Location = new System.Drawing.Point(80, 34);
             this.PollingIntervalLabel.Name = "PollingIntervalLabel";
             this.PollingIntervalLabel.Size = new System.Drawing.Size(63, 13);
             this.PollingIntervalLabel.TabIndex = 6;
@@ -327,6 +320,89 @@
             this.pollingIntervalTextBox.ReadOnly = true;
             this.pollingIntervalTextBox.Size = new System.Drawing.Size(40, 20);
             this.pollingIntervalTextBox.TabIndex = 7;
+            // 
+            // pollingIntervalTrackBar
+            // 
+            this.pollingIntervalTrackBar.Location = new System.Drawing.Point(39, 70);
+            this.pollingIntervalTrackBar.Maximum = 50;
+            this.pollingIntervalTrackBar.Minimum = 1;
+            this.pollingIntervalTrackBar.Name = "pollingIntervalTrackBar";
+            this.pollingIntervalTrackBar.Size = new System.Drawing.Size(104, 42);
+            this.pollingIntervalTrackBar.TabIndex = 0;
+            this.pollingIntervalTrackBar.TickFrequency = 5;
+            this.pollingIntervalTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.pollingIntervalTrackBar.Value = 25;
+            this.pollingIntervalTrackBar.Scroll += new System.EventHandler(this.pollingIntervalTrackBar_Scroll);
+            // 
+            // timer1
+            // 
+            this.timer1.SynchronizingObject = this;
+            this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
+            // 
+            // UDPSetupGroupBox
+            // 
+            this.UDPSetupGroupBox.Controls.Add(this.portTextBox);
+            this.UDPSetupGroupBox.Controls.Add(this.hostTextBox);
+            this.UDPSetupGroupBox.Controls.Add(this.PortLabel);
+            this.UDPSetupGroupBox.Controls.Add(this.hostLabel);
+            this.UDPSetupGroupBox.Location = new System.Drawing.Point(296, 22);
+            this.UDPSetupGroupBox.Name = "UDPSetupGroupBox";
+            this.UDPSetupGroupBox.Size = new System.Drawing.Size(200, 149);
+            this.UDPSetupGroupBox.TabIndex = 1;
+            this.UDPSetupGroupBox.TabStop = false;
+            this.UDPSetupGroupBox.Text = "UDP Setup";
+            // 
+            // hostLabel
+            // 
+            this.hostLabel.AutoSize = true;
+            this.hostLabel.Location = new System.Drawing.Point(7, 34);
+            this.hostLabel.Name = "hostLabel";
+            this.hostLabel.Size = new System.Drawing.Size(32, 13);
+            this.hostLabel.TabIndex = 0;
+            this.hostLabel.Text = "Host:";
+            // 
+            // PortLabel
+            // 
+            this.PortLabel.AutoSize = true;
+            this.PortLabel.Location = new System.Drawing.Point(7, 57);
+            this.PortLabel.Name = "PortLabel";
+            this.PortLabel.Size = new System.Drawing.Size(29, 13);
+            this.PortLabel.TabIndex = 0;
+            this.PortLabel.Text = "Port:";
+            // 
+            // hostTextBox
+            // 
+            this.hostTextBox.Location = new System.Drawing.Point(46, 30);
+            this.hostTextBox.Name = "hostTextBox";
+            this.hostTextBox.Size = new System.Drawing.Size(100, 20);
+            this.hostTextBox.TabIndex = 1;
+            // 
+            // portTextBox
+            // 
+            this.portTextBox.Location = new System.Drawing.Point(46, 53);
+            this.portTextBox.Name = "portTextBox";
+            this.portTextBox.Size = new System.Drawing.Size(44, 20);
+            this.portTextBox.TabIndex = 1;
+            // 
+            // applyButton
+            // 
+            this.applyButton.Location = new System.Drawing.Point(503, 472);
+            this.applyButton.Name = "applyButton";
+            this.applyButton.Size = new System.Drawing.Size(75, 23);
+            this.applyButton.TabIndex = 2;
+            this.applyButton.Text = "Apply";
+            this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(422, 472);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(75, 23);
+            this.resetButton.TabIndex = 2;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // SwitchStatusForm
             // 
@@ -348,10 +424,12 @@
             this.tabControl1.ResumeLayout(false);
             this.inputStatusTabPage.ResumeLayout(false);
             this.setupTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.timer1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.timer1)).EndInit();
+            this.UDPSetupGroupBox.ResumeLayout(false);
+            this.UDPSetupGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,6 +466,13 @@
         private System.Windows.Forms.Label PollingIntervalLabel;
         private System.Windows.Forms.TextBox pollingIntervalTextBox;
         private System.Windows.Forms.TrackBar pollingIntervalTrackBar;
+        private System.Windows.Forms.GroupBox UDPSetupGroupBox;
+        private System.Windows.Forms.TextBox portTextBox;
+        private System.Windows.Forms.TextBox hostTextBox;
+        private System.Windows.Forms.Label PortLabel;
+        private System.Windows.Forms.Label hostLabel;
+        private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Button applyButton;
     }
 }
 
