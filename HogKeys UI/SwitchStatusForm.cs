@@ -21,7 +21,6 @@ namespace net.willshouse.HogKeys.UI
         public SwitchStatusForm()
         {
             InitializeComponent();
-
         }
 
         private void SwitchStatus_Load(object sender, EventArgs e)
@@ -62,9 +61,9 @@ namespace net.willshouse.HogKeys.UI
 
         private void GetUserSettings()
         {
-            driver.Host = Properties.Settings.Default.Host;
-            driver.Port = Properties.Settings.Default.Port;
-            pollingIntervalTrackBar.Value = Properties.Settings.Default.PollingInterval;
+            driver.Host = Properties.Settings.Default.host;
+            driver.Port = Properties.Settings.Default.port;
+            pollingIntervalTrackBar.Value = Properties.Settings.Default.pollingInterval;
             hostTextBox.Text = driver.Host;
             portTextBox.Text = driver.Port.ToString();
             pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
@@ -72,9 +71,9 @@ namespace net.willshouse.HogKeys.UI
 
         private void SetUserSettings()
         {
-            Properties.Settings.Default.Host = driver.Host;
-            Properties.Settings.Default.Port = driver.Port;
-            Properties.Settings.Default.PollingInterval = pollingIntervalTrackBar.Value;
+            Properties.Settings.Default.host = driver.Host;
+            Properties.Settings.Default.port = driver.Port;
+            Properties.Settings.Default.pollingInterval = pollingIntervalTrackBar.Value;
             Properties.Settings.Default.Save();
         }
 
