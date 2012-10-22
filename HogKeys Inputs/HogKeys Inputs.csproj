@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="BinarySwitch.cs" />
     <Compile Include="MultiSwitch.cs" />
     <Compile Include="Input.cs" />
@@ -48,6 +51,12 @@
     <Compile Include="ToggleSwitch.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Version\Version.csproj">
+      <Project>{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}</Project>
+      <Name>Version</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

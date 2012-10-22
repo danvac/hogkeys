@@ -274,7 +274,7 @@ namespace net.willshouse.HogKeys.UI
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location);
-            MessageBox.Show("HogKeys Version:\n" + Assembly.GetExecutingAssembly().GetName().Version.ToString(),"About HogKeys");
+            MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion,"About HogKeys");
             
         }
 
