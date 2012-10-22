@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{82625F33-C880-4F17-9741-2723ADA9784F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>net.willshouse.HogKeys.UI</RootNamespace>
+    <AssemblyName>HogKeys UI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>F:\Projects\Publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>0.1.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>BC487F0F669D13978953BFD28B4B80E8B86DDF73</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>HogKeys UI_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="BinarySwitchPinManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BinarySwitchPinManager.Designer.cs">
+      <DependentUpon>BinarySwitchPinManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexNumericControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndexNumericControl.Designer.cs">
+      <DependentUpon>IndexNumericControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexPinValueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndexPinValueControl.Designer.cs">
+      <DependentUpon>IndexPinValueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IndexValueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IndexValueControl.Designer.cs">
+      <DependentUpon>IndexValueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSwitchPinManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MultiSwitchPinManager.Designer.cs">
+      <DependentUpon>MultiSwitchPinManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SwitchDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SwitchDetailForm.Designer.cs">
+      <DependentUpon>SwitchDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SwitchStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SwitchStatusForm.Designer.cs">
+      <DependentUpon>SwitchStatusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToggleSwitchPinManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ToggleSwitchPinManager.Designer.cs">
+      <DependentUpon>ToggleSwitchPinManager.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BinarySwitchPinManager.resx">
+      <DependentUpon>BinarySwitchPinManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexNumericControl.resx">
+      <DependentUpon>IndexNumericControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexPinValueControl.resx">
+      <DependentUpon>IndexPinValueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IndexValueControl.resx">
+      <DependentUpon>IndexValueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MultiSwitchPinManager.resx">
+      <DependentUpon>MultiSwitchPinManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="SwitchDetailForm.resx">
+      <DependentUpon>SwitchDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SwitchStatusForm.resx">
+      <DependentUpon>SwitchStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToggleSwitchPinManager.resx">
+      <DependentUpon>ToggleSwitchPinManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HogKeys Devices\HogKeys Devices.csproj">
+      <Project>{286DDA78-FD74-49B1-9FEC-BE19350F0318}</Project>
+      <Name>HogKeys Devices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HogKeys Inputs\HogKeys Inputs.csproj">
+      <Project>{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}</Project>
+      <Name>HogKeys Inputs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Version\Version.csproj">
+      <Project>{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}</Project>
+      <Name>Version</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
