@@ -271,7 +271,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Assembly assembly = Assembly.GetExecutingAssembly();
+            Assembly assembly = Assembly.GetEntryAssembly();
             FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location);
             MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion, "About HogKeys");
 
