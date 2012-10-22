@@ -262,7 +262,6 @@ namespace net.willshouse.HogKeys.UI
         private void resetButton_Click(object sender, EventArgs e)
         {
             GetUserSettings();
-            MessageBox.Show(driver.Host);
         }
 
         private void applyButton_Click(object sender, EventArgs e)
@@ -274,8 +273,8 @@ namespace net.willshouse.HogKeys.UI
         {
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location);
-            MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion,"About HogKeys");
-            
+            MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion, "About HogKeys");
+
         }
 
 
