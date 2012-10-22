@@ -52,28 +52,29 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.inputStatusTabPage = new System.Windows.Forms.TabPage();
             this.setupTabPage = new System.Windows.Forms.TabPage();
+            this.resetButton = new System.Windows.Forms.Button();
+            this.applyButton = new System.Windows.Forms.Button();
+            this.UDPSetupGroupBox = new System.Windows.Forms.GroupBox();
+            this.portTextBox = new System.Windows.Forms.TextBox();
+            this.hostTextBox = new System.Windows.Forms.TextBox();
+            this.PortLabel = new System.Windows.Forms.Label();
+            this.hostLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PollingIntervalLabel = new System.Windows.Forms.Label();
             this.pollingIntervalTextBox = new System.Windows.Forms.TextBox();
             this.pollingIntervalTrackBar = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Timers.Timer();
-            this.UDPSetupGroupBox = new System.Windows.Forms.GroupBox();
-            this.hostLabel = new System.Windows.Forms.Label();
-            this.PortLabel = new System.Windows.Forms.Label();
-            this.hostTextBox = new System.Windows.Forms.TextBox();
-            this.portTextBox = new System.Windows.Forms.TextBox();
-            this.applyButton = new System.Windows.Forms.Button();
-            this.resetButton = new System.Windows.Forms.Button();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatus)).BeginInit();
             this.switchMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.inputStatusTabPage.SuspendLayout();
             this.setupTabPage.SuspendLayout();
+            this.UDPSetupGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timer1)).BeginInit();
-            this.UDPSetupGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridStatus
@@ -98,7 +99,8 @@
             this.switchMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.editToolStripMenuItem,
-            this.deviceToolStripMenuItem});
+            this.deviceToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.switchMenu.Location = new System.Drawing.Point(0, 0);
             this.switchMenu.Name = "switchMenu";
             this.switchMenu.Size = new System.Drawing.Size(592, 24);
@@ -292,6 +294,71 @@
             this.setupTabPage.Text = "Setup";
             this.setupTabPage.UseVisualStyleBackColor = true;
             // 
+            // resetButton
+            // 
+            this.resetButton.Location = new System.Drawing.Point(422, 472);
+            this.resetButton.Name = "resetButton";
+            this.resetButton.Size = new System.Drawing.Size(75, 23);
+            this.resetButton.TabIndex = 2;
+            this.resetButton.Text = "Reset";
+            this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            // 
+            // applyButton
+            // 
+            this.applyButton.Location = new System.Drawing.Point(503, 472);
+            this.applyButton.Name = "applyButton";
+            this.applyButton.Size = new System.Drawing.Size(75, 23);
+            this.applyButton.TabIndex = 2;
+            this.applyButton.Text = "Save";
+            this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
+            // 
+            // UDPSetupGroupBox
+            // 
+            this.UDPSetupGroupBox.Controls.Add(this.portTextBox);
+            this.UDPSetupGroupBox.Controls.Add(this.hostTextBox);
+            this.UDPSetupGroupBox.Controls.Add(this.PortLabel);
+            this.UDPSetupGroupBox.Controls.Add(this.hostLabel);
+            this.UDPSetupGroupBox.Location = new System.Drawing.Point(296, 22);
+            this.UDPSetupGroupBox.Name = "UDPSetupGroupBox";
+            this.UDPSetupGroupBox.Size = new System.Drawing.Size(200, 149);
+            this.UDPSetupGroupBox.TabIndex = 1;
+            this.UDPSetupGroupBox.TabStop = false;
+            this.UDPSetupGroupBox.Text = "UDP Setup";
+            // 
+            // portTextBox
+            // 
+            this.portTextBox.Location = new System.Drawing.Point(46, 53);
+            this.portTextBox.Name = "portTextBox";
+            this.portTextBox.Size = new System.Drawing.Size(44, 20);
+            this.portTextBox.TabIndex = 1;
+            // 
+            // hostTextBox
+            // 
+            this.hostTextBox.Location = new System.Drawing.Point(46, 30);
+            this.hostTextBox.Name = "hostTextBox";
+            this.hostTextBox.Size = new System.Drawing.Size(100, 20);
+            this.hostTextBox.TabIndex = 1;
+            // 
+            // PortLabel
+            // 
+            this.PortLabel.AutoSize = true;
+            this.PortLabel.Location = new System.Drawing.Point(7, 57);
+            this.PortLabel.Name = "PortLabel";
+            this.PortLabel.Size = new System.Drawing.Size(29, 13);
+            this.PortLabel.TabIndex = 0;
+            this.PortLabel.Text = "Port:";
+            // 
+            // hostLabel
+            // 
+            this.hostLabel.AutoSize = true;
+            this.hostLabel.Location = new System.Drawing.Point(7, 34);
+            this.hostLabel.Name = "hostLabel";
+            this.hostLabel.Size = new System.Drawing.Size(32, 13);
+            this.hostLabel.TabIndex = 0;
+            this.hostLabel.Text = "Host:";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.PollingIntervalLabel);
@@ -339,70 +406,12 @@
             this.timer1.SynchronizingObject = this;
             this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
             // 
-            // UDPSetupGroupBox
+            // aboutToolStripMenuItem
             // 
-            this.UDPSetupGroupBox.Controls.Add(this.portTextBox);
-            this.UDPSetupGroupBox.Controls.Add(this.hostTextBox);
-            this.UDPSetupGroupBox.Controls.Add(this.PortLabel);
-            this.UDPSetupGroupBox.Controls.Add(this.hostLabel);
-            this.UDPSetupGroupBox.Location = new System.Drawing.Point(296, 22);
-            this.UDPSetupGroupBox.Name = "UDPSetupGroupBox";
-            this.UDPSetupGroupBox.Size = new System.Drawing.Size(200, 149);
-            this.UDPSetupGroupBox.TabIndex = 1;
-            this.UDPSetupGroupBox.TabStop = false;
-            this.UDPSetupGroupBox.Text = "UDP Setup";
-            // 
-            // hostLabel
-            // 
-            this.hostLabel.AutoSize = true;
-            this.hostLabel.Location = new System.Drawing.Point(7, 34);
-            this.hostLabel.Name = "hostLabel";
-            this.hostLabel.Size = new System.Drawing.Size(32, 13);
-            this.hostLabel.TabIndex = 0;
-            this.hostLabel.Text = "Host:";
-            // 
-            // PortLabel
-            // 
-            this.PortLabel.AutoSize = true;
-            this.PortLabel.Location = new System.Drawing.Point(7, 57);
-            this.PortLabel.Name = "PortLabel";
-            this.PortLabel.Size = new System.Drawing.Size(29, 13);
-            this.PortLabel.TabIndex = 0;
-            this.PortLabel.Text = "Port:";
-            // 
-            // hostTextBox
-            // 
-            this.hostTextBox.Location = new System.Drawing.Point(46, 30);
-            this.hostTextBox.Name = "hostTextBox";
-            this.hostTextBox.Size = new System.Drawing.Size(100, 20);
-            this.hostTextBox.TabIndex = 1;
-            // 
-            // portTextBox
-            // 
-            this.portTextBox.Location = new System.Drawing.Point(46, 53);
-            this.portTextBox.Name = "portTextBox";
-            this.portTextBox.Size = new System.Drawing.Size(44, 20);
-            this.portTextBox.TabIndex = 1;
-            // 
-            // applyButton
-            // 
-            this.applyButton.Location = new System.Drawing.Point(503, 472);
-            this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(75, 23);
-            this.applyButton.TabIndex = 2;
-            this.applyButton.Text = "Apply";
-            this.applyButton.UseVisualStyleBackColor = true;
-            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
-            // 
-            // resetButton
-            // 
-            this.resetButton.Location = new System.Drawing.Point(422, 472);
-            this.resetButton.Name = "resetButton";
-            this.resetButton.Size = new System.Drawing.Size(75, 23);
-            this.resetButton.TabIndex = 2;
-            this.resetButton.Text = "Reset";
-            this.resetButton.UseVisualStyleBackColor = true;
-            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // SwitchStatusForm
             // 
@@ -414,7 +423,7 @@
             this.Controls.Add(this.switchMenu);
             this.MainMenuStrip = this.switchMenu;
             this.Name = "SwitchStatusForm";
-            this.Text = "SwitchStatus";
+            this.Text = "Hardware Status";
             this.Load += new System.EventHandler(this.SwitchStatus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridStatus)).EndInit();
             this.switchMenu.ResumeLayout(false);
@@ -424,12 +433,12 @@
             this.tabControl1.ResumeLayout(false);
             this.inputStatusTabPage.ResumeLayout(false);
             this.setupTabPage.ResumeLayout(false);
+            this.UDPSetupGroupBox.ResumeLayout(false);
+            this.UDPSetupGroupBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timer1)).EndInit();
-            this.UDPSetupGroupBox.ResumeLayout(false);
-            this.UDPSetupGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,6 +482,7 @@
         private System.Windows.Forms.Label hostLabel;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button applyButton;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 

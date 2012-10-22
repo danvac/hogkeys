@@ -10,6 +10,8 @@ using net.willshouse.HogKeys.Inputs;
 using net.willshouse.HogKeys.Devices;
 using System.Xml.Serialization;
 using System.IO;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace net.willshouse.HogKeys.UI
 {
@@ -266,6 +268,14 @@ namespace net.willshouse.HogKeys.UI
         private void applyButton_Click(object sender, EventArgs e)
         {
             SetUserSettings();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location);
+            MessageBox.Show("HogKeys Version:\n" + Assembly.GetExecutingAssembly().GetName().Version.ToString(),"About HogKeys");
+            
         }
 
 
