@@ -1,4 +1,4 @@
-﻿namespace net.willshouse.HogKeys.UI
+﻿namespace net.willshouse.HogKeys.UI.controls
 {
     partial class MultiSwitchPinManager
     {
