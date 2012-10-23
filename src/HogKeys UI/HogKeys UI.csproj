@@ -85,34 +85,34 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="BinarySwitchPinManager.cs">
+    <Compile Include="Controls\BinarySwitchPinManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BinarySwitchPinManager.Designer.cs">
+    <Compile Include="Controls\BinarySwitchPinManager.Designer.cs">
       <DependentUpon>BinarySwitchPinManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="IndexNumericControl.cs">
+    <Compile Include="Controls\IndexNumericControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IndexNumericControl.Designer.cs">
+    <Compile Include="Controls\IndexNumericControl.Designer.cs">
       <DependentUpon>IndexNumericControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IndexPinValueControl.cs">
+    <Compile Include="Controls\IndexPinValueControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IndexPinValueControl.Designer.cs">
+    <Compile Include="Controls\IndexPinValueControl.Designer.cs">
       <DependentUpon>IndexPinValueControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IndexValueControl.cs">
+    <Compile Include="Controls\IndexValueControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IndexValueControl.Designer.cs">
+    <Compile Include="Controls\IndexValueControl.Designer.cs">
       <DependentUpon>IndexValueControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MultiSwitchPinManager.cs">
+    <Compile Include="Controls\MultiSwitchPinManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MultiSwitchPinManager.Designer.cs">
+    <Compile Include="Controls\MultiSwitchPinManager.Designer.cs">
       <DependentUpon>MultiSwitchPinManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -135,25 +135,25 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ToggleSwitchPinManager.cs">
+    <Compile Include="Controls\ToggleSwitchPinManager.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ToggleSwitchPinManager.Designer.cs">
+    <Compile Include="Controls\ToggleSwitchPinManager.Designer.cs">
       <DependentUpon>ToggleSwitchPinManager.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BinarySwitchPinManager.resx">
+    <EmbeddedResource Include="Controls\BinarySwitchPinManager.resx">
       <DependentUpon>BinarySwitchPinManager.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IndexNumericControl.resx">
+    <EmbeddedResource Include="Controls\IndexNumericControl.resx">
       <DependentUpon>IndexNumericControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IndexPinValueControl.resx">
+    <EmbeddedResource Include="Controls\IndexPinValueControl.resx">
       <DependentUpon>IndexPinValueControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IndexValueControl.resx">
+    <EmbeddedResource Include="Controls\IndexValueControl.resx">
       <DependentUpon>IndexValueControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MultiSwitchPinManager.resx">
+    <EmbeddedResource Include="Controls\MultiSwitchPinManager.resx">
       <DependentUpon>MultiSwitchPinManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -172,7 +172,7 @@
     <EmbeddedResource Include="SwitchStatusForm.resx">
       <DependentUpon>SwitchStatusForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ToggleSwitchPinManager.resx">
+    <EmbeddedResource Include="Controls\ToggleSwitchPinManager.resx">
       <DependentUpon>ToggleSwitchPinManager.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
@@ -216,6 +216,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

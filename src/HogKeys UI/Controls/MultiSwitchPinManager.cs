@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using net.willshouse.HogKeys.Inputs;
 
-namespace net.willshouse.HogKeys.UI
+namespace net.willshouse.HogKeys.UI.controls
 {
     public partial class MultiSwitchPinManager : UserControl
     {

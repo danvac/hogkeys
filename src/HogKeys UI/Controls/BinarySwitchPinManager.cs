@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using net.willshouse.HogKeys.Inputs;
 using System.Collections;
 
-namespace net.willshouse.HogKeys.UI
+namespace net.willshouse.HogKeys.UI.controls
 {
     public partial class BinarySwitchPinManager : UserControl
     {

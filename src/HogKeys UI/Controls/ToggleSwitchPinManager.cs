@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using net.willshouse.HogKeys.Inputs;
 
-namespace net.willshouse.HogKeys.UI
+namespace net.willshouse.HogKeys.UI.controls
 {
     public partial class ToggleSwitchPinManager : UserControl
     {

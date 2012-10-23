@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace net.willshouse.HogKeys.UI
+namespace net.willshouse.HogKeys.UI.controls
 {
     public partial class IndexPinValueControl : UserControl
     {
