@@ -1,60 +1,52 @@
 
-
+dofile ("./Config/Export/HogKeys/OutputTables.lua")  
 
 -- Support functions to parse and generate suitable commands to the SIOC server.
 -- Process simple On/Off indicators
-function ProcessIndicators(pIndicatorTables)
-    local lIndicatorTable, lDevice_Arg ,lSIOC_Var, lArgumentValue, lPanel, lPanelId
-    local lSIOC_SendString = ""
+function ProcessOutputs(outputTables)
+    local indicatorTable, deviceArg ,outputIndex, outputValue, panel, panelId
+    local outputMessage = ""
     
-    for i , lIndicatorTable in pairs(pIndicatorTables) 
+    for i , indicatorTable in pairs(outputTables) 
     do     
-        for lSIOC_Var ,lDevice_Arg in pairs(lIndicatorTable) 
+        for outputIndex ,deviceArg in pairs(indicatorTable) 
         do 
             -- Check if the panelID changes between indicators 
-            if lPanelId ~= lDevice_Arg[1] then 
-                lPanelId = lDevice_Arg[1]
+            if panelId ~= deviceArg[1] then 
+                panelId = deviceArg[1]
                 -- Get the device
-                lPanel = GetDevice(lDevice_Arg[1])
+                panel = GetDevice(deviceArg[1])
                 --Check to see that the device is valid otherwise we return an emty string
-                if type(lPanel) ~= "table" then
+                if type(panel) ~= "table" then
+				-- should put error in log here
                     return ""
                 end
                 -- Update the panel
-                lPanel:update_arguments()
+                panel:update_arguments()
             end
              
-            lArgumentValue = lPanel:get_argument_value(lDevice_Arg[2])
-            -- For some reason the get_argument_value function call above returns 0.1000001256, 0.20000012313 
-            -- or similar so we need round this value to 0.1, 0.2 etc
-            lArgumentValue = round(lArgumentValue, 1)
-    
-            -- 0 or 0.2 means that the indicator should be off => the SIOC param should be 0
-            -- For any other value the indicator should be on => the SIOC param should be 1
-            if ((lArgumentValue == 0) or (lArgumentValue == 0.2)) then
-                lSIOC_SendString = lSIOC_SendString..lSIOC_Var.."=0:"
-            else
-                lSIOC_SendString = lSIOC_SendString..lSIOC_Var.."=1:"
-            end            
+            outputValue = panel:get_argument_value(deviceArg[2])
+			outputMessage = outputMessage..outputIndex..","
+            
         end
     end
-    return lSIOC_SendString
+    return outputMessage
 end
 
 
 -- Generate the SIOC string to reset (turn off) all indicator lamsp
 function ResetIndicators(pIndicatorTables)
-    local lIndicatorTable, lDevice_Arg ,lSIOC_Var 
-    local lSIOC_SendString = ""
+    local indicatorTable, deviceArg ,outputIndex 
+    local outputMessage = ""
     
-    for i , lIndicatorTable in pairs(pIndicatorTables) 
+    for i , indicatorTable in pairs(pIndicatorTables) 
     do     
-        for lSIOC_Var ,lDevice_Arg in pairs(lIndicatorTable) 
+        for outputIndex ,deviceArg in pairs(indicatorTable) 
         do 
-            lSIOC_SendString = lSIOC_SendString..lSIOC_Var.."=0:"
+            outputMessage = outputMessage..outputIndex..",OFF,"
         end            
     end
-    return lSIOC_SendString
+    return outputMessage
 end
 
 -- Simple round function
