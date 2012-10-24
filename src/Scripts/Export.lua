@@ -26,7 +26,7 @@ if file then
 	file:write("---LOG: START----","\n")
 	file:flush()
 end
-
+dofile ("./Config/Export/HogKeys/Outputs.lua")  
 function StrSplit(str, delim, maxNb)
     -- Eliminate bad cases...
     if string.find(str, delim) == nil then
