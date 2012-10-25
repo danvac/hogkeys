@@ -6,6 +6,7 @@ using System.ComponentModel;
 using net.willshouse.HogKeys.Inputs;
 using System.Net.Sockets;
 using System.Windows.Forms;
+using System.Collections.Concurrent;
 
 
 namespace net.willshouse.HogKeys.Devices
@@ -98,6 +99,20 @@ namespace net.willshouse.HogKeys.Devices
                 values += value.ToString() + ",";
             }
             MessageBox.Show(values);
+        }
+
+        public void UDPListenerEventHandlerMessageReceived(object sender, UDPListenerEventArgs e)
+        {
+            string message = e.Message;
+            ConcurrentDictionary<int, double> offsets = new ConcurrentDictionary<int,double>();
+            message = message.TrimEnd(',');
+            string[] items = message.Split(',');
+            foreach (string item in items)
+            {
+                string[] offset = item.Split(':');
+                offsets.TryAdd(Convert.ToInt32(offset[0]),Convert.ToDouble(offset[1]));
+                //MessageBox.Show(offsets[Convert.ToInt32(offset[0])].ToString());
+            }
         }
     }
 }

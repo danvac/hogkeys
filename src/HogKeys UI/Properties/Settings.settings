@@ -8,11 +8,14 @@
     <Setting Name="host" Type="System.String" Scope="User">
       <Value Profile="(Default)">localhost</Value>
     </Setting>
-    <Setting Name="port" Type="System.Int32" Scope="User">
+    <Setting Name="dcsPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9089</Value>
     </Setting>
     <Setting Name="pollingInterval" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">25</Value>
+    </Setting>
+    <Setting Name="hogKeysPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9090</Value>
     </Setting>
   </Settings>
 </SettingsFile>

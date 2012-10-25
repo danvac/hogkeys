@@ -20,6 +20,7 @@ namespace net.willshouse.HogKeys.UI
     {
         BindingSource inputSource, outputSource;
         TestDriver driver;
+        private int hogKeysPort;
 
         public SwitchStatusForm()
         {
@@ -55,7 +56,7 @@ namespace net.willshouse.HogKeys.UI
             driver.Inputs = inputSource;
             GetUserSettings();
             hostTextBox.DataBindings.Add("Text", driver, "Host");
-            portTextBox.DataBindings.Add("Text", driver, "Port");
+            dcsPortTextBox.DataBindings.Add("Text", driver, "Port");
 
             if ((Properties.Settings.Default.lastOpenedFile != "") && (File.Exists(Properties.Settings.Default.lastOpenedFile)))
             {
@@ -83,18 +84,21 @@ namespace net.willshouse.HogKeys.UI
         private void GetUserSettings()
         {
             driver.Host = Properties.Settings.Default.host;
-            driver.Port = Properties.Settings.Default.port;
+            driver.Port = Properties.Settings.Default.dcsPort;
             pollingIntervalTrackBar.Value = Properties.Settings.Default.pollingInterval;
             hostTextBox.Text = driver.Host;
-            portTextBox.Text = driver.Port.ToString();
+            dcsPortTextBox.Text = driver.Port.ToString();
             pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
+            hogKeysPort = Properties.Settings.Default.hogKeysPort;
+            hogKeysPortTextBox.Text = hogKeysPort.ToString();
         }
 
         private void SetUserSettings()
         {
             Properties.Settings.Default.host = driver.Host;
-            Properties.Settings.Default.port = driver.Port;
+            Properties.Settings.Default.dcsPort = driver.Port;
             Properties.Settings.Default.pollingInterval = pollingIntervalTrackBar.Value;
+            Properties.Settings.Default.hogKeysPort = Convert.ToInt32(hogKeysPortTextBox.Text);
             Properties.Settings.Default.Save();
         }
 
@@ -285,20 +289,36 @@ namespace net.willshouse.HogKeys.UI
 
         private void startPollingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            StartPolling();
+        }
+
+        private void StartPolling()
+        {
             pollOnceToolStripMenuItem.Enabled = false;
             startPollingToolStripMenuItem.Enabled = false;
             stopPollingToolStripMenuItem.Enabled = true;
             timer1.Enabled = true;
+            UDPListener.Start(hogKeysPort);
+            UDPListener.MessageReceived += new UDPListener.UDPListenerEventHandler(driver.UDPListenerEventHandlerMessageReceived);
             pollingStatusLabel.Text = "Polling:ON";
         }
 
-        private void stopPollingToolStripMenuItem_Click(object sender, EventArgs e)
+        
+
+        private void StopPolling()
         {
             pollOnceToolStripMenuItem.Enabled = true;
             startPollingToolStripMenuItem.Enabled = true;
             stopPollingToolStripMenuItem.Enabled = false;
             timer1.Enabled = false;
+            UDPListener.Stop();
+            UDPListener.MessageReceived -= driver.UDPListenerEventHandlerMessageReceived;
             pollingStatusLabel.Text = "Polling:OFF";
+        }
+
+        private void stopPollingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StopPolling();
         }
 
         private void timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)

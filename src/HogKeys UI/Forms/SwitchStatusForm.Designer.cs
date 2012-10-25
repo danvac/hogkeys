@@ -55,9 +55,9 @@
             this.resetButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
             this.UDPSetupGroupBox = new System.Windows.Forms.GroupBox();
-            this.portTextBox = new System.Windows.Forms.TextBox();
+            this.dcsPortTextBox = new System.Windows.Forms.TextBox();
             this.hostTextBox = new System.Windows.Forms.TextBox();
-            this.PortLabel = new System.Windows.Forms.Label();
+            this.dcsPortLabel = new System.Windows.Forms.Label();
             this.hostLabel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.PollingIntervalLabel = new System.Windows.Forms.Label();
@@ -67,6 +67,10 @@
             this.outputStatusTabPage = new System.Windows.Forms.TabPage();
             this.outputStatusDataGridView = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Timers.Timer();
+            this.dcsHeaderLabel = new System.Windows.Forms.Label();
+            this.hogKeysPortTextBox = new System.Windows.Forms.TextBox();
+            this.hogKeysPortLabel = new System.Windows.Forms.Label();
+            this.hogKeysListenerlabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.inputStatusDataGridView)).BeginInit();
             this.switchMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -317,9 +321,13 @@
             // 
             // UDPSetupGroupBox
             // 
-            this.UDPSetupGroupBox.Controls.Add(this.portTextBox);
+            this.UDPSetupGroupBox.Controls.Add(this.hogKeysListenerlabel);
+            this.UDPSetupGroupBox.Controls.Add(this.hogKeysPortTextBox);
+            this.UDPSetupGroupBox.Controls.Add(this.hogKeysPortLabel);
+            this.UDPSetupGroupBox.Controls.Add(this.dcsHeaderLabel);
+            this.UDPSetupGroupBox.Controls.Add(this.dcsPortTextBox);
             this.UDPSetupGroupBox.Controls.Add(this.hostTextBox);
-            this.UDPSetupGroupBox.Controls.Add(this.PortLabel);
+            this.UDPSetupGroupBox.Controls.Add(this.dcsPortLabel);
             this.UDPSetupGroupBox.Controls.Add(this.hostLabel);
             this.UDPSetupGroupBox.Location = new System.Drawing.Point(296, 22);
             this.UDPSetupGroupBox.Name = "UDPSetupGroupBox";
@@ -328,33 +336,33 @@
             this.UDPSetupGroupBox.TabStop = false;
             this.UDPSetupGroupBox.Text = "UDP Setup";
             // 
-            // portTextBox
+            // dcsPortTextBox
             // 
-            this.portTextBox.Location = new System.Drawing.Point(46, 53);
-            this.portTextBox.Name = "portTextBox";
-            this.portTextBox.Size = new System.Drawing.Size(44, 20);
-            this.portTextBox.TabIndex = 1;
+            this.dcsPortTextBox.Location = new System.Drawing.Point(46, 64);
+            this.dcsPortTextBox.Name = "dcsPortTextBox";
+            this.dcsPortTextBox.Size = new System.Drawing.Size(44, 20);
+            this.dcsPortTextBox.TabIndex = 1;
             // 
             // hostTextBox
             // 
-            this.hostTextBox.Location = new System.Drawing.Point(46, 30);
+            this.hostTextBox.Location = new System.Drawing.Point(46, 41);
             this.hostTextBox.Name = "hostTextBox";
             this.hostTextBox.Size = new System.Drawing.Size(100, 20);
             this.hostTextBox.TabIndex = 1;
             // 
-            // PortLabel
+            // dcsPortLabel
             // 
-            this.PortLabel.AutoSize = true;
-            this.PortLabel.Location = new System.Drawing.Point(7, 57);
-            this.PortLabel.Name = "PortLabel";
-            this.PortLabel.Size = new System.Drawing.Size(29, 13);
-            this.PortLabel.TabIndex = 0;
-            this.PortLabel.Text = "Port:";
+            this.dcsPortLabel.AutoSize = true;
+            this.dcsPortLabel.Location = new System.Drawing.Point(7, 68);
+            this.dcsPortLabel.Name = "dcsPortLabel";
+            this.dcsPortLabel.Size = new System.Drawing.Size(29, 13);
+            this.dcsPortLabel.TabIndex = 0;
+            this.dcsPortLabel.Text = "Port:";
             // 
             // hostLabel
             // 
             this.hostLabel.AutoSize = true;
-            this.hostLabel.Location = new System.Drawing.Point(7, 34);
+            this.hostLabel.Location = new System.Drawing.Point(7, 45);
             this.hostLabel.Name = "hostLabel";
             this.hostLabel.Size = new System.Drawing.Size(32, 13);
             this.hostLabel.TabIndex = 0;
@@ -446,6 +454,40 @@
             this.timer1.SynchronizingObject = this;
             this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
             // 
+            // dcsHeaderLabel
+            // 
+            this.dcsHeaderLabel.AutoSize = true;
+            this.dcsHeaderLabel.Location = new System.Drawing.Point(10, 20);
+            this.dcsHeaderLabel.Name = "dcsHeaderLabel";
+            this.dcsHeaderLabel.Size = new System.Drawing.Size(75, 13);
+            this.dcsHeaderLabel.TabIndex = 2;
+            this.dcsHeaderLabel.Text = "DCS Simulator";
+            // 
+            // hogKeysPortTextBox
+            // 
+            this.hogKeysPortTextBox.Location = new System.Drawing.Point(46, 117);
+            this.hogKeysPortTextBox.Name = "hogKeysPortTextBox";
+            this.hogKeysPortTextBox.Size = new System.Drawing.Size(44, 20);
+            this.hogKeysPortTextBox.TabIndex = 4;
+            // 
+            // hogKeysPortLabel
+            // 
+            this.hogKeysPortLabel.AutoSize = true;
+            this.hogKeysPortLabel.Location = new System.Drawing.Point(7, 121);
+            this.hogKeysPortLabel.Name = "hogKeysPortLabel";
+            this.hogKeysPortLabel.Size = new System.Drawing.Size(29, 13);
+            this.hogKeysPortLabel.TabIndex = 3;
+            this.hogKeysPortLabel.Text = "Port:";
+            // 
+            // hogKeysListenerlabel
+            // 
+            this.hogKeysListenerlabel.AutoSize = true;
+            this.hogKeysListenerlabel.Location = new System.Drawing.Point(7, 99);
+            this.hogKeysListenerlabel.Name = "hogKeysListenerlabel";
+            this.hogKeysListenerlabel.Size = new System.Drawing.Size(90, 13);
+            this.hogKeysListenerlabel.TabIndex = 5;
+            this.hogKeysListenerlabel.Text = "HogKeys Listener";
+            // 
             // SwitchStatusForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -511,15 +553,19 @@
         private System.Windows.Forms.TextBox pollingIntervalTextBox;
         private System.Windows.Forms.TrackBar pollingIntervalTrackBar;
         private System.Windows.Forms.GroupBox UDPSetupGroupBox;
-        private System.Windows.Forms.TextBox portTextBox;
+        private System.Windows.Forms.TextBox dcsPortTextBox;
         private System.Windows.Forms.TextBox hostTextBox;
-        private System.Windows.Forms.Label PortLabel;
+        private System.Windows.Forms.Label dcsPortLabel;
         private System.Windows.Forms.Label hostLabel;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TabPage outputStatusTabPage;
         private System.Windows.Forms.DataGridView outputStatusDataGridView;
+        private System.Windows.Forms.Label hogKeysListenerlabel;
+        private System.Windows.Forms.TextBox hogKeysPortTextBox;
+        private System.Windows.Forms.Label hogKeysPortLabel;
+        private System.Windows.Forms.Label dcsHeaderLabel;
     }
 }
 
