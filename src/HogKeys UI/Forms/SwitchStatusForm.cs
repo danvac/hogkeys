@@ -166,6 +166,18 @@ namespace net.willshouse.HogKeys.UI
             switchDetail.ShowDialog();
         }
 
+        private void LaunchOutputDetailForm(Output output)
+        {
+            OutputDetailForm outputDetail = new OutputDetailForm(output);
+            outputDetail.ShowDialog();
+        }
+
+        private void LaunchoutputDetailForm(Output output, BindingSource source)
+        {
+            OutputDetailForm outputDetail = new OutputDetailForm(output, source);
+            outputDetail.ShowDialog();
+        }
+
         private void toggleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
@@ -190,6 +202,14 @@ namespace net.willshouse.HogKeys.UI
                 LaunchSwitchDetailForm((Input)inputSource[e.RowIndex]);
             }
 
+        }
+
+        private void outputStatusDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                LaunchOutputDetailForm((Output)outputSource[e.RowIndex]);
+            }
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -305,6 +325,12 @@ namespace net.willshouse.HogKeys.UI
             MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion, "About HogKeys");
 
         }
+
+        
+
+        
+
+        
 
 
 

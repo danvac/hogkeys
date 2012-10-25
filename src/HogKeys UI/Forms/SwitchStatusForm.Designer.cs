@@ -439,6 +439,7 @@
             this.outputStatusDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.outputStatusDataGridView.Size = new System.Drawing.Size(578, 495);
             this.outputStatusDataGridView.TabIndex = 1;
+            this.outputStatusDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.outputStatusDataGridView_CellDoubleClick);
             // 
             // timer1
             // 
