@@ -121,16 +121,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="SwitchDetailForm.cs">
+    <Compile Include="Forms\SwitchDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SwitchDetailForm.Designer.cs">
+    <Compile Include="Forms\SwitchDetailForm.Designer.cs">
       <DependentUpon>SwitchDetailForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SwitchStatusForm.cs">
+    <Compile Include="Forms\SwitchStatusForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SwitchStatusForm.Designer.cs">
+    <Compile Include="Forms\SwitchStatusForm.Designer.cs">
       <DependentUpon>SwitchStatusForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -166,10 +166,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SwitchDetailForm.resx">
+    <EmbeddedResource Include="Forms\SwitchDetailForm.resx">
       <DependentUpon>SwitchDetailForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SwitchStatusForm.resx">
+    <EmbeddedResource Include="Forms\SwitchStatusForm.resx">
       <DependentUpon>SwitchStatusForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ToggleSwitchPinManager.resx">
