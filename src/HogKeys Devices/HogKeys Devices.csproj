@@ -50,6 +50,7 @@
     <Compile Include="Device.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDriver.cs" />
+    <Compile Include="UDPListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HogKeys Inputs\HogKeys Inputs.csproj">
