@@ -42,7 +42,7 @@ namespace net.willshouse.HogKeys.UI
             outputStatusDataGridView.AutoGenerateColumns = false;
             outputStatusDataGridView.DataSource = outputSource;
             //BuildTestInputData();
-            BuildTestOutputData();
+            //BuildTestOutputData();
             try
             {
                 driver.InitializeConnection(0);
@@ -57,7 +57,7 @@ namespace net.willshouse.HogKeys.UI
             hostTextBox.DataBindings.Add("Text", driver, "Host");
             portTextBox.DataBindings.Add("Text", driver, "Port");
 
-            if (Properties.Settings.Default.lastOpenedFile != "")
+            if ((Properties.Settings.Default.lastOpenedFile != "") && (File.Exists(Properties.Settings.Default.lastOpenedFile)))
             {
                 LoadConfig(Properties.Settings.Default.lastOpenedFile);
             }
@@ -241,14 +241,15 @@ namespace net.willshouse.HogKeys.UI
 
         private void LoadConfig(string fileName)
         {
-            BindingList<Input> switches;
-            XmlSerializer ser = new XmlSerializer(typeof(BindingList<Input>), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch) });
+            HogKeysConfig loader;
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.OpenRead(fileName))
             {
-                switches = (BindingList<Input>)ser.Deserialize(stream);
+             loader = (HogKeysConfig)ser.Deserialize(stream);
             }
-            inputSource.DataSource = switches;
-            MessageBox.Show("Done:" + switches.Count.ToString() + " items loaded");
+            inputSource.DataSource = (BindingList<Input>)loader.Inputs;
+            outputSource.DataSource = (BindingList<Output>)loader.Outputs;
+            //MessageBox.Show("Done:" + inputs.Count.ToString() + " items loaded");
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -266,10 +267,13 @@ namespace net.willshouse.HogKeys.UI
 
         private void SaveConfig(string fileName)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(BindingList<Input>), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.Create(fileName))
             {
-                ser.Serialize(stream, inputSource.List);
+                HogKeysConfig saver = new HogKeysConfig();
+                saver.Inputs = (BindingList<Input>)inputSource.List;
+                saver.Outputs = (BindingList<Output>)outputSource.List;
+                ser.Serialize(stream, saver);
             }
             MessageBox.Show("Items Saved");
         }
