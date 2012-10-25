@@ -45,6 +45,7 @@
             this.pollOnceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startPollingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopPollingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.pollingStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -64,7 +65,7 @@
             this.pollingIntervalTextBox = new System.Windows.Forms.TextBox();
             this.pollingIntervalTrackBar = new System.Windows.Forms.TrackBar();
             this.timer1 = new System.Timers.Timer();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outputStatusTabPage = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.gridStatus)).BeginInit();
             this.switchMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -233,6 +234,13 @@
             this.stopPollingToolStripMenuItem.Text = "Stop Polling";
             this.stopPollingToolStripMenuItem.Click += new System.EventHandler(this.stopPollingToolStripMenuItem_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -260,8 +268,9 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.inputStatusTabPage);
             this.tabControl1.Controls.Add(this.setupTabPage);
+            this.tabControl1.Controls.Add(this.inputStatusTabPage);
+            this.tabControl1.Controls.Add(this.outputStatusTabPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
@@ -406,12 +415,15 @@
             this.timer1.SynchronizingObject = this;
             this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
             // 
-            // aboutToolStripMenuItem
+            // outputStatusTabPage
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.outputStatusTabPage.Location = new System.Drawing.Point(4, 22);
+            this.outputStatusTabPage.Name = "outputStatusTabPage";
+            this.outputStatusTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.outputStatusTabPage.Size = new System.Drawing.Size(584, 501);
+            this.outputStatusTabPage.TabIndex = 2;
+            this.outputStatusTabPage.Text = "Output Status";
+            this.outputStatusTabPage.UseVisualStyleBackColor = true;
             // 
             // SwitchStatusForm
             // 
@@ -483,6 +495,7 @@
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.TabPage outputStatusTabPage;
     }
 }
 
