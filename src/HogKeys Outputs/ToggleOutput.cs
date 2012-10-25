@@ -10,6 +10,7 @@ namespace net.willshouse.HogKeys.Outputs
         public ToggleOutput()
             : base()
         {
+            Type = OutputType.ToggleOutput;
         }
 
         public override string generateState(System.Collections.Concurrent.ConcurrentDictionary<int, double> dcsValues)
