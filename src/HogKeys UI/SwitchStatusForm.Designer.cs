@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gridStatus = new System.Windows.Forms.DataGridView();
+            this.inputStatusDataGridView = new System.Windows.Forms.DataGridView();
             this.switchMenu = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +51,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.inputStatusTabPage = new System.Windows.Forms.TabPage();
             this.setupTabPage = new System.Windows.Forms.TabPage();
             this.resetButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
@@ -64,36 +63,40 @@
             this.PollingIntervalLabel = new System.Windows.Forms.Label();
             this.pollingIntervalTextBox = new System.Windows.Forms.TextBox();
             this.pollingIntervalTrackBar = new System.Windows.Forms.TrackBar();
-            this.timer1 = new System.Timers.Timer();
+            this.inputStatusTabPage = new System.Windows.Forms.TabPage();
             this.outputStatusTabPage = new System.Windows.Forms.TabPage();
-            ((System.ComponentModel.ISupportInitialize)(this.gridStatus)).BeginInit();
+            this.outputStatusDataGridView = new System.Windows.Forms.DataGridView();
+            this.timer1 = new System.Timers.Timer();
+            ((System.ComponentModel.ISupportInitialize)(this.inputStatusDataGridView)).BeginInit();
             this.switchMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.inputStatusTabPage.SuspendLayout();
             this.setupTabPage.SuspendLayout();
             this.UDPSetupGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalTrackBar)).BeginInit();
+            this.inputStatusTabPage.SuspendLayout();
+            this.outputStatusTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.outputStatusDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timer1)).BeginInit();
             this.SuspendLayout();
             // 
-            // gridStatus
+            // inputStatusDataGridView
             // 
-            this.gridStatus.AllowUserToAddRows = false;
-            this.gridStatus.AllowUserToDeleteRows = false;
-            this.gridStatus.AllowUserToOrderColumns = true;
-            this.gridStatus.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridStatus.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridStatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridStatus.Location = new System.Drawing.Point(3, 3);
-            this.gridStatus.Name = "gridStatus";
-            this.gridStatus.ReadOnly = true;
-            this.gridStatus.RowHeadersVisible = false;
-            this.gridStatus.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridStatus.Size = new System.Drawing.Size(578, 495);
-            this.gridStatus.TabIndex = 0;
-            this.gridStatus.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridStatus_CellDoubleClick);
+            this.inputStatusDataGridView.AllowUserToAddRows = false;
+            this.inputStatusDataGridView.AllowUserToDeleteRows = false;
+            this.inputStatusDataGridView.AllowUserToOrderColumns = true;
+            this.inputStatusDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.inputStatusDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.inputStatusDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.inputStatusDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.inputStatusDataGridView.Name = "inputStatusDataGridView";
+            this.inputStatusDataGridView.ReadOnly = true;
+            this.inputStatusDataGridView.RowHeadersVisible = false;
+            this.inputStatusDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.inputStatusDataGridView.Size = new System.Drawing.Size(578, 495);
+            this.inputStatusDataGridView.TabIndex = 0;
+            this.inputStatusDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridStatus_CellDoubleClick);
             // 
             // switchMenu
             // 
@@ -278,17 +281,6 @@
             this.tabControl1.Size = new System.Drawing.Size(592, 527);
             this.tabControl1.TabIndex = 6;
             // 
-            // inputStatusTabPage
-            // 
-            this.inputStatusTabPage.Controls.Add(this.gridStatus);
-            this.inputStatusTabPage.Location = new System.Drawing.Point(4, 22);
-            this.inputStatusTabPage.Name = "inputStatusTabPage";
-            this.inputStatusTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.inputStatusTabPage.Size = new System.Drawing.Size(584, 501);
-            this.inputStatusTabPage.TabIndex = 0;
-            this.inputStatusTabPage.Text = "Input Status";
-            this.inputStatusTabPage.UseVisualStyleBackColor = true;
-            // 
             // setupTabPage
             // 
             this.setupTabPage.Controls.Add(this.resetButton);
@@ -410,13 +402,20 @@
             this.pollingIntervalTrackBar.Value = 25;
             this.pollingIntervalTrackBar.Scroll += new System.EventHandler(this.pollingIntervalTrackBar_Scroll);
             // 
-            // timer1
+            // inputStatusTabPage
             // 
-            this.timer1.SynchronizingObject = this;
-            this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
+            this.inputStatusTabPage.Controls.Add(this.inputStatusDataGridView);
+            this.inputStatusTabPage.Location = new System.Drawing.Point(4, 22);
+            this.inputStatusTabPage.Name = "inputStatusTabPage";
+            this.inputStatusTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.inputStatusTabPage.Size = new System.Drawing.Size(584, 501);
+            this.inputStatusTabPage.TabIndex = 0;
+            this.inputStatusTabPage.Text = "Input Status";
+            this.inputStatusTabPage.UseVisualStyleBackColor = true;
             // 
             // outputStatusTabPage
             // 
+            this.outputStatusTabPage.Controls.Add(this.outputStatusDataGridView);
             this.outputStatusTabPage.Location = new System.Drawing.Point(4, 22);
             this.outputStatusTabPage.Name = "outputStatusTabPage";
             this.outputStatusTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -424,6 +423,27 @@
             this.outputStatusTabPage.TabIndex = 2;
             this.outputStatusTabPage.Text = "Output Status";
             this.outputStatusTabPage.UseVisualStyleBackColor = true;
+            // 
+            // outputStatusDataGridView
+            // 
+            this.outputStatusDataGridView.AllowUserToAddRows = false;
+            this.outputStatusDataGridView.AllowUserToDeleteRows = false;
+            this.outputStatusDataGridView.AllowUserToOrderColumns = true;
+            this.outputStatusDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.outputStatusDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.outputStatusDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outputStatusDataGridView.Location = new System.Drawing.Point(3, 3);
+            this.outputStatusDataGridView.Name = "outputStatusDataGridView";
+            this.outputStatusDataGridView.ReadOnly = true;
+            this.outputStatusDataGridView.RowHeadersVisible = false;
+            this.outputStatusDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.outputStatusDataGridView.Size = new System.Drawing.Size(578, 495);
+            this.outputStatusDataGridView.TabIndex = 1;
+            // 
+            // timer1
+            // 
+            this.timer1.SynchronizingObject = this;
+            this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
             // 
             // SwitchStatusForm
             // 
@@ -437,19 +457,21 @@
             this.Name = "SwitchStatusForm";
             this.Text = "Hardware Status";
             this.Load += new System.EventHandler(this.SwitchStatus_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gridStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputStatusDataGridView)).EndInit();
             this.switchMenu.ResumeLayout(false);
             this.switchMenu.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.inputStatusTabPage.ResumeLayout(false);
             this.setupTabPage.ResumeLayout(false);
             this.UDPSetupGroupBox.ResumeLayout(false);
             this.UDPSetupGroupBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pollingIntervalTrackBar)).EndInit();
+            this.inputStatusTabPage.ResumeLayout(false);
+            this.outputStatusTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.outputStatusDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.timer1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -458,7 +480,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView gridStatus;
+        private System.Windows.Forms.DataGridView inputStatusDataGridView;
         private System.Windows.Forms.MenuStrip switchMenu;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
@@ -496,6 +518,7 @@
         private System.Windows.Forms.Button applyButton;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TabPage outputStatusTabPage;
+        private System.Windows.Forms.DataGridView outputStatusDataGridView;
     }
 }
 

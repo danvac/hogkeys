@@ -193,6 +193,10 @@
       <Project>{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}</Project>
       <Name>HogKeys Inputs</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HogKeys Outputs\HogKeys Outputs.csproj">
+      <Project>{C25D6E29-8E9A-4A26-81FD-579B71B4FF00}</Project>
+      <Name>HogKeys Outputs</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
