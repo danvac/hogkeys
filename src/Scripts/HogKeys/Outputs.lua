@@ -1,9 +1,16 @@
 
 dofile ("./Config/Export/HogKeys/OutputTables.lua")  
-
+if file then
+	file:write("---Output.lua: LOADED----","\n")
+	file:flush()
+end
 -- Support functions to parse and generate suitable commands to the SIOC server.
 -- Process simple On/Off indicators
 function ProcessOutputs(outputTables)
+	if file then
+	file:write("---Output.lua: ProcessOutputs---->","\n")
+	file:flush()
+	end
     local indicatorTable, deviceArg ,outputIndex, outputValue, panel, panelId
     local outputMessage = ""
     
@@ -26,10 +33,15 @@ function ProcessOutputs(outputTables)
             end
              
             outputValue = panel:get_argument_value(deviceArg[2])
-			outputMessage = outputMessage..outputIndex..","
+			outputMessage = outputMessage..outputIndex..":"..outputValue..","
             
         end
     end
+	if file then
+	file:write("output message:"..outputMessage)
+	file:write("---Output.lua: ProcessOutputs<----","\n")
+	file:flush()
+	end
     return outputMessage
 end
 
