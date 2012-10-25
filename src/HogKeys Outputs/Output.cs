@@ -7,6 +7,14 @@ using System.Collections.Concurrent;
 
 namespace net.willshouse.HogKeys.Outputs
 {
+    public enum OutputType
+    {
+        None = 0,
+        ToggleOutput,
+        BinaryOutput,
+        MultiOutput
+    }
+
     public abstract class Output : INotifyPropertyChanged
     {
         private string state, name, description;
@@ -15,11 +23,12 @@ namespace net.willshouse.HogKeys.Outputs
         private int offset;
         private  BindingList<int> index;
         private double logicOnValue;
+        private OutputType type;
 
         protected Output(string outputName, string description)
         {
             Name = outputName;
-            Offset = -1;
+            Offset = 10000;
             Index = new BindingList<int>{-1};
             LogicOnValue = 0.2;
             Description = description;
@@ -40,6 +49,17 @@ namespace net.willshouse.HogKeys.Outputs
             {
                 name = value;
                 NotifyPropertyChanged("Name");
+            }
+        }
+
+        public OutputType Type
+        {
+            get { return type; }
+
+            set
+            {
+                type = value;
+                NotifyPropertyChanged("Type");
             }
         }
 

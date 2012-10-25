@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using net.willshouse.HogKeys.Outputs;
+using net.willshouse.HogKeys.UI.Controls;
 
 namespace net.willshouse.HogKeys.UI
 {
@@ -41,12 +42,36 @@ namespace net.willshouse.HogKeys.UI
         {
             nameTextBox.Text = currentOutput.Name;
             descriptionTextBox.Text = currentOutput.Description;
+            typeTextBox.Text = currentOutput.Type.ToString();
+            offsetMaskedTextBox.Text = currentOutput.Offset.ToString();
+            InitializeDetailForm();
+        }
+
+        private void InitializeDetailForm()
+        {
+            switch (currentOutput.Type)
+            {
+                case OutputType.ToggleOutput:
+                    InitializeToggleOutputDetail();
+                    break;
+            }
+                    
+        }
+
+        private void InitializeToggleOutputDetail()
+        {
+            ToggleOutputDetailControl toggleOutputDetailControl = new ToggleOutputDetailControl();
+            splitContainer1.Panel2.Controls.Add(toggleOutputDetailControl);
+            toggleOutputDetailControl.Dock = DockStyle.Fill;
+            toggleOutputDetailControl.Output = (ToggleOutput)currentOutput;
+            this.saveButton.Click += new EventHandler(toggleOutputDetailControl.SaveHandler);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
             currentOutput.Name = nameTextBox.Text;
             currentOutput.Description = descriptionTextBox.Text;
+            currentOutput.Offset = Convert.ToInt32(offsetMaskedTextBox.Text);
             if (isNew)
             {
                 outputSource.Add(currentOutput);

@@ -35,6 +35,10 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.Cancelbutton = new System.Windows.Forms.Button();
+            this.typeLabel = new System.Windows.Forms.Label();
+            this.typeTextBox = new System.Windows.Forms.TextBox();
+            this.offsetMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.offsetLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -50,6 +54,10 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.offsetLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.offsetMaskedTextBox);
+            this.splitContainer1.Panel1.Controls.Add(this.typeLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.typeTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.nameLabel);
             this.splitContainer1.Panel1.Controls.Add(this.nameTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.descriptionLabel);
@@ -76,7 +84,7 @@
             // nameTextBox
             // 
             this.nameTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.nameTextBox.Location = new System.Drawing.Point(96, 17);
+            this.nameTextBox.Location = new System.Drawing.Point(96, 16);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(72, 20);
             this.nameTextBox.TabIndex = 17;
@@ -94,7 +102,7 @@
             // descriptionTextBox
             // 
             this.descriptionTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.descriptionTextBox.Location = new System.Drawing.Point(96, 108);
+            this.descriptionTextBox.Location = new System.Drawing.Point(96, 106);
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(225, 102);
@@ -121,6 +129,43 @@
             this.Cancelbutton.Text = "Cancel";
             this.Cancelbutton.UseVisualStyleBackColor = true;
             this.Cancelbutton.Click += new System.EventHandler(this.Cancelbutton_Click);
+            // 
+            // typeLabel
+            // 
+            this.typeLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.typeLabel.AutoSize = true;
+            this.typeLabel.Location = new System.Drawing.Point(211, 20);
+            this.typeLabel.Name = "typeLabel";
+            this.typeLabel.Size = new System.Drawing.Size(34, 13);
+            this.typeLabel.TabIndex = 27;
+            this.typeLabel.Text = "Type:";
+            // 
+            // typeTextBox
+            // 
+            this.typeTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.typeTextBox.Location = new System.Drawing.Point(251, 16);
+            this.typeTextBox.Name = "typeTextBox";
+            this.typeTextBox.ReadOnly = true;
+            this.typeTextBox.Size = new System.Drawing.Size(69, 20);
+            this.typeTextBox.TabIndex = 26;
+            // 
+            // offsetMaskedTextBox
+            // 
+            this.offsetMaskedTextBox.Location = new System.Drawing.Point(126, 55);
+            this.offsetMaskedTextBox.Mask = "99990";
+            this.offsetMaskedTextBox.Name = "offsetMaskedTextBox";
+            this.offsetMaskedTextBox.Size = new System.Drawing.Size(41, 20);
+            this.offsetMaskedTextBox.TabIndex = 28;
+            // 
+            // offsetLabel
+            // 
+            this.offsetLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.offsetLabel.AutoSize = true;
+            this.offsetLabel.Location = new System.Drawing.Point(52, 59);
+            this.offsetLabel.Name = "offsetLabel";
+            this.offsetLabel.Size = new System.Drawing.Size(38, 13);
+            this.offsetLabel.TabIndex = 29;
+            this.offsetLabel.Text = "Offset:";
             // 
             // OutputDetailForm
             // 
@@ -149,6 +194,10 @@
         private System.Windows.Forms.TextBox descriptionTextBox;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button Cancelbutton;
+        private System.Windows.Forms.Label typeLabel;
+        private System.Windows.Forms.TextBox typeTextBox;
+        private System.Windows.Forms.Label offsetLabel;
+        private System.Windows.Forms.MaskedTextBox offsetMaskedTextBox;
 
     }
 }
