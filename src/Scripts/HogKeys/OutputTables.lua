@@ -1,14 +1,12 @@
-
-
+if file then
+	file:write("---OutputTables.lua: LOADED----","\n")
+	file:flush()
+end
 
 
 cockpitIndicators = {
-[10001] = {0,0},
-[10002] = {0,0},
-[10003] = {0,0},
-[10004] = {0,0},
-[10005] = {0,0},
-[10006] = {0,0},
+[10001] = {0,191},
+[10002] = {0,665}
 }
 
 outputTables = {cockpitIndicators}
