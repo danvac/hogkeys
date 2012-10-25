@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using net.willshouse.HogKeys.Inputs;
+using net.willshouse.HogKeys.Outputs;
 using net.willshouse.HogKeys.Devices;
 using System.Xml.Serialization;
 using System.IO;
@@ -17,7 +18,7 @@ namespace net.willshouse.HogKeys.UI
 {
     public partial class SwitchStatusForm : Form
     {
-        BindingSource switchSource;
+        BindingSource inputSource, outputSource;
         TestDriver driver;
 
         public SwitchStatusForm()
@@ -27,20 +28,21 @@ namespace net.willshouse.HogKeys.UI
 
         private void SwitchStatus_Load(object sender, EventArgs e)
         {
-            switchSource = new BindingSource();
+            inputSource = new BindingSource();
+            outputSource = new BindingSource();
 
             driver = new TestDriver();
 
 
-            switchSource.DataSource = typeof(Input);
-            NewColumn("Name", "Name");
-            NewColumn("State", "Current State");
-            NewColumn("DeviceId", "Device Id");
-            NewColumn("ButtonId", "Button Id");
-            NewColumn("Type", "Type");
-            NewColumn("Description", "Description");
-            gridStatus.DataSource = switchSource;
-            //BuildTestData();
+            inputSource.DataSource = typeof(Input);
+            outputSource.DataSource = typeof(Output);
+            CreateInputStatusColumns();
+            CreateOutputStatusColumns();
+            inputStatusDataGridView.DataSource = inputSource;
+            outputStatusDataGridView.AutoGenerateColumns = false;
+            outputStatusDataGridView.DataSource = outputSource;
+            //BuildTestInputData();
+            BuildTestOutputData();
             try
             {
                 driver.InitializeConnection(0);
@@ -50,7 +52,7 @@ namespace net.willshouse.HogKeys.UI
                 MessageBox.Show("No Pokeys Device Found");
 
             }
-            driver.Inputs = switchSource;
+            driver.Inputs = inputSource;
             GetUserSettings();
             hostTextBox.DataBindings.Add("Text", driver, "Host");
             portTextBox.DataBindings.Add("Text", driver, "Port");
@@ -59,6 +61,23 @@ namespace net.willshouse.HogKeys.UI
             {
                 LoadConfig(Properties.Settings.Default.lastOpenedFile);
             }
+        }
+
+        private void CreateInputStatusColumns()
+        {
+            NewColumn("Name", "Name", inputStatusDataGridView);
+            NewColumn("State", "Current State", inputStatusDataGridView);
+            NewColumn("DeviceId", "Device Id", inputStatusDataGridView);
+            NewColumn("ButtonId", "Button Id", inputStatusDataGridView);
+            NewColumn("Type", "Type", inputStatusDataGridView);
+            NewColumn("Description", "Description", inputStatusDataGridView);
+        }
+
+        private void CreateOutputStatusColumns()
+        {
+            NewColumn("Name", "Name", outputStatusDataGridView);
+            NewColumn("State", "Current State", outputStatusDataGridView);
+            NewColumn("Description", "Description", outputStatusDataGridView);
         }
 
         private void GetUserSettings()
@@ -79,17 +98,17 @@ namespace net.willshouse.HogKeys.UI
             Properties.Settings.Default.Save();
         }
 
-        private void NewColumn(string dataPropertyName, string headerText)
+        private void NewColumn(string dataPropertyName, string headerText, DataGridView target)
         {
             DataGridViewTextBoxColumn aColumn = new DataGridViewTextBoxColumn();
             aColumn.DataPropertyName = dataPropertyName;
             aColumn.HeaderText = headerText;
-            gridStatus.Columns.Add(aColumn);
+            target.Columns.Add(aColumn);
         }
 
-        private void BuildTestData()
+        private void BuildTestInputData()
         {
-            switchSource.DataSource = typeof(Input);
+            inputSource.DataSource = typeof(Input);
             MultiSwitch test1 = new MultiSwitch("Test1");
             test1.Values.Add(".1");
             test1.Values.Add(".2");
@@ -97,7 +116,7 @@ namespace net.willshouse.HogKeys.UI
             test1.Pins.Add(11);
             test1.Pins.Add(12);
             test1.Pins.Add(13);
-            switchSource.Add(test1);
+            inputSource.Add(test1);
 
             BinarySwitch test2 = new BinarySwitch("test2");
             test2.Values.Add(".25");
@@ -106,23 +125,34 @@ namespace net.willshouse.HogKeys.UI
             test2.Values.Add("1");
             test2.Pins.Add(21);
             test2.Pins.Add(22);
-            switchSource.Add(test2);
+            inputSource.Add(test2);
 
             ToggleSwitch test3 = new ToggleSwitch("test3");
             test3.Values.Add("-1");
             test3.Values.Add("1");
             test3.Pins.Add(31);
-            switchSource.Add(test3);
+            inputSource.Add(test3);
+        }
+
+        private void BuildTestOutputData()
+        {
+            ToggleOutput test1, test2, test3;
+            test1 = new ToggleOutput();
+            test2 = new ToggleOutput();
+            test3 = new ToggleOutput();
+            outputSource.Add(test1);
+            outputSource.Add(test2);
+            outputSource.Add(test3);
         }
 
         private void editSwitch(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm((Input)switchSource.Current);
+            LaunchSwitchDetailForm((Input)inputSource.Current);
         }
 
         private void newSwitch(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new ToggleSwitch(), switchSource);
+            LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
         }
 
         private void LaunchSwitchDetailForm(Input aSwitch)
@@ -136,20 +166,19 @@ namespace net.willshouse.HogKeys.UI
             switchDetail.ShowDialog();
         }
 
-
         private void toggleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new ToggleSwitch(), switchSource);
+            LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
         }
 
         private void binaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new BinarySwitch(), switchSource);
+            LaunchSwitchDetailForm(new BinarySwitch(), inputSource);
         }
 
         private void multiPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new MultiSwitch(), switchSource);
+            LaunchSwitchDetailForm(new MultiSwitch(), inputSource);
         }
 
         private void gridStatus_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -158,19 +187,19 @@ namespace net.willshouse.HogKeys.UI
             // check to make sure the row we selected is in bounds
             if (e.RowIndex > -1)
             {
-                LaunchSwitchDetailForm((Input)switchSource[e.RowIndex]);
+                LaunchSwitchDetailForm((Input)inputSource[e.RowIndex]);
             }
 
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Input selectedSwitch = (Input)switchSource.Current;
+            Input selectedSwitch = (Input)inputSource.Current;
             DialogResult result = MessageBox.Show("Are you sure you want to delete: " +
                 selectedSwitch.Name + " ?", "Confirm Input Delete", MessageBoxButtons.OKCancel);
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                switchSource.Remove(selectedSwitch);
+                inputSource.Remove(selectedSwitch);
             }
         }
 
@@ -198,7 +227,7 @@ namespace net.willshouse.HogKeys.UI
             {
                 switches = (BindingList<Input>)ser.Deserialize(stream);
             }
-            switchSource.DataSource = switches;
+            inputSource.DataSource = switches;
             MessageBox.Show("Done:" + switches.Count.ToString() + " items loaded");
         }
 
@@ -220,7 +249,7 @@ namespace net.willshouse.HogKeys.UI
             XmlSerializer ser = new XmlSerializer(typeof(BindingList<Input>), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch) });
             using (var stream = File.Create(fileName))
             {
-                ser.Serialize(stream, switchSource.List);
+                ser.Serialize(stream, inputSource.List);
             }
             MessageBox.Show("Items Saved");
         }
