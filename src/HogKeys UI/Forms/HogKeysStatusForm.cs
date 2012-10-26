@@ -16,13 +16,13 @@ using System.Diagnostics;
 
 namespace net.willshouse.HogKeys.UI
 {
-    public partial class SwitchStatusForm : Form
+    public partial class HogKeysStatusForm : Form
     {
         BindingSource inputSource, outputSource;
         TestDriver driver;
         private int hogKeysPort;
 
-        public SwitchStatusForm()
+        public HogKeysStatusForm()
         {
             InitializeComponent();
         }
@@ -167,7 +167,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void LaunchSwitchDetailForm(Input aSwitch, BindingSource aSource)
         {
-            SwitchDetailForm switchDetail = new SwitchDetailForm(aSwitch, aSource);
+            InputDetailForm switchDetail = new InputDetailForm(aSwitch, aSource);
             switchDetail.ShowDialog();
         }
 

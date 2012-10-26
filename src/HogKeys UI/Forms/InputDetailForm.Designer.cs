@@ -1,6 +1,6 @@
 ﻿namespace net.willshouse.HogKeys.UI
 {
-    partial class SwitchDetailForm
+    partial class InputDetailForm
     {
         /// <summary>
         /// Required designer variable.
@@ -188,14 +188,14 @@
             this.Cancelbutton.UseVisualStyleBackColor = true;
             this.Cancelbutton.Click += new System.EventHandler(this.Cancelbutton_Click);
             // 
-            // SwitchDetailForm
+            // InputDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(392, 433);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "SwitchDetailForm";
-            this.Text = "SwitchDetail";
+            this.Name = "InputDetailForm";
+            this.Text = "Input Details";
             this.Load += new System.EventHandler(this.SwitchDetailForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
