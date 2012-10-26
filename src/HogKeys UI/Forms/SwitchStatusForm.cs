@@ -54,6 +54,7 @@ namespace net.willshouse.HogKeys.UI
 
             }
             driver.Inputs = inputSource;
+            driver.Outputs = outputSource;
             GetUserSettings();
             hostTextBox.DataBindings.Add("Text", driver, "Host");
             dcsPortTextBox.DataBindings.Add("Text", driver, "Port");
@@ -187,6 +188,11 @@ namespace net.willshouse.HogKeys.UI
             LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
         }
 
+        private void toggleOutputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LaunchoutputDetailForm(new ToggleOutput(), outputSource);
+        }
+
         private void binaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LaunchSwitchDetailForm(new BinarySwitch(), inputSource);
@@ -302,9 +308,7 @@ namespace net.willshouse.HogKeys.UI
             UDPListener.MessageReceived += new UDPListener.UDPListenerEventHandler(driver.UDPListenerEventHandlerMessageReceived);
             pollingStatusLabel.Text = "Polling:ON";
         }
-
         
-
         private void StopPolling()
         {
             pollOnceToolStripMenuItem.Enabled = true;
@@ -349,6 +353,8 @@ namespace net.willshouse.HogKeys.UI
             MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion, "About HogKeys");
 
         }
+
+        
 
         
 

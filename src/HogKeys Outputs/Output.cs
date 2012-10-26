@@ -29,7 +29,7 @@ namespace net.willshouse.HogKeys.Outputs
         {
             Name = outputName;
             Offset = 10000;
-            Index = new BindingList<int>{-1};
+            Index = new BindingList<int>();
             LogicOnValue = 0.2;
             Description = description;
         }
