@@ -12,7 +12,7 @@ using net.willshouse.HogKeys.UI.controls;
 
 namespace net.willshouse.HogKeys.UI
 {
-    public partial class SwitchDetailForm : Form
+    public partial class InputDetailForm : Form
     {
         private Input currentSwitch;
         private bool isNew;
@@ -22,10 +22,10 @@ namespace net.willshouse.HogKeys.UI
         private MultiSwitchPinManager multiSwitchPinManager1;
 
 
-        public SwitchDetailForm(Input aSwitch)
+        public InputDetailForm(Input aSwitch)
             : this(aSwitch, null) { }
 
-        public SwitchDetailForm(Input aSwitch, BindingSource aSource)
+        public InputDetailForm(Input aSwitch, BindingSource aSource)
         {
             if (aSource == null)
             {
