@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 using net.willshouse.HogKeys.Inputs;
+using net.willshouse.HogKeys.Outputs;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Collections.Concurrent;
@@ -14,6 +15,7 @@ namespace net.willshouse.HogKeys.Devices
     public class TestDriver
     {
         private BindingSource inputs;
+        private BindingSource outputs;
         private PoKeysDevice_DLL.PoKeysDevice device;
         private UdpClient client;
         private bool[] currentPokeysValues;
@@ -38,6 +40,14 @@ namespace net.willshouse.HogKeys.Devices
             set
             {
                 inputs = value;
+            }
+        }
+
+        public BindingSource Outputs
+        {
+            set
+            {
+                outputs = value;
             }
         }
         public void poll()
@@ -112,6 +122,10 @@ namespace net.willshouse.HogKeys.Devices
                 string[] offset = item.Split(':');
                 offsets.TryAdd(Convert.ToInt32(offset[0]),Convert.ToDouble(offset[1]));
                 //MessageBox.Show(offsets[Convert.ToInt32(offset[0])].ToString());
+            }
+            foreach (Output item in outputs)
+            {
+                item.setState(offsets);
             }
         }
     }

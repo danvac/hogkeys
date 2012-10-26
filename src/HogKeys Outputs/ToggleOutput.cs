@@ -15,7 +15,7 @@ namespace net.willshouse.HogKeys.Outputs
 
         public override string generateState(System.Collections.Concurrent.ConcurrentDictionary<int, double> dcsValues)
         {
-            throw new NotImplementedException();
+            return ((dcsValues[Offset] > LogicOnValue)) ? "1" : "0";
         }
     }
 }

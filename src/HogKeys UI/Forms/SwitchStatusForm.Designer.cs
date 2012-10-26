@@ -55,6 +55,10 @@
             this.resetButton = new System.Windows.Forms.Button();
             this.applyButton = new System.Windows.Forms.Button();
             this.UDPSetupGroupBox = new System.Windows.Forms.GroupBox();
+            this.hogKeysListenerlabel = new System.Windows.Forms.Label();
+            this.hogKeysPortTextBox = new System.Windows.Forms.TextBox();
+            this.hogKeysPortLabel = new System.Windows.Forms.Label();
+            this.dcsHeaderLabel = new System.Windows.Forms.Label();
             this.dcsPortTextBox = new System.Windows.Forms.TextBox();
             this.hostTextBox = new System.Windows.Forms.TextBox();
             this.dcsPortLabel = new System.Windows.Forms.Label();
@@ -67,10 +71,8 @@
             this.outputStatusTabPage = new System.Windows.Forms.TabPage();
             this.outputStatusDataGridView = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Timers.Timer();
-            this.dcsHeaderLabel = new System.Windows.Forms.Label();
-            this.hogKeysPortTextBox = new System.Windows.Forms.TextBox();
-            this.hogKeysPortLabel = new System.Windows.Forms.Label();
-            this.hogKeysListenerlabel = new System.Windows.Forms.Label();
+            this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toggleOutputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.inputStatusDataGridView)).BeginInit();
             this.switchMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -122,22 +124,23 @@
             this.newToolStripMenuItem1,
             this.saveToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(35, 20);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
             this.toolStripMenuItem1.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.switchToolStripMenuItem});
+            this.switchToolStripMenuItem,
+            this.outputToolStripMenuItem});
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(111, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem1.Text = "New";
             // 
             // switchToolStripMenuItem
@@ -145,7 +148,7 @@
             this.switchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.switchToolStripMenuItem1});
             this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
-            this.switchToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.switchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.switchToolStripMenuItem.Text = "Input";
             // 
             // switchToolStripMenuItem1
@@ -155,14 +158,14 @@
             this.multiPositionToolStripMenuItem,
             this.toggleToolStripMenuItem});
             this.switchToolStripMenuItem1.Name = "switchToolStripMenuItem1";
-            this.switchToolStripMenuItem1.Size = new System.Drawing.Size(116, 22);
+            this.switchToolStripMenuItem1.Size = new System.Drawing.Size(109, 22);
             this.switchToolStripMenuItem1.Text = "Switch";
             // 
             // binaryToolStripMenuItem
             // 
             this.binaryToolStripMenuItem.Name = "binaryToolStripMenuItem";
             this.binaryToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
-            this.binaryToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.binaryToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
             this.binaryToolStripMenuItem.Text = "BinarySwitch Switch";
             this.binaryToolStripMenuItem.Click += new System.EventHandler(this.binaryToolStripMenuItem_Click);
             // 
@@ -170,7 +173,7 @@
             // 
             this.multiPositionToolStripMenuItem.Name = "multiPositionToolStripMenuItem";
             this.multiPositionToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.multiPositionToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.multiPositionToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
             this.multiPositionToolStripMenuItem.Text = "MultiSwitch-Position Switch";
             this.multiPositionToolStripMenuItem.Click += new System.EventHandler(this.multiPositionToolStripMenuItem_Click);
             // 
@@ -178,14 +181,14 @@
             // 
             this.toggleToolStripMenuItem.Name = "toggleToolStripMenuItem";
             this.toggleToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.toggleToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.toggleToolStripMenuItem.Size = new System.Drawing.Size(268, 22);
             this.toggleToolStripMenuItem.Text = "ToggleSwitch Switch";
             this.toggleToolStripMenuItem.Click += new System.EventHandler(this.toggleToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -194,14 +197,14 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -212,14 +215,14 @@
             this.startPollingToolStripMenuItem,
             this.stopPollingToolStripMenuItem});
             this.deviceToolStripMenuItem.Name = "deviceToolStripMenuItem";
-            this.deviceToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.deviceToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.deviceToolStripMenuItem.Text = "Device";
             // 
             // pollOnceToolStripMenuItem
             // 
             this.pollOnceToolStripMenuItem.Name = "pollOnceToolStripMenuItem";
             this.pollOnceToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.pollOnceToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.pollOnceToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.pollOnceToolStripMenuItem.Text = "Poll Once";
             this.pollOnceToolStripMenuItem.Click += new System.EventHandler(this.pollOnceToolStripMenuItem_Click);
             // 
@@ -227,7 +230,7 @@
             // 
             this.startPollingToolStripMenuItem.Name = "startPollingToolStripMenuItem";
             this.startPollingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.startPollingToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.startPollingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.startPollingToolStripMenuItem.Text = "Start Polling";
             this.startPollingToolStripMenuItem.Click += new System.EventHandler(this.startPollingToolStripMenuItem_Click);
             // 
@@ -235,16 +238,16 @@
             // 
             this.stopPollingToolStripMenuItem.Enabled = false;
             this.stopPollingToolStripMenuItem.Name = "stopPollingToolStripMenuItem";
-            this.stopPollingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.P)));
-            this.stopPollingToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.stopPollingToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.P)));
+            this.stopPollingToolStripMenuItem.Size = new System.Drawing.Size(211, 22);
             this.stopPollingToolStripMenuItem.Text = "Stop Polling";
             this.stopPollingToolStripMenuItem.Click += new System.EventHandler(this.stopPollingToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -261,7 +264,7 @@
             // pollingStatusLabel
             // 
             this.pollingStatusLabel.Name = "pollingStatusLabel";
-            this.pollingStatusLabel.Size = new System.Drawing.Size(61, 17);
+            this.pollingStatusLabel.Size = new System.Drawing.Size(68, 17);
             this.pollingStatusLabel.Text = "Polling:OFF";
             // 
             // openFileDialog1
@@ -336,6 +339,40 @@
             this.UDPSetupGroupBox.TabStop = false;
             this.UDPSetupGroupBox.Text = "UDP Setup";
             // 
+            // hogKeysListenerlabel
+            // 
+            this.hogKeysListenerlabel.AutoSize = true;
+            this.hogKeysListenerlabel.Location = new System.Drawing.Point(7, 99);
+            this.hogKeysListenerlabel.Name = "hogKeysListenerlabel";
+            this.hogKeysListenerlabel.Size = new System.Drawing.Size(90, 13);
+            this.hogKeysListenerlabel.TabIndex = 5;
+            this.hogKeysListenerlabel.Text = "HogKeys Listener";
+            // 
+            // hogKeysPortTextBox
+            // 
+            this.hogKeysPortTextBox.Location = new System.Drawing.Point(46, 117);
+            this.hogKeysPortTextBox.Name = "hogKeysPortTextBox";
+            this.hogKeysPortTextBox.Size = new System.Drawing.Size(44, 20);
+            this.hogKeysPortTextBox.TabIndex = 4;
+            // 
+            // hogKeysPortLabel
+            // 
+            this.hogKeysPortLabel.AutoSize = true;
+            this.hogKeysPortLabel.Location = new System.Drawing.Point(7, 121);
+            this.hogKeysPortLabel.Name = "hogKeysPortLabel";
+            this.hogKeysPortLabel.Size = new System.Drawing.Size(29, 13);
+            this.hogKeysPortLabel.TabIndex = 3;
+            this.hogKeysPortLabel.Text = "Port:";
+            // 
+            // dcsHeaderLabel
+            // 
+            this.dcsHeaderLabel.AutoSize = true;
+            this.dcsHeaderLabel.Location = new System.Drawing.Point(10, 20);
+            this.dcsHeaderLabel.Name = "dcsHeaderLabel";
+            this.dcsHeaderLabel.Size = new System.Drawing.Size(75, 13);
+            this.dcsHeaderLabel.TabIndex = 2;
+            this.dcsHeaderLabel.Text = "DCS Simulator";
+            // 
             // dcsPortTextBox
             // 
             this.dcsPortTextBox.Location = new System.Drawing.Point(46, 64);
@@ -403,7 +440,7 @@
             this.pollingIntervalTrackBar.Maximum = 50;
             this.pollingIntervalTrackBar.Minimum = 1;
             this.pollingIntervalTrackBar.Name = "pollingIntervalTrackBar";
-            this.pollingIntervalTrackBar.Size = new System.Drawing.Size(104, 42);
+            this.pollingIntervalTrackBar.Size = new System.Drawing.Size(104, 45);
             this.pollingIntervalTrackBar.TabIndex = 0;
             this.pollingIntervalTrackBar.TickFrequency = 5;
             this.pollingIntervalTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
@@ -454,39 +491,20 @@
             this.timer1.SynchronizingObject = this;
             this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
             // 
-            // dcsHeaderLabel
+            // outputToolStripMenuItem
             // 
-            this.dcsHeaderLabel.AutoSize = true;
-            this.dcsHeaderLabel.Location = new System.Drawing.Point(10, 20);
-            this.dcsHeaderLabel.Name = "dcsHeaderLabel";
-            this.dcsHeaderLabel.Size = new System.Drawing.Size(75, 13);
-            this.dcsHeaderLabel.TabIndex = 2;
-            this.dcsHeaderLabel.Text = "DCS Simulator";
+            this.outputToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toggleOutputToolStripMenuItem});
+            this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.outputToolStripMenuItem.Text = "Output";
             // 
-            // hogKeysPortTextBox
+            // toggleOutputToolStripMenuItem
             // 
-            this.hogKeysPortTextBox.Location = new System.Drawing.Point(46, 117);
-            this.hogKeysPortTextBox.Name = "hogKeysPortTextBox";
-            this.hogKeysPortTextBox.Size = new System.Drawing.Size(44, 20);
-            this.hogKeysPortTextBox.TabIndex = 4;
-            // 
-            // hogKeysPortLabel
-            // 
-            this.hogKeysPortLabel.AutoSize = true;
-            this.hogKeysPortLabel.Location = new System.Drawing.Point(7, 121);
-            this.hogKeysPortLabel.Name = "hogKeysPortLabel";
-            this.hogKeysPortLabel.Size = new System.Drawing.Size(29, 13);
-            this.hogKeysPortLabel.TabIndex = 3;
-            this.hogKeysPortLabel.Text = "Port:";
-            // 
-            // hogKeysListenerlabel
-            // 
-            this.hogKeysListenerlabel.AutoSize = true;
-            this.hogKeysListenerlabel.Location = new System.Drawing.Point(7, 99);
-            this.hogKeysListenerlabel.Name = "hogKeysListenerlabel";
-            this.hogKeysListenerlabel.Size = new System.Drawing.Size(90, 13);
-            this.hogKeysListenerlabel.TabIndex = 5;
-            this.hogKeysListenerlabel.Text = "HogKeys Listener";
+            this.toggleOutputToolStripMenuItem.Name = "toggleOutputToolStripMenuItem";
+            this.toggleOutputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.toggleOutputToolStripMenuItem.Text = "ToggleOutput";
+            this.toggleOutputToolStripMenuItem.Click += new System.EventHandler(this.toggleOutputToolStripMenuItem_Click);
             // 
             // SwitchStatusForm
             // 
@@ -566,6 +584,8 @@
         private System.Windows.Forms.TextBox hogKeysPortTextBox;
         private System.Windows.Forms.Label hogKeysPortLabel;
         private System.Windows.Forms.Label dcsHeaderLabel;
+        private System.Windows.Forms.ToolStripMenuItem outputToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toggleOutputToolStripMenuItem;
     }
 }
 

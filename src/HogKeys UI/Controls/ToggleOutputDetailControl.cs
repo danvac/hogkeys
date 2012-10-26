@@ -28,7 +28,10 @@ namespace net.willshouse.HogKeys.UI.Controls
                 currentOutput = value;
                 if (currentOutput != null)
                 {
-                    indexNumericUpDown.Value = currentOutput.Index[0];
+                    if (currentOutput.Index.Count > 0)
+                    {
+                        indexNumericUpDown.Value = currentOutput.Index[0];
+                    }
                     logicOnMaskedTextBox.Text = String.Format("{0:000.00}",currentOutput.LogicOnValue);
                     
                 }
