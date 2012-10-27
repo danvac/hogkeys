@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Collections.Concurrent;
 
-namespace net.willshouse.HogKeys.Outputs
+namespace net.willshouse.HogKeys.IO
 {
     public enum OutputType
     {
@@ -15,17 +15,17 @@ namespace net.willshouse.HogKeys.Outputs
         MultiOutput
     }
 
-    public abstract class Output : INotifyPropertyChanged
+    public abstract class Output : HogKeysIO
     {
-        private string state, name, description;
+        
         //private BindingList<string> values;
-        public event PropertyChangedEventHandler PropertyChanged;
+        
         private int offset;
         private  BindingList<int> index;
         private double logicOnValue;
         private OutputType type;
 
-        protected Output(string outputName, string description)
+        protected Output(string outputName, string description) :base()
         {
             Name = outputName;
             Offset = 10000;
@@ -41,16 +41,7 @@ namespace net.willshouse.HogKeys.Outputs
         }
 
 
-        public string Name
-        {
-            get { return name; }
-
-            set
-            {
-                name = value;
-                NotifyPropertyChanged("Name");
-            }
-        }
+        
 
         public OutputType Type
         {
@@ -93,21 +84,7 @@ namespace net.willshouse.HogKeys.Outputs
             }
         }
 
-        public string Description
-        {
-            get { return description; }
-
-            set
-            {
-                description = value;
-                NotifyPropertyChanged("Description");
-            }
-        }
-
-        public string State
-        {
-            get { return this.state; }
-        }
+                
 
         public abstract string generateState(ConcurrentDictionary<int,double> dcsValues);
 
@@ -129,12 +106,6 @@ namespace net.willshouse.HogKeys.Outputs
             }
         }
 
-        protected void NotifyPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
+        
     }
 }

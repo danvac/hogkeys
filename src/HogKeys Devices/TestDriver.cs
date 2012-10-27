@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
-using net.willshouse.HogKeys.Inputs;
-using net.willshouse.HogKeys.Outputs;
+using net.willshouse.HogKeys.IO;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Collections.Concurrent;
 
 
-namespace net.willshouse.HogKeys.Devices
+namespace net.willshouse.HogKeys.IO
 {
     public class TestDriver
     {

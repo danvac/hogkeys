@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-namespace net.willshouse.HogKeys.Inputs
+namespace net.willshouse.HogKeys.IO
 {
     public class ToggleSwitch : Input
     {

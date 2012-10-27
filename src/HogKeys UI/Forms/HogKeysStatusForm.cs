@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using net.willshouse.HogKeys.Inputs;
-using net.willshouse.HogKeys.Outputs;
-using net.willshouse.HogKeys.Devices;
+using net.willshouse.HogKeys.IO;
+using net.willshouse.HogKeys.IO;
+using net.willshouse.HogKeys.IO;
 using System.Xml.Serialization;
 using System.IO;
 using System.Reflection;
@@ -31,10 +31,7 @@ namespace net.willshouse.HogKeys.UI
         {
             inputSource = new BindingSource();
             outputSource = new BindingSource();
-
             driver = new TestDriver();
-
-
             inputSource.DataSource = typeof(Input);
             outputSource.DataSource = typeof(Output);
             CreateInputStatusColumns();
@@ -58,7 +55,6 @@ namespace net.willshouse.HogKeys.UI
             GetUserSettings();
             hostTextBox.DataBindings.Add("Text", driver, "Host");
             dcsPortTextBox.DataBindings.Add("Text", driver, "Port");
-
             if ((Properties.Settings.Default.lastOpenedFile != "") && (File.Exists(Properties.Settings.Default.lastOpenedFile)))
             {
                 LoadConfig(Properties.Settings.Default.lastOpenedFile);
@@ -224,26 +220,35 @@ namespace net.willshouse.HogKeys.UI
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Input selectedSwitch = (Input)inputSource.Current;
+            if (tabControl1.SelectedTab == inputStatusTabPage)
+            {
+                PromptAndDelete(inputSource);
+            }
+            else if (tabControl1.SelectedTab == outputStatusTabPage)
+            {
+                PromptAndDelete(outputSource);
+            }
+        }
+
+        private void PromptAndDelete(BindingSource itemSource)
+        {
+            HogKeysIO selectedItem = (HogKeysIO)itemSource.Current;
             DialogResult result = MessageBox.Show("Are you sure you want to delete: " +
-                selectedSwitch.Name + " ?", "Confirm Input Delete", MessageBoxButtons.OKCancel);
+                selectedItem.Name + " ?", "Confirm Input Delete", MessageBoxButtons.OKCancel);
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                inputSource.Remove(selectedSwitch);
+                itemSource.Remove(selectedItem);
             }
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog();
-
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             string fileName = openFileDialog1.FileName;
-
-
             LoadConfig(fileName);
             Properties.Settings.Default.lastOpenedFile = fileName;
             Properties.Settings.Default.Save();
@@ -255,11 +260,10 @@ namespace net.willshouse.HogKeys.UI
             XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.OpenRead(fileName))
             {
-             loader = (HogKeysConfig)ser.Deserialize(stream);
+                loader = (HogKeysConfig)ser.Deserialize(stream);
             }
             inputSource.DataSource = (BindingList<Input>)loader.Inputs;
             outputSource.DataSource = (BindingList<Output>)loader.Outputs;
-            //MessageBox.Show("Done:" + inputs.Count.ToString() + " items loaded");
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -308,7 +312,7 @@ namespace net.willshouse.HogKeys.UI
             UDPListener.MessageReceived += new UDPListener.UDPListenerEventHandler(driver.UDPListenerEventHandlerMessageReceived);
             pollingStatusLabel.Text = "Polling:ON";
         }
-        
+
         private void StopPolling()
         {
             pollOnceToolStripMenuItem.Enabled = true;
@@ -351,21 +355,7 @@ namespace net.willshouse.HogKeys.UI
             Assembly assembly = Assembly.GetEntryAssembly();
             FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location);
             MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion, "About HogKeys");
-
         }
-
-        
-
-        
-
-        
-
-        
-
-
-
-
-
 
     }
 }

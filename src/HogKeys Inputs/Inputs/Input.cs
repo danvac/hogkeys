@@ -5,44 +5,20 @@ using System.Text;
 using System.ComponentModel;
 
 
-namespace net.willshouse.HogKeys.Inputs
+
+namespace net.willshouse.HogKeys.IO
 {
 
-    public abstract class Input : INotifyPropertyChanged
+    public abstract class Input : HogKeysIO
     {
-        private string state, name, description;
+        //private string state, name, description;
         private int deviceId, buttonId;
         private InputType type;
         private BindingList<int> pins;
         private BindingList<string> values;
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
-        public string Name
-        {
-            get { return name; }
 
-            set
-            {
-                name = value;
-                NotifyPropertyChanged("Name");
-            }
-        }
-
-        public string Description
-        {
-            get { return description; }
-
-            set
-            {
-                description = value;
-                NotifyPropertyChanged("Description");
-            }
-        }
-
-        public string State
-        {
-            get { return this.state; }
-        }
 
         public int DeviceId
         {
@@ -113,6 +89,7 @@ namespace net.willshouse.HogKeys.Inputs
         }
 
         protected Input(string switchName, int deviceId, int buttonId, InputType type, string description)
+            : base()
         {
             Name = switchName;
             DeviceId = deviceId;
@@ -144,16 +121,10 @@ namespace net.willshouse.HogKeys.Inputs
             }
         }
 
-        
-        
 
 
-        protected void NotifyPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
+
+
+        
     }
 }

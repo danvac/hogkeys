@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using net.willshouse.HogKeys.Outputs;
+using net.willshouse.HogKeys.IO;
 using net.willshouse.HogKeys.UI.Controls;
 
 namespace net.willshouse.HogKeys.UI

@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 
-namespace net.willshouse.HogKeys.Devices
+namespace net.willshouse.HogKeys.IO
 {
     public class UDPListenerEventArgs : EventArgs
     {
@@ -70,7 +70,7 @@ namespace net.willshouse.HogKeys.Devices
 
                     }
                 }
-                catch (SocketException socketExc)
+                catch (SocketException)
                 {
                     isRunning = false;
                 }
