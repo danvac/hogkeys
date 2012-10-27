@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
-using net.willshouse.HogKeys.Inputs;
+using net.willshouse.HogKeys.IO;
 
 namespace net.willshouse.HogKeys.UI.controls
 {

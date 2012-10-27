@@ -4,27 +4,26 @@ using System.Linq;
 using System.Text;
 
 
-namespace net.willshouse.HogKeys.Inputs
+namespace net.willshouse.HogKeys.IO
 {
-
-    public class MultiSwitch : Input
+    public class BinarySwitch : Input
     {
-        public MultiSwitch()
+        public BinarySwitch()
             : base("Enter Name", 1, 3001, InputType.None, "Enter Description")
         {
-            Type = InputType.MultiSwitch;
+            Type = InputType.BinarySwitch;
         }
 
-        public MultiSwitch(string switchName, int deviceId, int buttonId, InputType type, string description)
+        public BinarySwitch(string switchName, int deviceId, int buttonId, InputType type, string description)
             : base(switchName, deviceId, buttonId, type, description)
         {
-            Type = InputType.MultiSwitch;
+            Type = InputType.BinarySwitch;
         }
 
-        public MultiSwitch(string switchName)
+        public BinarySwitch(string switchName)
             : base(switchName, 1, 3001, InputType.None, "Enter Description")
         {
-            Type = InputType.MultiSwitch;
+            Type = InputType.BinarySwitch;
         }
 
         public override void setSwitchPositionData(List<string> positionsData)
@@ -38,8 +37,7 @@ namespace net.willshouse.HogKeys.Inputs
             int valueIndex = 0;
             for (int i = 0; i < Pins.Count(); i++)
             {
-                if (pokeysValues[Pins[i]])
-                    valueIndex = i;
+                valueIndex = valueIndex + ((pokeysValues[Pins[i]] ? 1 : 0) << i);
             }
             return Values[valueIndex];
         }

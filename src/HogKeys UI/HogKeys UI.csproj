@@ -208,13 +208,9 @@
       <Project>{286DDA78-FD74-49B1-9FEC-BE19350F0318}</Project>
       <Name>HogKeys Devices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HogKeys Inputs\HogKeys Inputs.csproj">
+    <ProjectReference Include="..\HogKeys Inputs\HogKeys IO.csproj">
       <Project>{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}</Project>
-      <Name>HogKeys Inputs</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HogKeys Outputs\HogKeys Outputs.csproj">
-      <Project>{C25D6E29-8E9A-4A26-81FD-579B71B4FF00}</Project>
-      <Name>HogKeys Outputs</Name>
+      <Name>HogKeys IO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

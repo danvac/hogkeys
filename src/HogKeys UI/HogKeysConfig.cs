@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using net.willshouse.HogKeys.Outputs;
-using net.willshouse.HogKeys.Inputs;
+using net.willshouse.HogKeys.IO;
+using net.willshouse.HogKeys.IO;
 using System.ComponentModel;
 using System.Collections;
 
