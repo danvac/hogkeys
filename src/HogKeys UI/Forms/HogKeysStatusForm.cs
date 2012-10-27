@@ -11,6 +11,7 @@ using System.Xml.Serialization;
 using System.IO;
 using System.Reflection;
 using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace net.willshouse.HogKeys.UI
 {
@@ -19,6 +20,7 @@ namespace net.willshouse.HogKeys.UI
         BindingSource inputSource, outputSource;
         TestDriver driver;
         private int hogKeysPort;
+        private string configFileName;
 
         public HogKeysStatusForm()
         {
@@ -27,6 +29,10 @@ namespace net.willshouse.HogKeys.UI
 
         private void SwitchStatus_Load(object sender, EventArgs e)
         {
+            if (!VerifyRegistry())
+            {
+                CreateRegistery();
+            }
             inputSource = new BindingSource();
             outputSource = new BindingSource();
             driver = new TestDriver();
@@ -39,6 +45,7 @@ namespace net.willshouse.HogKeys.UI
             outputStatusDataGridView.DataSource = outputSource;
             //BuildTestInputData();
             //BuildTestOutputData();
+
             try
             {
                 driver.InitializeConnection(0);
@@ -53,10 +60,47 @@ namespace net.willshouse.HogKeys.UI
             GetUserSettings();
             hostTextBox.DataBindings.Add("Text", driver, "Host");
             dcsPortTextBox.DataBindings.Add("Text", driver, "Port");
-            if ((Properties.Settings.Default.lastOpenedFile != "") && (File.Exists(Properties.Settings.Default.lastOpenedFile)))
+            if ((configFileName != "") && (File.Exists(configFileName)))
             {
-                LoadConfig(Properties.Settings.Default.lastOpenedFile);
+                LoadConfig(configFileName);
             }
+        }
+
+        private bool VerifyRegistry()
+        {
+            bool passed = false;
+            string[] validValues = { "LastOpenedFile", "DCSHostName", "DCSPort", "PollingInterval", "HogKeysPort", "" };
+            RegistryKey software = Registry.CurrentUser.OpenSubKey("Software");
+            if (software != null)
+            {
+                RegistryKey hogKeys = software.OpenSubKey("HogKeys");
+                if (hogKeys != null)
+                {
+                    passed = true;
+                    foreach (string name in hogKeys.GetValueNames())
+                    {
+                        if (!validValues.Contains<string>(name))
+                        {
+                            passed = false;
+                        }
+                    }
+                }
+            }
+            return passed;
+        }
+
+        private void CreateRegistery()
+        {
+            RegistryKey softWare = Registry.CurrentUser.CreateSubKey("Software");
+            softWare.DeleteSubKey("HogKeys");
+            RegistryKey hogKeys = softWare.CreateSubKey("HogKeys");
+            hogKeys.SetValue("LastOpenedFile", "", RegistryValueKind.String);
+            hogKeys.SetValue("DCSHostName", "localhost", RegistryValueKind.String);
+            hogKeys.SetValue("DCSPort", "9089", RegistryValueKind.String);
+            hogKeys.SetValue("PollingInterval", "25", RegistryValueKind.String);
+            hogKeys.SetValue("HogKeysPort", "9090", RegistryValueKind.String);
+            hogKeys.Flush();
+            softWare.Flush();
         }
 
         private void CreateInputStatusColumns()
@@ -78,22 +122,26 @@ namespace net.willshouse.HogKeys.UI
 
         private void GetUserSettings()
         {
-            driver.Host = Properties.Settings.Default.host;
-            driver.Port = Properties.Settings.Default.dcsPort;
-            pollingIntervalTrackBar.Value = Properties.Settings.Default.pollingInterval;
+
+            RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HogKeys");
+            driver.Host = (string)hogKeys.GetValue("DCSHostName");
+            driver.Port = Convert.ToInt32((string)hogKeys.GetValue("DCSPort"));
+            pollingIntervalTrackBar.Value = Convert.ToInt32((string)hogKeys.GetValue("PollingInterval"));
             hostTextBox.Text = driver.Host;
             dcsPortTextBox.Text = driver.Port.ToString();
             pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
-            hogKeysPort = Properties.Settings.Default.hogKeysPort;
+            hogKeysPort = Convert.ToInt32((string)hogKeys.GetValue("HogKeysPort"));
             hogKeysPortTextBox.Text = hogKeysPort.ToString();
+            configFileName = (string)hogKeys.GetValue("LastOpenedFile");
         }
 
         private void SetUserSettings()
         {
-            Properties.Settings.Default.host = driver.Host;
-            Properties.Settings.Default.dcsPort = driver.Port;
-            Properties.Settings.Default.pollingInterval = pollingIntervalTrackBar.Value;
-            Properties.Settings.Default.hogKeysPort = Convert.ToInt32(hogKeysPortTextBox.Text);
+            RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HogKeys",true);
+            hogKeys.SetValue("DCSHostName",driver.Host.ToString());
+            hogKeys.SetValue("DCSPort",driver.Port.ToString());
+            hogKeys.SetValue("PollingInterval", pollingIntervalTrackBar.Value.ToString());
+            hogKeys.SetValue("HogKeysPort", hogKeysPortTextBox.Text);
             Properties.Settings.Default.Save();
         }
 
@@ -241,6 +289,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            openFileDialog1.FileName = configFileName;
             openFileDialog1.ShowDialog();
         }
 
@@ -248,8 +297,9 @@ namespace net.willshouse.HogKeys.UI
         {
             string fileName = openFileDialog1.FileName;
             LoadConfig(fileName);
-            Properties.Settings.Default.lastOpenedFile = fileName;
-            Properties.Settings.Default.Save();
+            RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HogKeys",true);
+            hogKeys.SetValue("LastOpenedFile", fileName, RegistryValueKind.String);
+            
         }
 
         private void LoadConfig(string fileName)
@@ -266,6 +316,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            saveFileDialog1.FileName = configFileName;
             saveFileDialog1.ShowDialog();
         }
 
@@ -273,8 +324,8 @@ namespace net.willshouse.HogKeys.UI
         {
             string fileName = saveFileDialog1.FileName;
             SaveConfig(fileName);
-            Properties.Settings.Default.lastOpenedFile = fileName;
-            Properties.Settings.Default.Save();
+            RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("HogKeys", true);
+            hogKeys.SetValue("LastOpenedFile", fileName, RegistryValueKind.String);
         }
 
         private void SaveConfig(string fileName)
