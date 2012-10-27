@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using net.willshouse.HogKeys.IO;
-using net.willshouse.HogKeys.IO;
-using net.willshouse.HogKeys.IO;
 using System.Xml.Serialization;
 using System.IO;
 using System.Reflection;

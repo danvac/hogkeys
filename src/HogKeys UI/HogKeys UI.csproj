@@ -208,7 +208,7 @@
       <Project>{286DDA78-FD74-49B1-9FEC-BE19350F0318}</Project>
       <Name>HogKeys Devices</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HogKeys Inputs\HogKeys IO.csproj">
+    <ProjectReference Include="..\HogKeys IO\HogKeys IO.csproj">
       <Project>{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}</Project>
       <Name>HogKeys IO</Name>
     </ProjectReference>
