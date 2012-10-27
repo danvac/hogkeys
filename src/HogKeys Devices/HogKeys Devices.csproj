@@ -53,7 +53,7 @@
     <Compile Include="UDPListener.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HogKeys Inputs\HogKeys IO.csproj">
+    <ProjectReference Include="..\HogKeys IO\HogKeys IO.csproj">
       <Project>{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}</Project>
       <Name>HogKeys IO</Name>
     </ProjectReference>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HogKeys IO", "HogKeys Inputs\HogKeys IO.csproj", "{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HogKeys IO", "HogKeys IO\HogKeys IO.csproj", "{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC} = {B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}
 	EndProjectSection
