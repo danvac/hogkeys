@@ -17,5 +17,8 @@
     <Setting Name="hogKeysPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9090</Value>
     </Setting>
+    <Setting Name="TestSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
