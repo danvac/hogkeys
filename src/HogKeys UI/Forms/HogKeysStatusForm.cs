@@ -142,7 +142,6 @@ namespace net.willshouse.HogKeys.UI
             hogKeys.SetValue("DCSPort",driver.Port.ToString());
             hogKeys.SetValue("PollingInterval", pollingIntervalTrackBar.Value.ToString());
             hogKeys.SetValue("HogKeysPort", hogKeysPortTextBox.Text);
-            Properties.Settings.Default.Save();
         }
 
         private void NewColumn(string dataPropertyName, string headerText, DataGridView target)

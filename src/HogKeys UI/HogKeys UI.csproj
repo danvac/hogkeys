@@ -127,11 +127,6 @@
     <Compile Include="Forms\OutputDetailForm.Designer.cs">
       <DependentUpon>OutputDetailForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
     <Compile Include="HogKeysConfig.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Forms\InputDetailForm.cs">
@@ -198,10 +193,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\app.manifest" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HogKeys Devices\HogKeys Devices.csproj">
