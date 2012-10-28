@@ -43,6 +43,7 @@ namespace net.willshouse.HogKeys.UI.Controls
             currentOutput.Index.Clear();
             currentOutput.Index.Add((int)indexNumericUpDown.Value);
             currentOutput.LogicOnValue = Convert.ToDouble(logicOnMaskedTextBox.Text);
+            currentOutput.CalculateBusData();
         }
     }
 }
