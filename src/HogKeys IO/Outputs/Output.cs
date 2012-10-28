@@ -19,11 +19,12 @@ namespace net.willshouse.HogKeys.IO
     {
         
         //private BindingList<string> values;
-        
-        private int offset;
+
+        private int offset, busIndex, byteIndex;
         private  BindingList<int> index;
         private double logicOnValue;
         private OutputType type;
+        
 
         protected Output(string outputName, string description) :base()
         {
@@ -70,6 +71,7 @@ namespace net.willshouse.HogKeys.IO
             set
             {
                 index = value;
+                CalculateBusData();
                 NotifyPropertyChanged("Index");
             }
         }
@@ -84,7 +86,39 @@ namespace net.willshouse.HogKeys.IO
             }
         }
 
-                
+        public int BusIndex
+        {
+            get { return busIndex; }
+            set { busIndex = value;}
+
+            
+        }
+
+        public int ByteIndex
+        {
+            get { return byteIndex; }
+            set { byteIndex = value; }
+
+        }
+
+        public virtual void CalculateBusData() 
+        {
+            if (Index.Count > 0)
+            {
+                busIndex = Index[0] / 8;
+                NotifyPropertyChanged("BusIndex");
+                if (busIndex > 0)
+                {
+
+                    byteIndex = Index[0] % 8;
+                }
+                else byteIndex = Index[0];
+                NotifyPropertyChanged("ByteIndex");
+            }
+
+        }
+
+
 
         public abstract string generateState(ConcurrentDictionary<int,double> dcsValues);
 
@@ -105,6 +139,8 @@ namespace net.willshouse.HogKeys.IO
                 return true;
             }
         }
+
+
 
         
     }

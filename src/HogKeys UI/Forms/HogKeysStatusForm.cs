@@ -118,6 +118,8 @@ namespace net.willshouse.HogKeys.UI
             NewColumn("Name", "Name", outputStatusDataGridView);
             NewColumn("State", "Current State", outputStatusDataGridView);
             NewColumn("Description", "Description", outputStatusDataGridView);
+            NewColumn("BusIndex", "Bus Index", outputStatusDataGridView);
+            NewColumn("ByteIndex", "Byte Index", outputStatusDataGridView);
         }
 
         private void GetUserSettings()

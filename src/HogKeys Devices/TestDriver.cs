@@ -112,20 +112,38 @@ namespace net.willshouse.HogKeys.IO
 
         public void UDPListenerEventHandlerMessageReceived(object sender, UDPListenerEventArgs e)
         {
+            byte[] busData = new byte[10];
             string message = e.Message;
-            ConcurrentDictionary<int, double> offsets = new ConcurrentDictionary<int,double>();
+            ConcurrentDictionary<int, double> offsets = new ConcurrentDictionary<int, double>();
             message = message.TrimEnd(',');
             string[] items = message.Split(',');
             foreach (string item in items)
             {
                 string[] offset = item.Split(':');
-                offsets.TryAdd(Convert.ToInt32(offset[0]),Convert.ToDouble(offset[1]));
-                //MessageBox.Show(offsets[Convert.ToInt32(offset[0])].ToString());
+                offsets.TryAdd(Convert.ToInt32(offset[0]), Convert.ToDouble(offset[1]));
             }
             foreach (Output item in outputs)
             {
                 item.setState(offsets);
+                switch (item.Type)
+                {
+                    case OutputType.ToggleOutput:
+                        {
+                            if (item.State == "1")
+                            {
+                                busData[9 - item.BusIndex] = (byte)(busData[9 - item.BusIndex] | (1 << 7-item.ByteIndex));
+
+                               // MessageBox.Show(busData[9 - item.BusIndex].ToString());
+
+                            }
+                            break;
+
+                        }
+
+                }
             }
+          //  device.AuxilaryBusSetData(1, busData);
+            device.AuxilaryBusSetData(1, 1, busData);
         }
     }
 }
