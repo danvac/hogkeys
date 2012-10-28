@@ -130,7 +130,7 @@ function LuaExportStart()
     c:settimeout(.01) -- set the timeout for reading the socket 
 	s = socket.udp()
 	s:setpeername('192.168.1.2',9090)
-	s:send("Hello World")
+	--s:send("Hello World")
 end
 
 function LuaExportBeforeNextFrame()
@@ -172,6 +172,7 @@ function LuaExportStop()
 -- Works once just after mission stop.
 -- Close files and/or connections here.
 -- 1) File
+--ResetIndicators(outputTables)
    if file then
 	  file:write("---LOG: STOP----","\n")
 	  file:flush()
@@ -194,7 +195,7 @@ function LuaExportActivityNextEvent(t)
 --	s:send("toTrim:"..lArgumentValue.."\n".."Canopy:"..canopy)
     message = ProcessOutputs(outputTables)
     s:send(message)
-	tNext = tNext +1
+	tNext = tNext +.05
 -- Put your event code here and increase tNext for the next event
 -- so this function will be called automatically at your custom
 -- model times. 
