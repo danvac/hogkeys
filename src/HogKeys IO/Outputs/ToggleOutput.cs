@@ -13,9 +13,16 @@ namespace net.willshouse.HogKeys.IO
             Type = OutputType.ToggleOutput;
         }
 
-        public override string generateState(System.Collections.Concurrent.ConcurrentDictionary<int, double> dcsValues)
+        public override string generateState(System.Collections.Concurrent.ConcurrentDictionary<int, string> dcsValues)
         {
-            return ((dcsValues[Offset] > LogicOnValue)) ? "1" : "0";
+            if (dcsValues[Offset] != "OFF")
+            {
+                return ((Convert.ToDouble(dcsValues[Offset]) > LogicOnValue)) ? "ON" : "OFF";
+            }
+            else
+            {
+                return "OFF";
+            }
         }
     }
 }

@@ -75,6 +75,7 @@ namespace net.willshouse.HogKeys.IO
         ~TestDriver()
         {
             device.DisconnectDevice();
+            
         }
 
         public void InitializeConnection(int deviceIndex)
@@ -114,13 +115,13 @@ namespace net.willshouse.HogKeys.IO
         {
             byte[] busData = new byte[10];
             string message = e.Message;
-            ConcurrentDictionary<int, double> offsets = new ConcurrentDictionary<int, double>();
+            ConcurrentDictionary<int, string> offsets = new ConcurrentDictionary<int, string>();
             message = message.TrimEnd(',');
             string[] items = message.Split(',');
             foreach (string item in items)
             {
                 string[] offset = item.Split(':');
-                offsets.TryAdd(Convert.ToInt32(offset[0]), Convert.ToDouble(offset[1]));
+                offsets.TryAdd(Convert.ToInt32(offset[0]), offset[1]);
             }
             foreach (Output item in outputs)
             {
@@ -129,7 +130,7 @@ namespace net.willshouse.HogKeys.IO
                 {
                     case OutputType.ToggleOutput:
                         {
-                            if (item.State == "1")
+                            if (item.State == "ON")
                             {
                                 busData[9 - item.BusIndex] = (byte)(busData[9 - item.BusIndex] | (1 << 7-item.ByteIndex));
 

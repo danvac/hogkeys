@@ -47,17 +47,22 @@ end
 
 
 -- Generate the SIOC string to reset (turn off) all indicator lamsp
-function ResetIndicators(pIndicatorTables)
+function ResetIndicators(outputTables)
     local indicatorTable, deviceArg ,outputIndex 
     local outputMessage = ""
     
-    for i , indicatorTable in pairs(pIndicatorTables) 
+    for i , indicatorTable in pairs(outputTables) 
     do     
         for outputIndex ,deviceArg in pairs(indicatorTable) 
         do 
-            outputMessage = outputMessage..outputIndex..",OFF,"
+            outputMessage = outputMessage..outputIndex..":OFF,"
         end            
     end
+	if file then
+	file:write("output message:"..outputMessage)
+	file:write("---Output.lua: ResetIndicators<----","\n")
+	file:flush()
+	end
     return outputMessage
 end
 

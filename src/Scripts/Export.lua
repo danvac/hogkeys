@@ -172,7 +172,13 @@ function LuaExportStop()
 -- Works once just after mission stop.
 -- Close files and/or connections here.
 -- 1) File
---ResetIndicators(outputTables)
+   if file then
+	   file:write("---Shutting Down Outputs---\n")
+	   file:flush()
+   end
+	   
+   
+   s:send(ResetIndicators(outputTables))
    if file then
 	  file:write("---LOG: STOP----","\n")
 	  file:flush()
@@ -180,6 +186,7 @@ function LuaExportStop()
 	  file = nil
    end
    c:close()
+   s:close()
 -- 2) Socket
 --	socket.try(c:send("quit")) -- to close the listener socket
 --	c:close()
@@ -193,8 +200,7 @@ function LuaExportActivityNextEvent(t)
 --	lArgumentValue = lpanel:get_argument_value(191)
 --	canopy = lpanel:get_argument_value(665)
 --	s:send("toTrim:"..lArgumentValue.."\n".."Canopy:"..canopy)
-    message = ProcessOutputs(outputTables)
-    s:send(message)
+    s:send(ProcessOutputs(outputTables))
 	tNext = tNext +.05
 -- Put your event code here and increase tNext for the next event
 -- so this function will be called automatically at your custom

@@ -407,5 +407,10 @@ namespace net.willshouse.HogKeys.UI
             MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion, "About HogKeys");
         }
 
+        private void HogKeysStatusForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StopPolling();
+        }
+
     }
 }
