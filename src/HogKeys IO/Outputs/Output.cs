@@ -120,15 +120,15 @@ namespace net.willshouse.HogKeys.IO
 
 
 
-        public abstract string generateState(ConcurrentDictionary<int,double> dcsValues);
+        public abstract string generateState(ConcurrentDictionary<int,string> dcsValues);
 
-        public void setState(ConcurrentDictionary<int, double> dcsValues)
+        public void setState(ConcurrentDictionary<int, string> dcsValues)
         {
             state = generateState(dcsValues);
             NotifyPropertyChanged("State");
         }
 
-        public bool isStateChanged(ConcurrentDictionary<int, double> dcsValues)
+        public bool isStateChanged(ConcurrentDictionary<int, string> dcsValues)
         {
             string newState = generateState(dcsValues);
             if (newState == State) { return false; }
