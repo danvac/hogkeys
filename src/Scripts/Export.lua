@@ -20,6 +20,8 @@ require 'Vector'
 --]]
 host = "127.0.0.1"
 port = 9089
+hogkeysHost = "127.0.0.1"
+hogkeysPort = 9090
 NL="\n"
 file = io.open("./Temp/Export.log", "w")
 if file then
@@ -129,7 +131,7 @@ function LuaExportStart()
     c:setsockname(host, port)
     c:settimeout(.01) -- set the timeout for reading the socket 
 	s = socket.udp()
-	s:setpeername('localhost',9090)
+	s:setpeername(hogkeysHost,hogkeysPort)
 	--s:send("Hello World")
 end
 
