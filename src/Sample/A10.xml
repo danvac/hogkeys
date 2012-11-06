@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<HogKeysConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Inputs>
+    <Input xsi:type="ToggleSwitch">
+      <Name>WingExtTks</Name>
+      <Description>External Wing Tanks</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3001</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>0</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>FusExtTks</Name>
+      <Description>Fuse Ext Tank</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3002</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>8</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>SigAmpl</Name>
+      <Description>Battery</Description>
+      <DeviceId>1</DeviceId>
+      <ButtonId>3006</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>16</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>TKGate</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3003</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>72</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>CrossFeed</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3004</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>40</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>LWingBoostPump</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3005</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>48</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>RWingBoostPump</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3006</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>56</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>LftMainBoostPump</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3007</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>80</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>RtMainBoostPump</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3008</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>88</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>LeftWingFill</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3012</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>64</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>RightWingFill</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3013</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>104</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>LeftFuseFill</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3014</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>112</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>RightFuseFill</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3015</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>120</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>Line Test</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>1</DeviceId>
+      <ButtonId>3001</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>96</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+  </Inputs>
+  <Outputs>
+    <Output xsi:type="ToggleOutput">
+      <Name>TOTrimAnn</Name>
+      <Description>Takeoff Trim</Description>
+      <Type>ToggleOutput</Type>
+      <Offset>10001</Offset>
+      <Index>
+        <int>2</int>
+      </Index>
+      <LogicOnValue>0.2</LogicOnValue>
+      <BusIndex>0</BusIndex>
+      <ByteIndex>2</ByteIndex>
+    </Output>
+    <Output xsi:type="ToggleOutput">
+      <Name>CanopyAnun</Name>
+      <Description>Canopy Anunciator</Description>
+      <Type>ToggleOutput</Type>
+      <Offset>10002</Offset>
+      <Index>
+        <int>10</int>
+      </Index>
+      <LogicOnValue>0.2</LogicOnValue>
+      <BusIndex>1</BusIndex>
+      <ByteIndex>2</ByteIndex>
+    </Output>
+  </Outputs>
+</HogKeysConfig>

@@ -129,7 +129,7 @@ function LuaExportStart()
     c:setsockname(host, port)
     c:settimeout(.01) -- set the timeout for reading the socket 
 	s = socket.udp()
-	s:setpeername('192.168.1.2',9090)
+	s:setpeername('localhost',9090)
 	--s:send("Hello World")
 end
 
