@@ -1,4 +1,4 @@
-﻿namespace net.willshouse.HogKeys.IO
+﻿namespace net.willshouse.HogKeys.IO.Inputs
 {
 
 

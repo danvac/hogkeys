@@ -8,13 +8,15 @@ using System.Text;
 using System.Windows.Forms;
 using net.willshouse.HogKeys.IO;
 using net.willshouse.HogKeys.UI.controls;
+using net.willshouse.HogKeys.IO.Inputs;
+using net.willshouse.HogKeys.IO.Inputs.Switches;
 
 
 namespace net.willshouse.HogKeys.UI
 {
     public partial class InputDetailForm : Form
     {
-        private Input currentSwitch;
+        private Switch currentSwitch;
         private bool isNew;
         private BindingSource switchSource;
         private ToggleSwitchPinManager toggleSwitchPinManager1;
@@ -22,10 +24,10 @@ namespace net.willshouse.HogKeys.UI
         private MultiSwitchPinManager multiSwitchPinManager1;
 
 
-        public InputDetailForm(Input aSwitch)
+        public InputDetailForm(Switch aSwitch)
             : this(aSwitch, null) { }
 
-        public InputDetailForm(Input aSwitch, BindingSource aSource)
+        public InputDetailForm(Switch aSwitch, BindingSource aSource)
         {
             if (aSource == null)
             {

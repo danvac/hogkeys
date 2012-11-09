@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using net.willshouse.HogKeys.IO;
 using System.Collections;
+using net.willshouse.HogKeys.IO.Inputs;
+using net.willshouse.HogKeys.IO.Inputs.Switches;
 
 namespace net.willshouse.HogKeys.UI.controls
 {

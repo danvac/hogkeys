@@ -125,7 +125,7 @@
             this.switchPinsTab.Padding = new System.Windows.Forms.Padding(3);
             this.switchPinsTab.Size = new System.Drawing.Size(384, 133);
             this.switchPinsTab.TabIndex = 1;
-            this.switchPinsTab.Text = "Input Pins";
+            this.switchPinsTab.Text = "Switch Pins";
             this.switchPinsTab.UseVisualStyleBackColor = true;
             // 
             // switchValuesTab
@@ -136,7 +136,7 @@
             this.switchValuesTab.Padding = new System.Windows.Forms.Padding(3);
             this.switchValuesTab.Size = new System.Drawing.Size(384, 133);
             this.switchValuesTab.TabIndex = 0;
-            this.switchValuesTab.Text = "Input Values";
+            this.switchValuesTab.Text = "Switch Values";
             this.switchValuesTab.UseVisualStyleBackColor = true;
             // 
             // BinarySwitchPinManager

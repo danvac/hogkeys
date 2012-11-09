@@ -5,6 +5,7 @@ using System.Text;
 using net.willshouse.HogKeys.IO;
 using System.ComponentModel;
 using System.Collections;
+using net.willshouse.HogKeys.IO.Inputs;
 
 namespace net.willshouse.HogKeys.UI
 {
@@ -15,7 +16,7 @@ namespace net.willshouse.HogKeys.UI
         {
             
         }
-        public BindingList<Input> Inputs { get; set; }
+        public BindingList<Switch> Inputs { get; set; }
 
         public BindingList<Output> Outputs { get; set; }
     }

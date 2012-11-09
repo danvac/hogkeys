@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 
 
-namespace net.willshouse.HogKeys.IO
+namespace net.willshouse.HogKeys.IO.Inputs.Switches
 {
-    public class ToggleSwitch : Input
+    public class ToggleSwitch : Switch
     {
 
         public ToggleSwitch()
@@ -31,17 +31,5 @@ namespace net.willshouse.HogKeys.IO
         {
             return pokeysValues[Pins[0]] ? Values[1] : Values[0];
         }
-
-
-        public override void setSwitchPositionData(List<string> positionsData)
-        {
-            Values = new System.ComponentModel.BindingList<string>()
-           {
-               positionsData[0],
-               positionsData[1]
-           };
-        }
-
-
     }
 }

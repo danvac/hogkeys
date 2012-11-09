@@ -10,8 +10,10 @@ using net.willshouse.HogKeys.IO;
 using System.Xml.Serialization;
 using System.IO;
 using System.Reflection;
-using System.Diagnostics;
 using Microsoft.Win32;
+using net.willshouse.HogKeys.IO.Inputs;
+using net.willshouse.HogKeys.IO.Inputs.Switches;
+
 
 namespace net.willshouse.HogKeys.UI
 {
@@ -32,7 +34,7 @@ namespace net.willshouse.HogKeys.UI
             inputSource = new BindingSource();
             outputSource = new BindingSource();
             driver = new TestDriver();
-            inputSource.DataSource = typeof(Input);
+            inputSource.DataSource = typeof(Switch);
             outputSource.DataSource = typeof(Output);
             CreateInputStatusColumns();
             CreateOutputStatusColumns();
@@ -128,7 +130,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void BuildTestInputData()
         {
-            inputSource.DataSource = typeof(Input);
+            inputSource.DataSource = typeof(Switch);
             MultiSwitch test1 = new MultiSwitch("Test1");
             test1.Values.Add(".1");
             test1.Values.Add(".2");
@@ -167,7 +169,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void editSwitch(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm((Input)inputSource.Current);
+            LaunchSwitchDetailForm((Switch)inputSource.Current);
         }
 
         private void newSwitch(object sender, EventArgs e)
@@ -175,12 +177,12 @@ namespace net.willshouse.HogKeys.UI
             LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
         }
 
-        private void LaunchSwitchDetailForm(Input aSwitch)
+        private void LaunchSwitchDetailForm(Switch aSwitch)
         {
             LaunchSwitchDetailForm(aSwitch, null);
         }
 
-        private void LaunchSwitchDetailForm(Input aSwitch, BindingSource aSource)
+        private void LaunchSwitchDetailForm(Switch aSwitch, BindingSource aSource)
         {
             InputDetailForm switchDetail = new InputDetailForm(aSwitch, aSource);
             switchDetail.ShowDialog();
@@ -224,7 +226,7 @@ namespace net.willshouse.HogKeys.UI
             // check to make sure the row we selected is in bounds
             if (e.RowIndex > -1)
             {
-                LaunchSwitchDetailForm((Input)inputSource[e.RowIndex]);
+                LaunchSwitchDetailForm((Switch)inputSource[e.RowIndex]);
             }
 
         }
@@ -253,7 +255,7 @@ namespace net.willshouse.HogKeys.UI
         {
             HogKeysIO selectedItem = (HogKeysIO)itemSource.Current;
             DialogResult result = MessageBox.Show("Are you sure you want to delete: " +
-                selectedItem.Name + " ?", "Confirm Input Delete", MessageBoxButtons.OKCancel);
+                selectedItem.Name + " ?", "Confirm Switch Delete", MessageBoxButtons.OKCancel);
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 itemSource.Remove(selectedItem);
@@ -283,7 +285,7 @@ namespace net.willshouse.HogKeys.UI
             {
                 loader = (HogKeysConfig)ser.Deserialize(stream);
             }
-            inputSource.DataSource = (BindingList<Input>)loader.Inputs;
+            inputSource.DataSource = (BindingList<Switch>)loader.Inputs;
             outputSource.DataSource = (BindingList<Output>)loader.Outputs;
         }
 
@@ -307,7 +309,7 @@ namespace net.willshouse.HogKeys.UI
             using (var stream = File.Create(fileName))
             {
                 HogKeysConfig saver = new HogKeysConfig();
-                saver.Inputs = (BindingList<Input>)inputSource.List;
+                saver.Inputs = (BindingList<Switch>)inputSource.List;
                 saver.Outputs = (BindingList<Output>)outputSource.List;
                 ser.Serialize(stream, saver);
             }
@@ -375,7 +377,7 @@ namespace net.willshouse.HogKeys.UI
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Assembly assembly = Assembly.GetEntryAssembly();
-            FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location);
+            System.Diagnostics.FileVersionInfo fileVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
             MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion, "About HogKeys");
         }
 

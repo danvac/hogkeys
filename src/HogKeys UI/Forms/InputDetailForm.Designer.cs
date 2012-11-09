@@ -195,7 +195,7 @@
             this.ClientSize = new System.Drawing.Size(392, 433);
             this.Controls.Add(this.splitContainer1);
             this.Name = "InputDetailForm";
-            this.Text = "Input Details";
+            this.Text = "Switch Details";
             this.Load += new System.EventHandler(this.SwitchDetailForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
