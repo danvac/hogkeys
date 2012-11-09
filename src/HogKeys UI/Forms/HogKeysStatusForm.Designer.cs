@@ -150,7 +150,7 @@
             this.switchToolStripMenuItem1});
             this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
             this.switchToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.switchToolStripMenuItem.Text = "Input";
+            this.switchToolStripMenuItem.Text = "Switch";
             // 
             // switchToolStripMenuItem1
             // 
@@ -471,7 +471,7 @@
             this.inputStatusTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.inputStatusTabPage.Size = new System.Drawing.Size(584, 501);
             this.inputStatusTabPage.TabIndex = 0;
-            this.inputStatusTabPage.Text = "Input Status";
+            this.inputStatusTabPage.Text = "Switch Status";
             this.inputStatusTabPage.UseVisualStyleBackColor = true;
             // 
             // outputStatusTabPage

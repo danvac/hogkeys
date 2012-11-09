@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Collections.Concurrent;
+using net.willshouse.HogKeys.IO.Inputs;
 
 
 namespace net.willshouse.HogKeys.IO
@@ -91,7 +92,7 @@ namespace net.willshouse.HogKeys.IO
 
         private void ProcessInputs()
         {
-            foreach (Input input in inputs)
+            foreach (Switch input in inputs)
             {
 
                 if (input.isStateChanged(currentPokeysValues))
