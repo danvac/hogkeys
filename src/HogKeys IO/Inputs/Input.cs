@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace net.willshouse.HogKeys.IO.Inputs
 {
     public abstract class Input<T> : HogKeysIO
@@ -50,7 +46,18 @@ namespace net.willshouse.HogKeys.IO.Inputs
         }
 
         public abstract string generateState(T [] pokeysValues);
-        public abstract bool isStateChanged(T[] pokeysValues);
+        //public abstract bool isStateChanged(T[] pokeysValues);
+        public bool isStateChanged(T[] pokeysValues)
+        {
+            string newState = generateState(pokeysValues);
+            if (newState == State) { return false; }
+            else
+            {
+                state = newState;
+                NotifyPropertyChanged("State");
+                return true;
+            }
+        }
 
         public void setState(T [] pokeysValues)
         {
