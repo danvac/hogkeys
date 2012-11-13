@@ -7,7 +7,8 @@
         None = 0,
         ToggleSwitch,
         MultiSwitch,
-        BinarySwitch
+        BinarySwitch,
+        Analog
     }
 
 }

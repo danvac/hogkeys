@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
-//using net.willshouse.HogKeys.IO;
-using System.Net.Sockets;
-using System.Windows.Forms;
 using System.Collections.Concurrent;
+using System.Linq;
+using System.Net.Sockets;
+using System.Text;
+using System.Windows.Forms;
 using net.willshouse.HogKeys.IO.Inputs;
+using PoKeysDevice_DLL;
 
 
 namespace net.willshouse.HogKeys.IO
@@ -20,7 +18,7 @@ namespace net.willshouse.HogKeys.IO
         private UdpClient client;
         private bool[] currentPokeysValues;
         private bool[] previousPokeysValues;
-
+        
         public TestDriver()
         {
             //pokeys bulk pin get uses 55 values
@@ -30,10 +28,15 @@ namespace net.willshouse.HogKeys.IO
             currentPokeysValues = new bool[128];
             previousPokeysValues = new bool[128];
             device = new PoKeysDevice_DLL.PoKeysDevice();
+            sPoKeysDeviceStatus test = new sPoKeysDeviceStatus();
+            test.
+            
         }
 
         public int Port { get; set; }
         public string Host { get; set; }
+        
+        
 
         public BindingSource Inputs
         {

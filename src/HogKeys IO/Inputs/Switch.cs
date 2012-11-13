@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 
 
@@ -73,17 +69,17 @@ namespace net.willshouse.HogKeys.IO.Inputs
 
 
 
-        public override bool isStateChanged(bool[] pokeysValues)
-        {
-            string newState = generateState(pokeysValues);
-            if (newState == State) { return false; }
-            else
-            {
-                state = newState;
-                NotifyPropertyChanged("State");
-                return true;
-            }
-        }
+        //public override bool isStateChanged(bool[] pokeysValues)
+        //{
+        //    string newState = generateState(pokeysValues);
+        //    if (newState == State) { return false; }
+        //    else
+        //    {
+        //        state = newState;
+        //        NotifyPropertyChanged("State");
+        //        return true;
+        //    }
+        //}
 
 
 
