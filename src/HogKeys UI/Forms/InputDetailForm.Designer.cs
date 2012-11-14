@@ -110,6 +110,7 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(72, 20);
             this.nameTextBox.TabIndex = 17;
+            this.nameTextBox.Text = "Enter Name";
             // 
             // descriptionLabel
             // 
@@ -129,6 +130,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(225, 102);
             this.descriptionTextBox.TabIndex = 25;
+            this.descriptionTextBox.Text = "Enter Description";
             // 
             // typeLabel
             // 

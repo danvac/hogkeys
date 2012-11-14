@@ -49,6 +49,7 @@
     <Compile Include="HogKeysIO.cs" />
     <Compile Include="Inputs\Switches\MultiSwitch.cs" />
     <Compile Include="Inputs\Switch.cs" />
+    <Compile Include="IState.cs" />
     <Compile Include="Outputs\Output.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Inputs\InputType.cs" />
