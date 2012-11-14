@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 using net.willshouse.HogKeys.IO.Inputs;
-using PoKeysDevice_DLL;
 
 
 namespace net.willshouse.HogKeys.IO
@@ -55,6 +54,7 @@ namespace net.willshouse.HogKeys.IO
                 outputs = value;
             }
         }
+
         public void poll()
         {
 
@@ -72,7 +72,12 @@ namespace net.willshouse.HogKeys.IO
             }
         }
 
-
+        public  int PollAnalogIndex(int index)
+        {
+            int [] value = new int[7];
+            device.GetAllAnalogInputs(ref value);
+            return value[index];
+        }
 
 
         ~TestDriver()
