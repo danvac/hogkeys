@@ -16,27 +16,29 @@ namespace net.willshouse.HogKeys.IO
         private BindingSource outputs;
         private PoKeysDevice_DLL.PoKeysDevice device;
         private UdpClient client;
-        private bool[] currentPokeysValues;
-        private bool[] previousPokeysValues;
-        
+        private bool[] currentPokeysSwitchValues;
+        private bool[] previousPokeysSwitchValues;
+        private int[] currentPokeysAnalogValues, previousPokeysAnalogValues;
+
         public TestDriver()
         {
             //pokeys bulk pin get uses 55 values
             // pokeys bulk matrix pin get is 128 values
             client = new UdpClient();
             // http://code.google.com/p/hogkeys/issues/detail?id=3
-            currentPokeysValues = new bool[128];
-            previousPokeysValues = new bool[128];
+            currentPokeysSwitchValues = new bool[128];
+            previousPokeysSwitchValues = new bool[128];
+            currentPokeysAnalogValues = new int[7];
+            previousPokeysAnalogValues = new int[7];
             device = new PoKeysDevice_DLL.PoKeysDevice();
-            sPoKeysDeviceStatus test = new sPoKeysDeviceStatus();
-            test.
-            
+
+
         }
 
         public int Port { get; set; }
         public string Host { get; set; }
-        
-        
+
+
 
         public BindingSource Inputs
         {
@@ -55,21 +57,18 @@ namespace net.willshouse.HogKeys.IO
         }
         public void poll()
         {
+
             if ((inputs != null) && (inputs.Count > 0))
             {
                 // http://code.google.com/p/hogkeys/issues/detail?id=3
                 // changed to get matrix status
-                device.GetMatrixKeyboardKeyStatus(ref currentPokeysValues);
+                device.GetMatrixKeyboardKeyStatus(ref currentPokeysSwitchValues);
+                device.GetAllAnalogInputs(ref currentPokeysAnalogValues);
                 //DumpValues();
-                if (previousPokeysValues == null)
-                {
-                    ProcessInputs();
-                }
-                else if (!currentPokeysValues.SequenceEqual(previousPokeysValues))
-                {
-                    ProcessInputs();
-                    currentPokeysValues.CopyTo(previousPokeysValues, 0);
-                }
+                //Process Switch inputs
+                ProcessInputs<IState<bool>, bool>(currentPokeysSwitchValues, previousPokeysSwitchValues);
+                //Process Analog Inputs
+                ProcessInputs<IState<int>, int>(currentPokeysAnalogValues, previousPokeysAnalogValues);
             }
         }
 
@@ -79,7 +78,7 @@ namespace net.willshouse.HogKeys.IO
         ~TestDriver()
         {
             device.DisconnectDevice();
-            
+
         }
 
         public void InitializeConnection(int deviceIndex)
@@ -93,22 +92,52 @@ namespace net.willshouse.HogKeys.IO
             device.ConnectToDevice(deviceIndex);
         }
 
-        private void ProcessInputs()
+        //private void ProcessSwitchInputs()
+        //{
+        //    foreach (Input input in inputs)
+        //    {
+
+        //        if (input is Switch)
+        //        {
+        //            if (((Switch)input).isStateChanged(currentPokeysSwitchValues))
+        //            {
+        //                SendOnClickParameters(input);
+        //            }
+        //        }
+
+        //    }
+
+        //}
+
+        private void ProcessInputs<interfaceType, valueType>(valueType[] currentPokeysValues, valueType[] previousPokeysValues)
+            where interfaceType : IState<valueType>
         {
-            foreach (Switch input in inputs)
+            if ((previousPokeysValues == null) || (!currentPokeysValues.SequenceEqual(previousPokeysValues)))
             {
 
-                if (input.isStateChanged(currentPokeysValues))
+                foreach (Input input in inputs)
                 {
-                    Byte[] message = Encoding.ASCII.GetBytes("C" + input.DeviceId + "," + input.ButtonId + "," + input.State);
-                    client.Send(message, message.Length, Host, Port);
+                    if (input is IState<valueType>)
+                    {
+                        if (((IState<valueType>)input).isStateChanged(currentPokeysValues))
+                        {
+                            SendOnClickParameters(input);
+                        }
+                    }
                 }
+                currentPokeysValues.CopyTo(previousPokeysValues, 0);
             }
+        }
+
+        private void SendOnClickParameters(Input input)
+        {
+            Byte[] message = Encoding.ASCII.GetBytes("C" + input.DeviceId + "," + input.ButtonId + "," + input.State);
+            client.Send(message, message.Length, Host, Port);
         }
         public void DumpValues()
         {
             string values = String.Empty;
-            foreach (bool value in currentPokeysValues)
+            foreach (bool value in currentPokeysSwitchValues)
             {
                 values += value.ToString() + ",";
             }
@@ -136,9 +165,9 @@ namespace net.willshouse.HogKeys.IO
                         {
                             if (item.State == "ON")
                             {
-                                busData[9 - item.BusIndex] = (byte)(busData[9 - item.BusIndex] | (1 << 7-item.ByteIndex));
+                                busData[9 - item.BusIndex] = (byte)(busData[9 - item.BusIndex] | (1 << 7 - item.ByteIndex));
 
-                               // MessageBox.Show(busData[9 - item.BusIndex].ToString());
+                                // MessageBox.Show(busData[9 - item.BusIndex].ToString());
 
                             }
                             break;
@@ -147,7 +176,7 @@ namespace net.willshouse.HogKeys.IO
 
                 }
             }
-          //  device.AuxilaryBusSetData(1, busData);
+            //  device.AuxilaryBusSetData(1, busData);
             device.AuxilaryBusSetData(1, 1, busData);
         }
     }

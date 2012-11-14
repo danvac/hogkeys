@@ -16,7 +16,7 @@ namespace net.willshouse.HogKeys.UI
         {
             
         }
-        public BindingList<Switch> Inputs { get; set; }
+        public BindingList<Input> Inputs { get; set; }
 
         public BindingList<Output> Outputs { get; set; }
     }

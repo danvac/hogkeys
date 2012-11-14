@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using net.willshouse.HogKeys.IO;
-using System.Xml.Serialization;
 using System.IO;
 using System.Reflection;
+using System.Windows.Forms;
+using System.Xml.Serialization;
 using Microsoft.Win32;
+using net.willshouse.HogKeys.IO;
 using net.willshouse.HogKeys.IO.Inputs;
 using net.willshouse.HogKeys.IO.Inputs.Switches;
 
@@ -34,7 +29,7 @@ namespace net.willshouse.HogKeys.UI
             inputSource = new BindingSource();
             outputSource = new BindingSource();
             driver = new TestDriver();
-            inputSource.DataSource = typeof(Switch);
+            inputSource.DataSource = typeof(Input);
             outputSource.DataSource = typeof(Output);
             CreateInputStatusColumns();
             CreateOutputStatusColumns();
@@ -130,7 +125,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void BuildTestInputData()
         {
-            inputSource.DataSource = typeof(Switch);
+            inputSource.DataSource = typeof(Input);
             MultiSwitch test1 = new MultiSwitch("Test1");
             test1.Values.Add(".1");
             test1.Values.Add(".2");
@@ -169,20 +164,20 @@ namespace net.willshouse.HogKeys.UI
 
         private void editSwitch(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm((Switch)inputSource.Current);
+            LaunchInputDetailForm((Switch)inputSource.Current);
         }
 
         private void newSwitch(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
+            LaunchInputDetailForm(new ToggleSwitch(), inputSource);
         }
 
-        private void LaunchSwitchDetailForm(Switch aSwitch)
+        private void LaunchInputDetailForm(Input aSwitch)
         {
-            LaunchSwitchDetailForm(aSwitch, null);
+            LaunchInputDetailForm(aSwitch, null);
         }
 
-        private void LaunchSwitchDetailForm(Switch aSwitch, BindingSource aSource)
+        private void LaunchInputDetailForm(Input aSwitch, BindingSource aSource)
         {
             InputDetailForm switchDetail = new InputDetailForm(aSwitch, aSource);
             switchDetail.ShowDialog();
@@ -202,7 +197,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void toggleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
+            LaunchInputDetailForm(new ToggleSwitch(), inputSource);
         }
 
         private void toggleOutputToolStripMenuItem_Click(object sender, EventArgs e)
@@ -212,12 +207,17 @@ namespace net.willshouse.HogKeys.UI
 
         private void binaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new BinarySwitch(), inputSource);
+            LaunchInputDetailForm(new BinarySwitch(), inputSource);
         }
 
         private void multiPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new MultiSwitch(), inputSource);
+            LaunchInputDetailForm(new MultiSwitch(), inputSource);
+        }
+
+        private void analogInputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LaunchInputDetailForm(new AnalogInput(), inputSource);
         }
 
         private void gridStatus_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -226,7 +226,7 @@ namespace net.willshouse.HogKeys.UI
             // check to make sure the row we selected is in bounds
             if (e.RowIndex > -1)
             {
-                LaunchSwitchDetailForm((Switch)inputSource[e.RowIndex]);
+                LaunchInputDetailForm((Input)inputSource[e.RowIndex]);
             }
 
         }
@@ -280,12 +280,12 @@ namespace net.willshouse.HogKeys.UI
         private void LoadConfig(string fileName)
         {
             HogKeysConfig loader;
-            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput),typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.OpenRead(fileName))
             {
                 loader = (HogKeysConfig)ser.Deserialize(stream);
             }
-            inputSource.DataSource = (BindingList<Switch>)loader.Inputs;
+            inputSource.DataSource = (BindingList<Input>)loader.Inputs;
             outputSource.DataSource = (BindingList<Output>)loader.Outputs;
         }
 
@@ -305,11 +305,11 @@ namespace net.willshouse.HogKeys.UI
 
         private void SaveConfig(string fileName)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput),typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.Create(fileName))
             {
                 HogKeysConfig saver = new HogKeysConfig();
-                saver.Inputs = (BindingList<Switch>)inputSource.List;
+                saver.Inputs = (BindingList<Input>)inputSource.List;
                 saver.Outputs = (BindingList<Output>)outputSource.List;
                 ser.Serialize(stream, saver);
             }

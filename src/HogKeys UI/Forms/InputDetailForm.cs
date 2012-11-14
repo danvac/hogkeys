@@ -16,7 +16,7 @@ namespace net.willshouse.HogKeys.UI
 {
     public partial class InputDetailForm : Form
     {
-        private Switch currentSwitch;
+        private Input currentSwitch;
         private bool isNew;
         private BindingSource switchSource;
         private ToggleSwitchPinManager toggleSwitchPinManager1;
@@ -24,10 +24,10 @@ namespace net.willshouse.HogKeys.UI
         private MultiSwitchPinManager multiSwitchPinManager1;
 
 
-        public InputDetailForm(Switch aSwitch)
+        public InputDetailForm(Input aSwitch)
             : this(aSwitch, null) { }
 
-        public InputDetailForm(Switch aSwitch, BindingSource aSource)
+        public InputDetailForm(Input aSwitch, BindingSource aSource)
         {
             if (aSource == null)
             {
@@ -49,10 +49,17 @@ namespace net.willshouse.HogKeys.UI
 
         private void SwitchDetailForm_Load(object sender, EventArgs e)
         {
-            nameTextBox.Text = currentSwitch.Name;
+            if (currentSwitch.Name != null)
+            {
+                nameTextBox.Text = currentSwitch.Name;    
+            }
+            
             deviceTextBox.Text = currentSwitch.DeviceId.ToString();
             buttonTextBox.Text = currentSwitch.ButtonId.ToString();
-            descriptionTextBox.Text = currentSwitch.Description;
+            if (currentSwitch.Description != null)
+            {
+                descriptionTextBox.Text = currentSwitch.Description;
+            }
             typeTextBox.Text = currentSwitch.Type.ToString();
             InitializePinManager();
             this.saveButton.Click += new EventHandler(saveButton_Click);

@@ -1,7 +1,7 @@
 ﻿
 namespace net.willshouse.HogKeys.IO.Inputs
 {
-    public abstract class Input<T> : HogKeysIO
+    public abstract class Input : HogKeysIO
     {
         private int deviceId, buttonId;
         private InputType type;
@@ -11,7 +11,7 @@ namespace net.willshouse.HogKeys.IO.Inputs
         {
 
         }
-        
+
         public int DeviceId
         {
             get { return deviceId; }
@@ -45,7 +45,18 @@ namespace net.willshouse.HogKeys.IO.Inputs
             }
         }
 
-        public abstract string generateState(T [] pokeysValues);
+    }
+
+
+    public abstract class Input<T> : Input,IState<T>
+    {
+        protected Input()
+            : base()
+        {
+
+        }
+
+        public abstract string generateState(T[] pokeysValues);
         //public abstract bool isStateChanged(T[] pokeysValues);
         public bool isStateChanged(T[] pokeysValues)
         {
@@ -59,11 +70,11 @@ namespace net.willshouse.HogKeys.IO.Inputs
             }
         }
 
-        public void setState(T [] pokeysValues)
+        public void setState(T[] pokeysValues)
         {
             state = generateState(pokeysValues);
             NotifyPropertyChanged("State");
         }
-                
+
     }
 }

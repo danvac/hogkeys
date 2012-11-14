@@ -74,6 +74,7 @@
             this.outputStatusTabPage = new System.Windows.Forms.TabPage();
             this.outputStatusDataGridView = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Timers.Timer();
+            this.analogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.inputStatusDataGridView)).BeginInit();
             this.switchMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -131,7 +132,7 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -141,16 +142,17 @@
             this.switchToolStripMenuItem,
             this.outputToolStripMenuItem});
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem1.Text = "New";
             // 
             // switchToolStripMenuItem
             // 
             this.switchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.switchToolStripMenuItem1});
+            this.switchToolStripMenuItem1,
+            this.analogToolStripMenuItem});
             this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
-            this.switchToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.switchToolStripMenuItem.Text = "Switch";
+            this.switchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.switchToolStripMenuItem.Text = "Input";
             // 
             // switchToolStripMenuItem1
             // 
@@ -159,7 +161,7 @@
             this.multiPositionToolStripMenuItem,
             this.toggleToolStripMenuItem});
             this.switchToolStripMenuItem1.Name = "switchToolStripMenuItem1";
-            this.switchToolStripMenuItem1.Size = new System.Drawing.Size(109, 22);
+            this.switchToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.switchToolStripMenuItem1.Text = "Switch";
             // 
             // binaryToolStripMenuItem
@@ -191,7 +193,7 @@
             this.outputToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toggleOutputToolStripMenuItem});
             this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.outputToolStripMenuItem.Text = "Output";
             // 
             // toggleOutputToolStripMenuItem
@@ -204,7 +206,7 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -507,6 +509,13 @@
             this.timer1.SynchronizingObject = this;
             this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
             // 
+            // analogToolStripMenuItem
+            // 
+            this.analogToolStripMenuItem.Name = "analogToolStripMenuItem";
+            this.analogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.analogToolStripMenuItem.Text = "Analog";
+            this.analogToolStripMenuItem.Click += new System.EventHandler(this.analogInputToolStripMenuItem_Click);
+            // 
             // HogKeysStatusForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -588,6 +597,7 @@
         private System.Windows.Forms.Label dcsHeaderLabel;
         private System.Windows.Forms.ToolStripMenuItem outputToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleOutputToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem analogToolStripMenuItem;
     }
 }
 

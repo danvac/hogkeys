@@ -8,17 +8,17 @@ namespace net.willshouse.HogKeys.IO.Inputs
     public abstract class Switch : Input<bool>
     {
         //private string state, name, description;
-        
-        
+
+
         private BindingList<int> pins;
         private BindingList<string> values;
         //public event PropertyChangedEventHandler PropertyChanged;
 
 
 
-        
 
-        
+
+
 
         public BindingList<int> Pins
         {
