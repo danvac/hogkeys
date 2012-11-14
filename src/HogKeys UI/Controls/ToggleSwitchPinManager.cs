@@ -1,14 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Collections.ObjectModel;
-using net.willshouse.HogKeys.IO;
-using net.willshouse.HogKeys.IO.Inputs;
 using net.willshouse.HogKeys.IO.Inputs.Switches;
 
 namespace net.willshouse.HogKeys.UI.controls
