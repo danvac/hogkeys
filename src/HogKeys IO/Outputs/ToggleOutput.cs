@@ -2,7 +2,7 @@
 
 namespace net.willshouse.HogKeys.IO
 {
-    public class ToggleOutput: Output
+    public class ToggleOutput : Output
     {
         public ToggleOutput()
             : base()
@@ -12,14 +12,18 @@ namespace net.willshouse.HogKeys.IO
 
         public override string generateState(System.Collections.Concurrent.ConcurrentDictionary<int, string> dcsValues)
         {
-            if (dcsValues[Offset] != "OFF")
+            if (dcsValues.ContainsKey(Offset))
             {
-                return ((Convert.ToDouble(dcsValues[Offset]) > LogicOnValue)) ? "ON" : "OFF";
+                if (dcsValues[Offset] != "OFF")
+                {
+                    return ((Convert.ToDouble(dcsValues[Offset]) > LogicOnValue)) ? "ON" : "OFF";
+                }
             }
-            else
-            {
-                return "OFF";
-            }
+
+
+            return "OFF";
+
+
         }
     }
 }
