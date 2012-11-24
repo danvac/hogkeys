@@ -9,4 +9,8 @@ cockpitIndicators = {
 [10002] = {0,665}  -- TakeOff Trim Light
 }
 
+test = {
+[10003] = {20,192}
+}
+
 outputTables = {cockpitIndicators}
