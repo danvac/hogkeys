@@ -29,7 +29,7 @@ function ProcessOutputs(outputTables)
                     return ""
                 end
                 -- Update the panel
-                panel:update_arguments()
+                --panel:update_arguments()
             end
              
             outputValue = panel:get_argument_value(deviceArg[2])
