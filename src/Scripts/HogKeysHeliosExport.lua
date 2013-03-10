@@ -7,6 +7,7 @@ NL="\n"
 
 
 file = io.open(os.getenv("USERPROFILE").."/Saved Games/DCS/Logs/HogKeysExport.log", "w")
+
 if file then
 	file:write("---LOG: START----","\n")
 	file:flush()
@@ -107,7 +108,7 @@ function LuaExportStart()
     
     dcsSocket = socket.udp()
     dcsSocket:setsockname(dcsHost, dcsPort)
-    dcsSocket:settimeout(.01) -- set the timeout for reading the socket 
+    dcsSocket:settimeout(.001) -- set the timeout for reading the socket 
 	hogkeysSocket = socket.udp()
 	hogkeysSocket:setpeername(hogkeysHost,hogkeysPort)
 	hogkeysPrevExport.LuaExportStart()
