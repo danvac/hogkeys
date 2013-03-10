@@ -6,7 +6,7 @@ hogkeysPort = 9190
 NL="\n"
 
 
-file = io.open("./Temp/Export.log", "w")
+file = io.open(os.getenv("USERPROFILE").."/Saved Games/DCS/Logs/HogKeysExport.log", "w")
 if file then
 	file:write("---LOG: START----","\n")
 	file:flush()
