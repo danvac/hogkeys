@@ -186,5 +186,5 @@ function ResetChangeValues()
 	gLastData = {}
 	gTickCount = 10
 end
-
-dofile("./Config/Export/HogKeysHeliosExport.lua")
+scriptPath = os.getenv("USERPROFILE").."/Saved Games/DCS/Scripts"
+dofile(scriptPath.."/HogKeysHeliosExport.lua")

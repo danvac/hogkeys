@@ -5,12 +5,9 @@ end
 
 
 cockpitIndicators = {
-[10001] = {0,191}, -- Canopy light
-[10002] = {0,665}  -- TakeOff Trim Light
-}
-
-test = {
-[10003] = {20,192}
+[10001] = {0,404}, -- Master Caution
+[10002] = {0,665},  -- Canopy Unlocked
+[10003] = {0,191} -- TakeOff Trim Light
 }
 
 outputTables = {cockpitIndicators}
