@@ -1,5 +1,5 @@
 
-dofile ("./Config/Export/HogKeys/OutputTables.lua")  
+dofile (scriptPath.."/HogKeys/OutputTables.lua")  
 if file then
 	file:write("---Output.lua: LOADED----","\n")
 	file:flush()

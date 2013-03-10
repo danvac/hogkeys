@@ -4,12 +4,14 @@ dcsPort = 9189
 hogkeysHost = "127.0.0.1"
 hogkeysPort = 9190
 NL="\n"
+
+
 file = io.open("./Temp/Export.log", "w")
 if file then
 	file:write("---LOG: START----","\n")
 	file:flush()
 end
-dofile ("./Config/Export/HogKeys/Outputs.lua") 
+dofile (scriptPath.."/HogKeys/Outputs.lua") 
 
 hogkeysPrevExport = {}
 hogkeysPrevExport.LuaExportStart = LuaExportStart
