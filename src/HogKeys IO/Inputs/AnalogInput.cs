@@ -82,7 +82,8 @@ namespace net.willshouse.HogKeys.IO.Inputs
         public override string generateState(int[] pokeysValues)
         {
             position = (double)(pokeysValues[index] - calMin) / (double)calRange;
-            return (minValue + (position * spread)).ToString();
+            //return (minValue + (position * spread)).ToString();
+            return string.Format("{0:0.00}",(minValue + (position * spread)));
         }
 
         private void calibrate()
