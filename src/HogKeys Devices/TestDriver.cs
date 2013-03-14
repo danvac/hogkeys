@@ -57,18 +57,37 @@ namespace net.willshouse.HogKeys.IO
 
         public void poll()
         {
-
+            bool matrixResults = false;
+            bool analogResults = false;
             if ((inputs != null) && (inputs.Count > 0))
             {
                 // http://code.google.com/p/hogkeys/issues/detail?id=3
                 // changed to get matrix status
-                device.GetMatrixKeyboardKeyStatus(ref currentPokeysSwitchValues);
-                device.GetAllAnalogInputs(ref currentPokeysAnalogValues);
-                //DumpValues();
+                // check if we actually get valid results back before processing
+                // this was causing a nasty intermittent bug where every input would shut off and on real quick
+                // may want to put a counter on the main screen that shows "timeouts"
+
+                matrixResults = device.GetMatrixKeyboardKeyStatus(ref currentPokeysSwitchValues);
+                analogResults = device.GetAllAnalogInputs(ref currentPokeysAnalogValues);
+                
                 //Process Switch inputs
-                ProcessInputs<IState<bool>, bool>(currentPokeysSwitchValues, previousPokeysSwitchValues);
+                if (matrixResults)
+                {
+                    ProcessInputs<IState<bool>, bool>(currentPokeysSwitchValues, previousPokeysSwitchValues);
+                }
+                else
+                {
+                   // MessageBox.Show("MatrixResults is False");
+                }
                 //Process Analog Inputs
-                ProcessInputs<IState<int>, int>(currentPokeysAnalogValues, previousPokeysAnalogValues);
+                if (analogResults)
+                {
+                    ProcessInputs<IState<int>, int>(currentPokeysAnalogValues, previousPokeysAnalogValues);
+                }
+                else
+                {
+                   // MessageBox.Show("AnalogResults is False");
+                }
             }
         }
 
