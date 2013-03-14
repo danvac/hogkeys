@@ -14,6 +14,7 @@ namespace net.willshouse.HogKeys.IO
         {
             if (dcsValues.ContainsKey(Offset))
             {
+                // maybe wrap this in try catch that way if something funny happens the item is set to off
                 if (dcsValues[Offset] != "OFF")
                 {
                     return ((Convert.ToDouble(dcsValues[Offset]) > LogicOnValue)) ? "ON" : "OFF";
