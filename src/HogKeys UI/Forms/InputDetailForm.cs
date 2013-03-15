@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using net.willshouse.HogKeys.IO;
+using net.willshouse.HogKeys.IO.Inputs;
+using net.willshouse.HogKeys.IO.Inputs.Switches;
 using net.willshouse.HogKeys.UI.controls;
+using net.willshouse.HogKeys.UI.Controls;
 
 
 namespace net.willshouse.HogKeys.UI
@@ -20,6 +17,7 @@ namespace net.willshouse.HogKeys.UI
         private ToggleSwitchPinManager toggleSwitchPinManager1;
         private BinarySwitchPinManager binarySwitchPinManager1;
         private MultiSwitchPinManager multiSwitchPinManager1;
+        private AnalogDetailControl analogDetailControl1;
 
 
         public InputDetailForm(Input aSwitch)
@@ -47,10 +45,17 @@ namespace net.willshouse.HogKeys.UI
 
         private void SwitchDetailForm_Load(object sender, EventArgs e)
         {
-            nameTextBox.Text = currentSwitch.Name;
+            if (currentSwitch.Name != null)
+            {
+                nameTextBox.Text = currentSwitch.Name;    
+            }
+            
             deviceTextBox.Text = currentSwitch.DeviceId.ToString();
             buttonTextBox.Text = currentSwitch.ButtonId.ToString();
-            descriptionTextBox.Text = currentSwitch.Description;
+            if (currentSwitch.Description != null)
+            {
+                descriptionTextBox.Text = currentSwitch.Description;
+            }
             typeTextBox.Text = currentSwitch.Type.ToString();
             InitializePinManager();
             this.saveButton.Click += new EventHandler(saveButton_Click);
@@ -75,6 +80,12 @@ namespace net.willshouse.HogKeys.UI
                         InitializeMultiSwitchPinManager();
                         break;
                     }
+                case InputType.Analog:
+                    {
+                        InitializeAnalogDetailcontrol();
+                        break;
+                    }
+
             }
         }
 
@@ -104,6 +115,15 @@ namespace net.willshouse.HogKeys.UI
             toggleSwitchPinManager1.Size = new System.Drawing.Size(178, 84);
             toggleSwitchPinManager1.Switch = (ToggleSwitch)currentSwitch;
             this.saveButton.Click += new EventHandler(toggleSwitchPinManager1.SaveHandler);
+        }
+
+        private void InitializeAnalogDetailcontrol()
+        {
+            analogDetailControl1 = new AnalogDetailControl();
+            analogDetailControl1.Dock = DockStyle.Fill;
+            analogDetailControl1.Input = (AnalogInput)currentSwitch;
+            splitContainer1.Panel2.Controls.Add(analogDetailControl1);
+            this.saveButton.Click += new EventHandler(analogDetailControl1.SaveHandler);
         }
 
         private void saveButton_Click(object sender, EventArgs e)

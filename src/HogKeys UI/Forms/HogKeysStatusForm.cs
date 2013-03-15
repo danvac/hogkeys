@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using net.willshouse.HogKeys.IO;
-using System.Xml.Serialization;
 using System.IO;
 using System.Reflection;
-using System.Diagnostics;
+using System.Windows.Forms;
+using System.Xml.Serialization;
 using Microsoft.Win32;
+using net.willshouse.HogKeys.IO;
+using net.willshouse.HogKeys.IO.Inputs;
+using net.willshouse.HogKeys.IO.Inputs.Switches;
+
 
 namespace net.willshouse.HogKeys.UI
 {
@@ -167,20 +164,20 @@ namespace net.willshouse.HogKeys.UI
 
         private void editSwitch(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm((Input)inputSource.Current);
+            LaunchInputDetailForm((Switch)inputSource.Current);
         }
 
         private void newSwitch(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
+            LaunchInputDetailForm(new ToggleSwitch(), inputSource);
         }
 
-        private void LaunchSwitchDetailForm(Input aSwitch)
+        private void LaunchInputDetailForm(Input aSwitch)
         {
-            LaunchSwitchDetailForm(aSwitch, null);
+            LaunchInputDetailForm(aSwitch, null);
         }
 
-        private void LaunchSwitchDetailForm(Input aSwitch, BindingSource aSource)
+        private void LaunchInputDetailForm(Input aSwitch, BindingSource aSource)
         {
             InputDetailForm switchDetail = new InputDetailForm(aSwitch, aSource);
             switchDetail.ShowDialog();
@@ -200,7 +197,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void toggleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new ToggleSwitch(), inputSource);
+            LaunchInputDetailForm(new ToggleSwitch(), inputSource);
         }
 
         private void toggleOutputToolStripMenuItem_Click(object sender, EventArgs e)
@@ -210,12 +207,17 @@ namespace net.willshouse.HogKeys.UI
 
         private void binaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new BinarySwitch(), inputSource);
+            LaunchInputDetailForm(new BinarySwitch(), inputSource);
         }
 
         private void multiPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchSwitchDetailForm(new MultiSwitch(), inputSource);
+            LaunchInputDetailForm(new MultiSwitch(), inputSource);
+        }
+
+        private void analogInputToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LaunchInputDetailForm(new AnalogInput(), inputSource);
         }
 
         private void gridStatus_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -224,7 +226,7 @@ namespace net.willshouse.HogKeys.UI
             // check to make sure the row we selected is in bounds
             if (e.RowIndex > -1)
             {
-                LaunchSwitchDetailForm((Input)inputSource[e.RowIndex]);
+                LaunchInputDetailForm((Input)inputSource[e.RowIndex]);
             }
 
         }
@@ -253,7 +255,7 @@ namespace net.willshouse.HogKeys.UI
         {
             HogKeysIO selectedItem = (HogKeysIO)itemSource.Current;
             DialogResult result = MessageBox.Show("Are you sure you want to delete: " +
-                selectedItem.Name + " ?", "Confirm Input Delete", MessageBoxButtons.OKCancel);
+                selectedItem.Name + " ?", "Confirm Switch Delete", MessageBoxButtons.OKCancel);
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 itemSource.Remove(selectedItem);
@@ -278,7 +280,7 @@ namespace net.willshouse.HogKeys.UI
         private void LoadConfig(string fileName)
         {
             HogKeysConfig loader;
-            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput),typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.OpenRead(fileName))
             {
                 loader = (HogKeysConfig)ser.Deserialize(stream);
@@ -303,7 +305,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void SaveConfig(string fileName)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput),typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.Create(fileName))
             {
                 HogKeysConfig saver = new HogKeysConfig();
@@ -375,7 +377,7 @@ namespace net.willshouse.HogKeys.UI
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Assembly assembly = Assembly.GetEntryAssembly();
-            FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location);
+            System.Diagnostics.FileVersionInfo fileVersion = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
             MessageBox.Show("HogKeys Version:\n" + fileVersion.ProductVersion, "About HogKeys");
         }
 

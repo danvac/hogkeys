@@ -30,20 +30,6 @@
       </Values>
     </Input>
     <Input xsi:type="ToggleSwitch">
-      <Name>SigAmpl</Name>
-      <Description>Battery</Description>
-      <DeviceId>1</DeviceId>
-      <ButtonId>3006</ButtonId>
-      <Type>ToggleSwitch</Type>
-      <Pins>
-        <int>16</int>
-      </Pins>
-      <Values>
-        <string>-1</string>
-        <string>1</string>
-      </Values>
-    </Input>
-    <Input xsi:type="ToggleSwitch">
       <Name>TKGate</Name>
       <Description>Enter Description</Description>
       <DeviceId>36</DeviceId>
@@ -184,13 +170,224 @@
       </Values>
     </Input>
     <Input xsi:type="ToggleSwitch">
-      <Name>Line Test</Name>
+      <Name>Sig Ampl</Name>
+      <Description>Signal Amplifier
+</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3009</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>16</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>MonitorTestLeft</Name>
+      <Description>Monitor Test Left</Description>
+      <DeviceId>38</DeviceId>
+      <ButtonId>3011</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>24</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>-1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>Monitor Test Right</Name>
+      <Description>Monitor Test Right</Description>
+      <DeviceId>38</DeviceId>
+      <ButtonId>3011</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>32</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>SASYawL</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>38</DeviceId>
+      <ButtonId>3003</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>1</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>SASYawR</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>38</DeviceId>
+      <ButtonId>3005</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>9</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>SASPitchL</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>38</DeviceId>
+      <ButtonId>3007</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>17</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>SASPitchR</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>38</DeviceId>
+      <ButtonId>3009</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>25</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>TOTrim</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>38</DeviceId>
+      <ButtonId>3012</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>33</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>LineChk</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>36</DeviceId>
+      <ButtonId>3010</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>64</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>APU GEN</Name>
       <Description>Enter Description</Description>
       <DeviceId>1</DeviceId>
       <ButtonId>3001</ButtonId>
       <Type>ToggleSwitch</Type>
       <Pins>
-        <int>96</int>
+        <int>41</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>Inverter STBY</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>1</DeviceId>
+      <ButtonId>3002</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>49</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>Inverter TEST</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>1</DeviceId>
+      <ButtonId>3002</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>65</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>-1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>Emerg. Flood</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>49</DeviceId>
+      <ButtonId>3007</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>57</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>Left AC Gen</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>1</DeviceId>
+      <ButtonId>3004</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>89</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>RT AC Gen</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>1</DeviceId>
+      <ButtonId>3005</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>81</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>BATT</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>1</DeviceId>
+      <ButtonId>3006</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>73</int>
       </Pins>
       <Values>
         <string>-1</string>

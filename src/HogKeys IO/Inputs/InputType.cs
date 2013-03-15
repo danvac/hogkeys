@@ -1,4 +1,4 @@
-﻿namespace net.willshouse.HogKeys.IO
+﻿namespace net.willshouse.HogKeys.IO.Inputs
 {
 
 
@@ -7,7 +7,8 @@
         None = 0,
         ToggleSwitch,
         MultiSwitch,
-        BinarySwitch
+        BinarySwitch,
+        Analog
     }
 
 }

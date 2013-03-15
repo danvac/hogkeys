@@ -1,5 +1,5 @@
 
-dofile ("./Config/Export/HogKeys/OutputTables.lua")  
+dofile (scriptPath.."/HogKeys/OutputTables.lua")  
 if file then
 	file:write("---Output.lua: LOADED----","\n")
 	file:flush()
@@ -29,7 +29,7 @@ function ProcessOutputs(outputTables)
                     return ""
                 end
                 -- Update the panel
-                panel:update_arguments()
+                --panel:update_arguments()
             end
              
             outputValue = panel:get_argument_value(deviceArg[2])
