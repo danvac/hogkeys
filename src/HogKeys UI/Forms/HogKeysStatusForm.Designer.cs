@@ -528,7 +528,7 @@
             this.Name = "HogKeysStatusForm";
             this.Text = "HogKeys Status";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HogKeysStatusForm_FormClosing);
-            this.Load += new System.EventHandler(this.SwitchStatus_Load);
+            this.Load += new System.EventHandler(this.HogKeysStatus_Load);
             ((System.ComponentModel.ISupportInitialize)(this.inputStatusDataGridView)).EndInit();
             this.switchMenu.ResumeLayout(false);
             this.switchMenu.PerformLayout();

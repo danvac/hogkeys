@@ -14,8 +14,9 @@ namespace net.willshouse.HogKeys.UI
 {
     public partial class HogKeysStatusForm : Form
     {
-        BindingSource inputSource, outputSource;
-        TestDriver driver;
+        //BindingSource inputSource, outputSource;
+        //TestDriver driver;
+        Board pokeys;
         private int hogKeysPort;
         private string configFileName;
 
@@ -24,34 +25,44 @@ namespace net.willshouse.HogKeys.UI
             InitializeComponent();
         }
 
-        private void SwitchStatus_Load(object sender, EventArgs e)
+        private void HogKeysStatus_Load(object sender, EventArgs e)
         {
-            inputSource = new BindingSource();
-            outputSource = new BindingSource();
-            driver = new TestDriver();
-            inputSource.DataSource = typeof(Input);
-            outputSource.DataSource = typeof(Output);
+            // need to move binding sources to be device specific 
+            //inputSource = new BindingSource();
+            //outputSource = new BindingSource();
+            pokeys = new Board();
+            pokeys.ArchType = "POKEYS 56U";
+            pokeys.BoardId = 0;
+            pokeys.ID = 0;
+            pokeys.Name = "Main Board";
+            pokeys.Type = "net.willshouse.HogKeys.IO.TestDriver";
+
+            //driver = new TestDriver(); // Instantiate pokeys driver module. This needs to be moved to a config somehow
+            //inputSource.DataSource = typeof(Input);
+            //outputSource.DataSource = typeof(Output);
             CreateInputStatusColumns();
             CreateOutputStatusColumns();
-            inputStatusDataGridView.DataSource = inputSource;
+            inputStatusDataGridView.DataSource = pokeys.InputSource;
             outputStatusDataGridView.AutoGenerateColumns = false;
-            outputStatusDataGridView.DataSource = outputSource;
-            //BuildTestInputData();
-            //BuildTestOutputData();
+            outputStatusDataGridView.DataSource = pokeys.OutputSource;
+            //BuildTestInputData(); //Used for Debugging
+            //BuildTestOutputData(); //Used for Debugging
 
             try
             {
-                driver.InitializeConnection(0);
+                pokeys.Initialize();
+                //driver.InitializeConnection(0); // we assume we are connecting to the first and only pokeys device..needs to be config
             }
             catch (Exception)
             {
                 MessageBox.Show("No Pokeys Device Found");
             }
-            driver.Inputs = inputSource;
-            driver.Outputs = outputSource;
+
+            //driver.Inputs = inputSource;  //assign the pokeys driver a list of inputs to monitor
+            //driver.Outputs = outputSource; //assign the pokeys driver a list of outputs to monitor
             GetUserSettings();
-            hostTextBox.DataBindings.Add("Text", driver, "Host");
-            dcsPortTextBox.DataBindings.Add("Text", driver, "Port");
+            //hostTextBox.DataBindings.Add("Text", driver, "Host"); // give the text box the host parameter from factory
+            //dcsPortTextBox.DataBindings.Add("Text", driver, "Port");// can i have multiple objects bound to same gui object?
             if ((configFileName != null) && (File.Exists(configFileName)))
             {
                 LoadConfig(configFileName);
@@ -75,6 +86,7 @@ namespace net.willshouse.HogKeys.UI
             NewColumn("Description", "Description", outputStatusDataGridView);
             NewColumn("BusIndex", "Bus Index", outputStatusDataGridView);
             NewColumn("ByteIndex", "Byte Index", outputStatusDataGridView);
+            //add offset?
         }
 
         private void GetUserSettings()
@@ -83,13 +95,15 @@ namespace net.willshouse.HogKeys.UI
             RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HogKeys");
             // DCSHOST
             string dcsHost = (string)hogKeys.GetValue("DCSHostName", "localhost");
-            driver.Host = dcsHost;
-            hostTextBox.Text = driver.Host;
+            //driver.Host = dcsHost;  user settings needs to be called earlier and this will be assigned by factory when its built
+            // currently hardcoded
+            hostTextBox.Text = dcsHost;
 
             //DCSPORT
+            // same as above
             int dcsPort = (int)hogKeys.GetValue("DCSPort", 9089);
-            driver.Port = dcsPort;
-            dcsPortTextBox.Text = driver.Port.ToString();
+            //driver.Port = dcsPort;
+            dcsPortTextBox.Text = dcsPort.ToString();
 
             //INTERVAL
             int interval = (int)hogKeys.GetValue("PollingInterval", 25);
@@ -103,14 +117,15 @@ namespace net.willshouse.HogKeys.UI
 
             //LastOpenedFile
             configFileName = (string)hogKeys.GetValue("LastOpenedFile");
-           
+
         }
 
         private void SetUserSettings()
         {
-            RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software",true).CreateSubKey("HogKeys");
-            hogKeys.SetValue("DCSHostName", driver.Host.ToString());
-            hogKeys.SetValue("DCSPort", driver.Port);
+            // save needs to read from factory instead of host
+            RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HogKeys");
+            //hogKeys.SetValue("DCSHostName", driver.Host.ToString());
+            //hogKeys.SetValue("DCSPort", driver.Port);
             hogKeys.SetValue("PollingInterval", pollingIntervalTrackBar.Value);
             hogKeys.SetValue("HogKeysPort", Convert.ToInt32(hogKeysPortTextBox.Text));
         }
@@ -123,53 +138,53 @@ namespace net.willshouse.HogKeys.UI
             target.Columns.Add(aColumn);
         }
 
-        private void BuildTestInputData()
-        {
-            inputSource.DataSource = typeof(Input);
-            MultiSwitch test1 = new MultiSwitch("Test1");
-            test1.Values.Add(".1");
-            test1.Values.Add(".2");
-            test1.Values.Add(".3");
-            test1.Pins.Add(11);
-            test1.Pins.Add(12);
-            test1.Pins.Add(13);
-            inputSource.Add(test1);
+        //private void BuildTestInputData()
+        //{
+        //    inputSource.DataSource = typeof(Input);
+        //    MultiSwitch test1 = new MultiSwitch("Test1");
+        //    test1.Values.Add(".1");
+        //    test1.Values.Add(".2");
+        //    test1.Values.Add(".3");
+        //    test1.Pins.Add(11);
+        //    test1.Pins.Add(12);
+        //    test1.Pins.Add(13);
+        //    inputSource.Add(test1);
 
-            BinarySwitch test2 = new BinarySwitch("test2");
-            test2.Values.Add(".25");
-            test2.Values.Add(".50");
-            test2.Values.Add(".75");
-            test2.Values.Add("1");
-            test2.Pins.Add(21);
-            test2.Pins.Add(22);
-            inputSource.Add(test2);
+        //    BinarySwitch test2 = new BinarySwitch("test2");
+        //    test2.Values.Add(".25");
+        //    test2.Values.Add(".50");
+        //    test2.Values.Add(".75");
+        //    test2.Values.Add("1");
+        //    test2.Pins.Add(21);
+        //    test2.Pins.Add(22);
+        //    inputSource.Add(test2);
 
-            ToggleSwitch test3 = new ToggleSwitch("test3");
-            test3.Values.Add("-1");
-            test3.Values.Add("1");
-            test3.Pins.Add(31);
-            inputSource.Add(test3);
-        }
+        //    ToggleSwitch test3 = new ToggleSwitch("test3");
+        //    test3.Values.Add("-1");
+        //    test3.Values.Add("1");
+        //    test3.Pins.Add(31);
+        //    inputSource.Add(test3);
+        //}
 
-        private void BuildTestOutputData()
-        {
-            ToggleOutput test1, test2, test3;
-            test1 = new ToggleOutput();
-            test2 = new ToggleOutput();
-            test3 = new ToggleOutput();
-            outputSource.Add(test1);
-            outputSource.Add(test2);
-            outputSource.Add(test3);
-        }
+        //private void BuildTestOutputData()
+        //{
+        //    ToggleOutput test1, test2, test3;
+        //    test1 = new ToggleOutput();
+        //    test2 = new ToggleOutput();
+        //    test3 = new ToggleOutput();
+        //    outputSource.Add(test1);
+        //    outputSource.Add(test2);
+        //    outputSource.Add(test3);
+        //}
 
         private void editSwitch(object sender, EventArgs e)
         {
-            LaunchInputDetailForm((Switch)inputSource.Current);
+            LaunchInputDetailForm((Switch)pokeys.InputSource.Current); //changed
         }
 
         private void newSwitch(object sender, EventArgs e)
         {
-            LaunchInputDetailForm(new ToggleSwitch(), inputSource);
+            LaunchInputDetailForm(new ToggleSwitch(), pokeys.InputSource);//changed
         }
 
         private void LaunchInputDetailForm(Input aSwitch)
@@ -197,27 +212,27 @@ namespace net.willshouse.HogKeys.UI
 
         private void toggleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchInputDetailForm(new ToggleSwitch(), inputSource);
+            LaunchInputDetailForm(new ToggleSwitch(), pokeys.InputSource);
         }
 
         private void toggleOutputToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchoutputDetailForm(new ToggleOutput(), outputSource);
+            LaunchoutputDetailForm(new ToggleOutput(), pokeys.OutputSource);
         }
 
         private void binaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchInputDetailForm(new BinarySwitch(), inputSource);
+            LaunchInputDetailForm(new BinarySwitch(), pokeys.InputSource);
         }
 
         private void multiPositionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchInputDetailForm(new MultiSwitch(), inputSource);
+            LaunchInputDetailForm(new MultiSwitch(), pokeys.InputSource);
         }
 
         private void analogInputToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LaunchInputDetailForm(new AnalogInput(), inputSource);
+            LaunchInputDetailForm(new AnalogInput(), pokeys.InputSource);
         }
 
         private void gridStatus_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -226,7 +241,7 @@ namespace net.willshouse.HogKeys.UI
             // check to make sure the row we selected is in bounds
             if (e.RowIndex > -1)
             {
-                LaunchInputDetailForm((Input)inputSource[e.RowIndex]);
+                LaunchInputDetailForm((Input)pokeys.InputSource[e.RowIndex]);
             }
 
         }
@@ -235,7 +250,7 @@ namespace net.willshouse.HogKeys.UI
         {
             if (e.RowIndex > -1)
             {
-                LaunchOutputDetailForm((Output)outputSource[e.RowIndex]);
+                LaunchOutputDetailForm((Output)pokeys.OutputSource[e.RowIndex]);
             }
         }
 
@@ -243,11 +258,11 @@ namespace net.willshouse.HogKeys.UI
         {
             if (tabControl1.SelectedTab == inputStatusTabPage)
             {
-                PromptAndDelete(inputSource);
+                PromptAndDelete(pokeys.InputSource);
             }
             else if (tabControl1.SelectedTab == outputStatusTabPage)
             {
-                PromptAndDelete(outputSource);
+                PromptAndDelete(pokeys.OutputSource);
             }
         }
 
@@ -280,13 +295,13 @@ namespace net.willshouse.HogKeys.UI
         private void LoadConfig(string fileName)
         {
             HogKeysConfig loader;
-            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput),typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput), typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.OpenRead(fileName))
             {
                 loader = (HogKeysConfig)ser.Deserialize(stream);
             }
-            inputSource.DataSource = (BindingList<Input>)loader.Inputs;
-            outputSource.DataSource = (BindingList<Output>)loader.Outputs;
+            pokeys.InputSource.DataSource = (BindingList<Input>)loader.Inputs;
+            pokeys.OutputSource.DataSource = (BindingList<Output>)loader.Outputs;
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -305,12 +320,12 @@ namespace net.willshouse.HogKeys.UI
 
         private void SaveConfig(string fileName)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput),typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput), typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.Create(fileName))
             {
                 HogKeysConfig saver = new HogKeysConfig();
-                saver.Inputs = (BindingList<Input>)inputSource.List;
-                saver.Outputs = (BindingList<Output>)outputSource.List;
+                saver.Inputs = (BindingList<Input>)pokeys.InputSource.List;
+                saver.Outputs = (BindingList<Output>)pokeys.OutputSource.List;
                 ser.Serialize(stream, saver);
             }
             MessageBox.Show("Items Saved");
@@ -318,7 +333,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void pollOnceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            driver.poll();
+            pokeys.Poll();
         }
 
         private void startPollingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -328,23 +343,36 @@ namespace net.willshouse.HogKeys.UI
 
         private void StartPolling()
         {
+            
             pollOnceToolStripMenuItem.Enabled = false;
             startPollingToolStripMenuItem.Enabled = false;
             stopPollingToolStripMenuItem.Enabled = true;
             timer1.Enabled = true;
             UDPListener.Start(hogKeysPort);
-            UDPListener.MessageReceived += new UDPListener.UDPListenerEventHandler(driver.UDPListenerEventHandlerMessageReceived);
+            if (typeof(IOutputs).IsAssignableFrom(pokeys.Driver.GetType()))
+            {
+                IOutputs driver = (IOutputs)pokeys.Driver;
+                UDPListener.MessageReceived += new UDPListener.UDPListenerEventHandler(driver.UDPListenerEventHandlerMessageReceived);
+            }
+            
             pollingStatusLabel.Text = "Polling:ON";
         }
 
         private void StopPolling()
         {
+
             pollOnceToolStripMenuItem.Enabled = true;
             startPollingToolStripMenuItem.Enabled = true;
             stopPollingToolStripMenuItem.Enabled = false;
             timer1.Enabled = false;
             UDPListener.Stop();
-            UDPListener.MessageReceived -= driver.UDPListenerEventHandlerMessageReceived;
+
+            if (typeof(IOutputs).IsAssignableFrom(pokeys.Driver.GetType()))
+            {
+                IOutputs driver = (IOutputs)pokeys.Driver;
+                UDPListener.MessageReceived -= driver.UDPListenerEventHandlerMessageReceived;
+            }
+
             pollingStatusLabel.Text = "Polling:OFF";
         }
 
@@ -355,7 +383,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            driver.poll();
+            pokeys.Poll();
         }
 
         private void pollingIntervalTrackBar_Scroll(object sender, EventArgs e)
