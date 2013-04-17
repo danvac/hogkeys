@@ -1,4 +1,3 @@
-using System.Linq;
 
 
 namespace net.willshouse.HogKeys.IO.Inputs.Switches
@@ -27,7 +26,7 @@ namespace net.willshouse.HogKeys.IO.Inputs.Switches
         public override string generateState(bool[] pokeysValues)
         {
             int valueIndex = 0;
-            for (int i = 0; i < Pins.Count(); i++)
+            for (int i = 0; i < Pins.Count; i++)
             {
                 if (pokeysValues[Pins[i]])
                     valueIndex = i;
