@@ -43,7 +43,7 @@ namespace net.willshouse.HogKeys.UI
 
             //BuildTestInputData();
             //BuildTestOutputData();
-            boardManager = new Manager();
+            boardManager = Manager.Instance;
 
 
             try
