@@ -8,7 +8,7 @@
     <ProjectGuid>{286DDA78-FD74-49B1-9FEC-BE19350F0318}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>net.willshouse.HogKeys.IO</RootNamespace>
+    <RootNamespace>net.willshouse.HogKeys.Boards</RootNamespace>
     <AssemblyName>HogKeys Devices</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HogDuino">
+      <HintPath>..\..\lib\HogDuino.dll</HintPath>
+    </Reference>
     <Reference Include="PoKeysDevice_DLL">
       <HintPath>..\..\lib\PoKeysDevice_DLL.dll</HintPath>
     </Reference>
@@ -47,17 +50,30 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Device.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="Manager.cs" />
+    <Compile Include="Deprecated\Device.cs" />
+    <Compile Include="Interfaces\IDiscreteInputs.cs" />
+    <Compile Include="Interfaces\IInputs.cs" />
+    <Compile Include="Interfaces\IAnalogInputs.cs" />
+    <Compile Include="Boards\InputBoard.cs" />
+    <Compile Include="Interfaces\IOutputs.cs" />
+    <Compile Include="Boards\PokeysBoard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestDriver.cs" />
-    <Compile Include="UDPListener.cs" />
+    <Compile Include="Deprecated\TestDriver.cs" />
+    <Compile Include="Deprecated\OLD_UDPListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HogKeys IO\HogKeys IO.csproj">
       <Project>{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}</Project>
       <Name>HogKeys IO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimulatorInterfaces\SimulatorAdapters.csproj">
+      <Project>{867C9A60-6096-421A-9607-DED7F20062FB}</Project>
+      <Name>SimulatorAdapters</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
