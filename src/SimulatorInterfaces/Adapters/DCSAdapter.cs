@@ -30,7 +30,7 @@ namespace net.willshouse.HogKeys.SimulatorAdapter.Adapters
 
         }
 
-
+        
         public static DCSAdapter Instance
         {
             get { return instance; }

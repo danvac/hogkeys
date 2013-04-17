@@ -12,6 +12,7 @@ namespace net.willshouse.HogKeys.Boards
     {
 
         private ISimAdapter simAdapter;
+        private static readonly Manager instance = new Manager();
 
         public BindingSource Boards { get; set; }
 
@@ -33,7 +34,12 @@ namespace net.willshouse.HogKeys.Boards
             set { simAdapter.Host = value; }
         }
 
-        public Manager()
+        public static Manager Instance
+        {
+            get { return instance; }
+        }
+
+        private Manager()
         {
             Boards = new BindingSource();
             simAdapter = DCSAdapter.Instance;
