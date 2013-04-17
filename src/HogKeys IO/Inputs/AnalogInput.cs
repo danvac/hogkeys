@@ -16,6 +16,7 @@ namespace net.willshouse.HogKeys.IO.Inputs
             : base()
         {
             Name = name;
+            Type = InputType.Analog;
         }
 
         public double MinValue
