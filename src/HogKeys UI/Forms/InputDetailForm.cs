@@ -134,7 +134,7 @@ namespace net.willshouse.HogKeys.UI
             currentSwitch.Description = descriptionTextBox.Text;
             if (isNew)
             {
-                switchSource.Add(currentSwitch);
+                switchSource.Add((Input)currentSwitch);
             }
             this.Close();
         }
