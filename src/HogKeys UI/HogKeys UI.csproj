@@ -212,6 +212,10 @@
       <Project>{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}</Project>
       <Name>HogKeys IO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SimulatorInterfaces\SimulatorAdapters.csproj">
+      <Project>{867C9A60-6096-421A-9607-DED7F20062FB}</Project>
+      <Name>SimulatorAdapters</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">

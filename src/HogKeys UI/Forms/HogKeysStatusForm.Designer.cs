@@ -39,6 +39,7 @@
             this.binaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.multiPositionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toggleOutputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,7 +75,9 @@
             this.outputStatusTabPage = new System.Windows.Forms.TabPage();
             this.outputStatusDataGridView = new System.Windows.Forms.DataGridView();
             this.timer1 = new System.Timers.Timer();
-            this.analogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nextBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prevBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.inputStatusDataGridView)).BeginInit();
             this.switchMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -112,7 +115,8 @@
             this.toolStripMenuItem1,
             this.editToolStripMenuItem,
             this.deviceToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.switchMenu.Location = new System.Drawing.Point(0, 0);
             this.switchMenu.Name = "switchMenu";
             this.switchMenu.Size = new System.Drawing.Size(592, 24);
@@ -132,7 +136,7 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -142,7 +146,7 @@
             this.switchToolStripMenuItem,
             this.outputToolStripMenuItem});
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
-            this.newToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.newToolStripMenuItem1.Text = "New";
             // 
             // switchToolStripMenuItem
@@ -151,7 +155,7 @@
             this.switchToolStripMenuItem1,
             this.analogToolStripMenuItem});
             this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
-            this.switchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.switchToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.switchToolStripMenuItem.Text = "Input";
             // 
             // switchToolStripMenuItem1
@@ -161,7 +165,7 @@
             this.multiPositionToolStripMenuItem,
             this.toggleToolStripMenuItem});
             this.switchToolStripMenuItem1.Name = "switchToolStripMenuItem1";
-            this.switchToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.switchToolStripMenuItem1.Size = new System.Drawing.Size(112, 22);
             this.switchToolStripMenuItem1.Text = "Switch";
             // 
             // binaryToolStripMenuItem
@@ -188,12 +192,19 @@
             this.toggleToolStripMenuItem.Text = "ToggleSwitch Switch";
             this.toggleToolStripMenuItem.Click += new System.EventHandler(this.toggleToolStripMenuItem_Click);
             // 
+            // analogToolStripMenuItem
+            // 
+            this.analogToolStripMenuItem.Name = "analogToolStripMenuItem";
+            this.analogToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.analogToolStripMenuItem.Text = "Analog";
+            this.analogToolStripMenuItem.Click += new System.EventHandler(this.analogInputToolStripMenuItem_Click);
+            // 
             // outputToolStripMenuItem
             // 
             this.outputToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toggleOutputToolStripMenuItem});
             this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.outputToolStripMenuItem.Text = "Output";
             // 
             // toggleOutputToolStripMenuItem
@@ -206,7 +217,7 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -378,9 +389,9 @@
             this.hogKeysPortLabel.AutoSize = true;
             this.hogKeysPortLabel.Location = new System.Drawing.Point(7, 121);
             this.hogKeysPortLabel.Name = "hogKeysPortLabel";
-            this.hogKeysPortLabel.Size = new System.Drawing.Size(29, 13);
+            this.hogKeysPortLabel.Size = new System.Drawing.Size(66, 13);
             this.hogKeysPortLabel.TabIndex = 3;
-            this.hogKeysPortLabel.Text = "Port:";
+            this.hogKeysPortLabel.Text = "ListenerPort:";
             // 
             // dcsHeaderLabel
             // 
@@ -410,9 +421,9 @@
             this.dcsPortLabel.AutoSize = true;
             this.dcsPortLabel.Location = new System.Drawing.Point(7, 68);
             this.dcsPortLabel.Name = "dcsPortLabel";
-            this.dcsPortLabel.Size = new System.Drawing.Size(29, 13);
+            this.dcsPortLabel.Size = new System.Drawing.Size(66, 13);
             this.dcsPortLabel.TabIndex = 0;
-            this.dcsPortLabel.Text = "Port:";
+            this.dcsPortLabel.Text = "ListenerPort:";
             // 
             // hostLabel
             // 
@@ -509,12 +520,28 @@
             this.timer1.SynchronizingObject = this;
             this.timer1.Elapsed += new System.Timers.ElapsedEventHandler(this.timer1_Elapsed);
             // 
-            // analogToolStripMenuItem
+            // testToolStripMenuItem
             // 
-            this.analogToolStripMenuItem.Name = "analogToolStripMenuItem";
-            this.analogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.analogToolStripMenuItem.Text = "Analog";
-            this.analogToolStripMenuItem.Click += new System.EventHandler(this.analogInputToolStripMenuItem_Click);
+            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nextBoardToolStripMenuItem,
+            this.prevBoardToolStripMenuItem});
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
+            // nextBoardToolStripMenuItem
+            // 
+            this.nextBoardToolStripMenuItem.Name = "nextBoardToolStripMenuItem";
+            this.nextBoardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nextBoardToolStripMenuItem.Text = "Next Board";
+            this.nextBoardToolStripMenuItem.Click += new System.EventHandler(this.nextBoardToolStripMenuItem_Click);
+            // 
+            // prevBoardToolStripMenuItem
+            // 
+            this.prevBoardToolStripMenuItem.Name = "prevBoardToolStripMenuItem";
+            this.prevBoardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.prevBoardToolStripMenuItem.Text = "Prev Board";
+            this.prevBoardToolStripMenuItem.Click += new System.EventHandler(this.prevBoardToolStripMenuItem_Click);
             // 
             // HogKeysStatusForm
             // 
@@ -598,6 +625,9 @@
         private System.Windows.Forms.ToolStripMenuItem outputToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toggleOutputToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nextBoardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prevBoardToolStripMenuItem;
     }
 }
 

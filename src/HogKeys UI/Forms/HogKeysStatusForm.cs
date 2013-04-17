@@ -8,6 +8,9 @@ using Microsoft.Win32;
 using net.willshouse.HogKeys.IO;
 using net.willshouse.HogKeys.IO.Inputs;
 using net.willshouse.HogKeys.IO.Inputs.Switches;
+using net.willshouse.HogKeys.SimulatorAdapter.Adapters;
+using net.willshouse.HogKeys.SimulatorAdapter;
+using net.willshouse.HogKeys.Boards;
 
 
 namespace net.willshouse.HogKeys.UI
@@ -15,9 +18,12 @@ namespace net.willshouse.HogKeys.UI
     public partial class HogKeysStatusForm : Form
     {
         BindingSource inputSource, outputSource;
-        TestDriver driver;
+        //TestDriver driver;
         private int hogKeysPort;
         private string configFileName;
+        private Manager boardManager;
+
+
 
         public HogKeysStatusForm()
         {
@@ -26,35 +32,57 @@ namespace net.willshouse.HogKeys.UI
 
         private void SwitchStatus_Load(object sender, EventArgs e)
         {
+
             inputSource = new BindingSource();
             outputSource = new BindingSource();
-            driver = new TestDriver();
-            inputSource.DataSource = typeof(Input);
+            //driver = new TestDriver();
+
             outputSource.DataSource = typeof(Output);
             CreateInputStatusColumns();
             CreateOutputStatusColumns();
-            inputStatusDataGridView.DataSource = inputSource;
-            outputStatusDataGridView.AutoGenerateColumns = false;
-            outputStatusDataGridView.DataSource = outputSource;
+
             //BuildTestInputData();
             //BuildTestOutputData();
+            boardManager = new Manager();
+
 
             try
             {
-                driver.InitializeConnection(0);
+                boardManager.Initialize();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("No Pokeys Device Found");
+                MessageBox.Show(ex.Message);
             }
-            driver.Inputs = inputSource;
-            driver.Outputs = outputSource;
+
+
+            boardManager.Boards.Position = 1;
+            SetupGridDataSources();
+            // test code to assign the datasources to the first board if its and input
+
+            inputStatusDataGridView.DataSource = inputSource;
+            outputStatusDataGridView.AutoGenerateColumns = false;
+            outputStatusDataGridView.DataSource = outputSource;
             GetUserSettings();
-            hostTextBox.DataBindings.Add("Text", driver, "Host");
-            dcsPortTextBox.DataBindings.Add("Text", driver, "Port");
+            hostTextBox.DataBindings.Add("Text", boardManager, "SimHost");
+            dcsPortTextBox.DataBindings.Add("Text", boardManager, "SimPort");
             if ((configFileName != null) && (File.Exists(configFileName)))
             {
-                LoadConfig(configFileName);
+                //LoadConfig(configFileName); removed for testing
+            }
+        }
+
+        private void SetupGridDataSources()
+        {
+            IInputs curIn = boardManager.Boards.Current as IInputs;
+            if (curIn != null)
+            {
+                inputSource = (boardManager.Boards.Current as IInputs).Inputs;
+            }
+            IOutputs curOut = boardManager.Boards.Current as IOutputs;
+            if (curOut != null)
+            {
+                outputSource = (boardManager.Boards.Current as IOutputs).Outputs;
             }
         }
 
@@ -83,34 +111,34 @@ namespace net.willshouse.HogKeys.UI
             RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HogKeys");
             // DCSHOST
             string dcsHost = (string)hogKeys.GetValue("DCSHostName", "localhost");
-            driver.Host = dcsHost;
-            hostTextBox.Text = driver.Host;
+            boardManager.SimHost = dcsHost;
+            hostTextBox.Text = boardManager.SimHost;
 
             //DCSPORT
             int dcsPort = (int)hogKeys.GetValue("DCSPort", 9089);
-            driver.Port = dcsPort;
-            dcsPortTextBox.Text = driver.Port.ToString();
+            boardManager.SimPort = dcsPort;
+            dcsPortTextBox.Text = boardManager.SimPort.ToString();
 
             //INTERVAL
             int interval = (int)hogKeys.GetValue("PollingInterval", 25);
             pollingIntervalTrackBar.Value = interval;
             pollingIntervalTextBox.Text = pollingIntervalTrackBar.Value.ToString();
 
-            //HOGKEYSORT
+            //HOGKEYSPORT
             int hkPort = (int)hogKeys.GetValue("HogKeysPort", 9090);
             hogKeysPort = hkPort;
             hogKeysPortTextBox.Text = hogKeysPort.ToString();
 
             //LastOpenedFile
             configFileName = (string)hogKeys.GetValue("LastOpenedFile");
-           
+
         }
 
         private void SetUserSettings()
         {
-            RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software",true).CreateSubKey("HogKeys");
-            hogKeys.SetValue("DCSHostName", driver.Host.ToString());
-            hogKeys.SetValue("DCSPort", driver.Port);
+            RegistryKey hogKeys = Registry.CurrentUser.OpenSubKey("Software", true).CreateSubKey("HogKeys");
+            hogKeys.SetValue("DCSHostName", boardManager.SimHost.ToString());
+            hogKeys.SetValue("DCSPort", boardManager.SimPort);
             hogKeys.SetValue("PollingInterval", pollingIntervalTrackBar.Value);
             hogKeys.SetValue("HogKeysPort", Convert.ToInt32(hogKeysPortTextBox.Text));
         }
@@ -125,30 +153,32 @@ namespace net.willshouse.HogKeys.UI
 
         private void BuildTestInputData()
         {
-            inputSource.DataSource = typeof(Input);
-            MultiSwitch test1 = new MultiSwitch("Test1");
-            test1.Values.Add(".1");
-            test1.Values.Add(".2");
-            test1.Values.Add(".3");
-            test1.Pins.Add(11);
-            test1.Pins.Add(12);
-            test1.Pins.Add(13);
-            inputSource.Add(test1);
 
-            BinarySwitch test2 = new BinarySwitch("test2");
-            test2.Values.Add(".25");
-            test2.Values.Add(".50");
-            test2.Values.Add(".75");
-            test2.Values.Add("1");
-            test2.Pins.Add(21);
-            test2.Pins.Add(22);
-            inputSource.Add(test2);
 
-            ToggleSwitch test3 = new ToggleSwitch("test3");
-            test3.Values.Add("-1");
-            test3.Values.Add("1");
-            test3.Pins.Add(31);
-            inputSource.Add(test3);
+            //inputSource.DataSource = typeof(Input);
+            //MultiSwitch test1 = new MultiSwitch("Test1");
+            //test1.Values.Add(".1");
+            //test1.Values.Add(".2");
+            //test1.Values.Add(".3");
+            //test1.Pins.Add(11);
+            //test1.Pins.Add(12);
+            //test1.Pins.Add(13);
+            //inputSource.Add(test1);
+
+            //BinarySwitch test2 = new BinarySwitch("test2");
+            //test2.Values.Add(".25");
+            //test2.Values.Add(".50");
+            //test2.Values.Add(".75");
+            //test2.Values.Add("1");
+            //test2.Pins.Add(21);
+            //test2.Pins.Add(22);
+            //inputSource.Add(test2);
+
+            //ToggleSwitch test3 = new ToggleSwitch("test3");
+            //test3.Values.Add("-1");
+            //test3.Values.Add("1");
+            //test3.Pins.Add(31);
+            //inputSource.Add(test3);
         }
 
         private void BuildTestOutputData()
@@ -167,10 +197,10 @@ namespace net.willshouse.HogKeys.UI
             LaunchInputDetailForm((Switch)inputSource.Current);
         }
 
-        private void newSwitch(object sender, EventArgs e)
-        {
-            LaunchInputDetailForm(new ToggleSwitch(), inputSource);
-        }
+        //private void newSwitch(object sender, EventArgs e)
+        //{
+        //    LaunchInputDetailForm(new ToggleSwitch(), inputSource);
+        //}
 
         private void LaunchInputDetailForm(Input aSwitch)
         {
@@ -280,7 +310,7 @@ namespace net.willshouse.HogKeys.UI
         private void LoadConfig(string fileName)
         {
             HogKeysConfig loader;
-            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput),typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput), typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.OpenRead(fileName))
             {
                 loader = (HogKeysConfig)ser.Deserialize(stream);
@@ -305,7 +335,7 @@ namespace net.willshouse.HogKeys.UI
 
         private void SaveConfig(string fileName)
         {
-            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput),typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
+            XmlSerializer ser = new XmlSerializer(typeof(HogKeysConfig), new Type[] { typeof(AnalogInput), typeof(ToggleSwitch), typeof(BinarySwitch), typeof(MultiSwitch), typeof(ToggleOutput) });
             using (var stream = File.Create(fileName))
             {
                 HogKeysConfig saver = new HogKeysConfig();
@@ -318,7 +348,8 @@ namespace net.willshouse.HogKeys.UI
 
         private void pollOnceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            driver.poll();
+            //driver.poll();
+            boardManager.Poll();
         }
 
         private void startPollingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -332,8 +363,9 @@ namespace net.willshouse.HogKeys.UI
             startPollingToolStripMenuItem.Enabled = false;
             stopPollingToolStripMenuItem.Enabled = true;
             timer1.Enabled = true;
-            UDPListener.Start(hogKeysPort);
-            UDPListener.MessageReceived += new UDPListener.UDPListenerEventHandler(driver.UDPListenerEventHandlerMessageReceived);
+            //UDPListener.StartListening(hogKeysPort);  this will be managed by the boardmanager
+            //this should be handled by the board manager and its own timer
+            //UDPListener.MessageReceived += new UDPListener.SimMessageEventHandler(driver.UDPListenerEventHandlerMessageReceived);
             pollingStatusLabel.Text = "Polling:ON";
         }
 
@@ -343,8 +375,9 @@ namespace net.willshouse.HogKeys.UI
             startPollingToolStripMenuItem.Enabled = true;
             stopPollingToolStripMenuItem.Enabled = false;
             timer1.Enabled = false;
-            UDPListener.Stop();
-            UDPListener.MessageReceived -= driver.UDPListenerEventHandlerMessageReceived;
+            //UDPListener.StopListening();  Should bo longer be used. talk to the board manager
+            // should be handled by the board manager
+            //UDPListener.MessageReceived -= driver.UDPListenerEventHandlerMessageReceived;
             pollingStatusLabel.Text = "Polling:OFF";
         }
 
@@ -355,7 +388,8 @@ namespace net.willshouse.HogKeys.UI
 
         private void timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            driver.poll();
+            //driver.poll();
+            boardManager.Poll();
         }
 
         private void pollingIntervalTrackBar_Scroll(object sender, EventArgs e)
@@ -383,10 +417,26 @@ namespace net.willshouse.HogKeys.UI
 
         private void HogKeysStatusForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (UDPListener.IsRunning == true)
-            {
-                StopPolling();
-            }
+            //if (UDPListener.Listening == true)
+            //{
+            //    StopPolling();
+            //}
+        }
+
+        private void nextBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            boardManager.Boards.MoveNext();
+
+            SetupGridDataSources();
+            MessageBox.Show((boardManager.Boards.Current as Board).Name);
+        }
+
+        private void prevBoardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            boardManager.Boards.MovePrevious();
+            SetupGridDataSources();
+
+            MessageBox.Show((boardManager.Boards.Current as Board).Name);
         }
 
     }

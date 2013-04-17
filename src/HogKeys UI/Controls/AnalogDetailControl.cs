@@ -8,10 +8,10 @@ namespace net.willshouse.HogKeys.UI.Controls
     public partial class AnalogDetailControl : UserControl
     {
         AnalogInput currentInput;
-        TestDriver driver;
+        //TestDriver driver;
         public AnalogDetailControl()
         {
-            driver = new TestDriver();
+            //driver = new TestDriver();  Should use new board manager
             
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace net.willshouse.HogKeys.UI.Controls
                 {
                     try
                     {
-                        driver.InitializeConnection(0); // need to use index of pokeys device in future
+                        //driver.InitializeConnection(0); // need to use index of pokeys device in future
                     }
                     catch (Exception )
                     {
@@ -59,12 +59,12 @@ namespace net.willshouse.HogKeys.UI.Controls
         private void setMinButton_Click(object sender, EventArgs e)
         {
             
-            minRawTextBox.Text = driver.PollAnalogIndex(currentInput.Index).ToString();
+           // minRawTextBox.Text = driver.PollAnalogIndex(currentInput.Index).ToString();
         }
 
         private void setMaxButton_Click(object sender, EventArgs e)
         {
-            maxRawTextBox.Text = driver.PollAnalogIndex(currentInput.Index).ToString();
+            //maxRawTextBox.Text = driver.PollAnalogIndex(currentInput.Index).ToString();
         }
 
 
