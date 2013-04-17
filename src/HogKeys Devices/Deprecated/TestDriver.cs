@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 using net.willshouse.HogKeys.IO.Inputs;
+using net.willshouse.HogKeys.SimulatorAdapter;
 
 
 namespace net.willshouse.HogKeys.IO
@@ -37,8 +38,6 @@ namespace net.willshouse.HogKeys.IO
         public int Port { get; set; }
         public string Host { get; set; }
 
-
-
         public BindingSource Inputs
         {
             set
@@ -46,15 +45,6 @@ namespace net.willshouse.HogKeys.IO
                 inputs = value;
             }
         }
-
-        public BindingSource Outputs
-        {
-            set
-            {
-                outputs = value;
-            }
-        }
-
         public void poll()
         {
             bool matrixResults = false;
@@ -69,7 +59,7 @@ namespace net.willshouse.HogKeys.IO
 
                 matrixResults = device.GetMatrixKeyboardKeyStatus(ref currentPokeysSwitchValues);
                 analogResults = device.GetAllAnalogInputs(ref currentPokeysAnalogValues);
-                
+
                 //Process Switch inputs
                 if (matrixResults)
                 {
@@ -77,7 +67,7 @@ namespace net.willshouse.HogKeys.IO
                 }
                 else
                 {
-                   // MessageBox.Show("MatrixResults is False");
+                    // MessageBox.Show("MatrixResults is False");
                 }
                 //Process Analog Inputs
                 if (analogResults)
@@ -86,24 +76,61 @@ namespace net.willshouse.HogKeys.IO
                 }
                 else
                 {
-                   // MessageBox.Show("AnalogResults is False");
+                    // MessageBox.Show("AnalogResults is False");
                 }
             }
         }
 
-        public  int PollAnalogIndex(int index)
+        public int PollAnalogIndex(int index)
         {
-            int [] value = new int[7];
+            int[] value = new int[7];
             device.GetAllAnalogInputs(ref value);
             return value[index];
         }
-
-
-        ~TestDriver()
+        
+        public BindingSource Outputs
         {
-            device.DisconnectDevice();
-
+            set
+            {
+                outputs = value;
+            }
         }
+        public void UDPListenerEventHandlerMessageReceived(object sender, SimMessageEventArgs e)
+        {
+            byte[] busData = new byte[10];
+            string message = e.Message;
+            ConcurrentDictionary<int, string> offsets = new ConcurrentDictionary<int, string>();
+            message = message.TrimEnd(',');
+            string[] items = message.Split(',');
+            foreach (string item in items)
+            {
+                string[] offset = item.Split(':');
+                offsets.TryAdd(Convert.ToInt32(offset[0]), offset[1]);
+            }
+            foreach (Output item in outputs)
+            {
+                item.setState(offsets);
+                switch (item.Type)
+                {
+                    case OutputType.ToggleOutput:
+                        {
+                            if (item.State == "ON")
+                            {
+                                busData[9 - item.BusIndex] = (byte)(busData[9 - item.BusIndex] | (1 << 7 - item.ByteIndex));
+
+                                // MessageBox.Show(busData[9 - item.BusIndex].ToString());
+
+                            }
+                            break;
+
+                        }
+
+                }
+            }
+            //  device.AuxilaryBusSetData(1, busData);
+            device.AuxilaryBusSetData(1, 1, busData);
+        }
+            
 
         public void InitializeConnection(int deviceIndex)
         {
@@ -115,6 +142,16 @@ namespace net.willshouse.HogKeys.IO
             }
             device.ConnectToDevice(deviceIndex);
         }
+
+        
+
+        ~TestDriver()
+        {
+            device.DisconnectDevice();
+
+        }
+
+
 
         //private void ProcessSwitchInputs()
         //{
@@ -168,40 +205,6 @@ namespace net.willshouse.HogKeys.IO
             MessageBox.Show(values);
         }
 
-        public void UDPListenerEventHandlerMessageReceived(object sender, UDPListenerEventArgs e)
-        {
-            byte[] busData = new byte[10];
-            string message = e.Message;
-            ConcurrentDictionary<int, string> offsets = new ConcurrentDictionary<int, string>();
-            message = message.TrimEnd(',');
-            string[] items = message.Split(',');
-            foreach (string item in items)
-            {
-                string[] offset = item.Split(':');
-                offsets.TryAdd(Convert.ToInt32(offset[0]), offset[1]);
-            }
-            foreach (Output item in outputs)
-            {
-                item.setState(offsets);
-                switch (item.Type)
-                {
-                    case OutputType.ToggleOutput:
-                        {
-                            if (item.State == "ON")
-                            {
-                                busData[9 - item.BusIndex] = (byte)(busData[9 - item.BusIndex] | (1 << 7 - item.ByteIndex));
-
-                                // MessageBox.Show(busData[9 - item.BusIndex].ToString());
-
-                            }
-                            break;
-
-                        }
-
-                }
-            }
-            //  device.AuxilaryBusSetData(1, busData);
-            device.AuxilaryBusSetData(1, 1, busData);
-        }
+        
     }
 }

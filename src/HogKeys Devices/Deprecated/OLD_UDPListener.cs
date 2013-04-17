@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-
+using net.willshouse.HogKeys.SimulatorAdapter;
 namespace net.willshouse.HogKeys.IO
 {
     
@@ -76,9 +76,13 @@ namespace net.willshouse.HogKeys.IO
 
         public static void StopListening()
         {
-            listening = false;
-            client.Close();
+            if (listening)
+            {
+                listening = false;
+                client.Close();
+            }
         }
+            
 
 
     }
