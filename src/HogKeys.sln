@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HogKeys Devices", "HogKeys 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Version", "Version\Version.csproj", "{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulatorAdapters", "SimulatorInterfaces\SimulatorAdapters.csproj", "{867C9A60-6096-421A-9607-DED7F20062FB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC} = {B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}
+		{1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23} = {1B3DC5E5-C952-468C-A6DD-9C2AEE7A6A23}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +75,16 @@ Global
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B69CAC60-1D4D-464B-97F4-56FFAD8E05CC}.Release|x86.ActiveCfg = Release|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{867C9A60-6096-421A-9607-DED7F20062FB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
