@@ -28,7 +28,7 @@
                     <GroupBox Grid.Column="1" VerticalAlignment="Bottom" Height="100" Header="Refresh" BorderThickness="1" Margin="0,0,0,5" Background="WhiteSmoke" BorderBrush="Black" />
                     <GroupBox Grid.Column="2" VerticalAlignment="Top" Height="100" Header="UDP Setup" BorderThickness="1" Margin="0,0,0,5" Background="WhiteSmoke" BorderBrush="Black" />
 
-                    <Slider  Grid.Column="1"  Height="25" Name="slider1" Width="92" Maximum="50" Minimum="1" TickPlacement="TopLeft" SmallChange="1" LargeChange="5" TickFrequency="1" DataContext="{Binding}" Value="20" IsSnapToTickEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" />
+                    <Slider  Grid.Column="1"  Height="25" Name="slider1" Width="92" Maximum="50" Minimum="1" TickPlacement="TopLeft" SmallChange="1" LargeChange="5" TickFrequency="1" DataContext="{Binding}" Value="{Binding Interval}" IsSnapToTickEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" />
 
                     <Label Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Margin="0,0,12,50" Height="25" Content="Per Second" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
                     <Label Grid.Column="1" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="30,0,0,50" Height="25" Content="{Binding Path=Value, ElementName=slider1}" VerticalAlignment="Bottom" />

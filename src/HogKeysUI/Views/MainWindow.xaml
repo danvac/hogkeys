@@ -30,6 +30,8 @@
             <my:BoardsListView Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" Grid.RowSpan="2"  x:Name="boardsListView1" VerticalAlignment="Stretch"  />
             <Button Content="Settings" Command="{Binding Path=ShowSettingsCommand}" />
             <Button Content="Poll Once" Command="{Binding Path=PollOnceCommand}" />
+            <Button Content="Start Polling" Command="{Binding Path=StartPollingCommand}"/>
+            <Button Content="Stop Polling" Command="{Binding Path=StopPollingCommand}"/>
         </StackPanel>
         <Border Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="4">
             <HeaderedContentControl Content="{Binding Path=Workspaces}"

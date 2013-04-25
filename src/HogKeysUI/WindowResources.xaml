@@ -32,6 +32,8 @@
                 <TextBlock Text="{Binding Path=Model.Name}" FontSize="18"  Foreground="White" Margin="5,0,0,0" >
                      <TextBlock.ContextMenu>
                     <ContextMenu HasDropShadow="True">
+                        <MenuItem Header="Enable" Command="{Binding Path=EnableCommand}"/>
+                        <MenuItem Header="Disable" Command="{Binding Path=DisableCommand}"/>
                         <MenuItem Header="Show Inputs" Command="{Binding Path=ShowInputsCommand}"/>
                         <MenuItem Header="Show Outputs" Command="{Binding Path=ShowOutputsCommand}" />
                     </ContextMenu>

@@ -15,12 +15,12 @@ namespace HogKeysUI.ViewModel
     /// </summary>
     public class BoardViewModel : ViewModelBase
     {
-        
+
 
         /// <summary>
         /// Initializes a new instance of the BoardViewModel class.
         /// </summary>
-       
+
 
         public BoardViewModel(Board board)
         {
@@ -28,9 +28,21 @@ namespace HogKeysUI.ViewModel
             this.Model = board;
             ShowInputsCommand = new RelayCommand(() => Messenger.Default.Send<IInputs>(this.Model as IInputs), () => Model is IInputs);
             ShowOutputsCommand = new RelayCommand(() => Messenger.Default.Send<IOutputs>(this.Model as IOutputs), () => Model is IOutputs);
-           
-
+            DisableCommand = new RelayCommand(() =>
+            {
+                this.Model.Shutdown();
+                RaisePropertyChanged(EnabledPropertyName);
+            },
+            () => this.Model.Enabled);
+            EnableCommand = new RelayCommand(() =>
+            {
+                this.Model.Initialize();
+                RaisePropertyChanged(EnabledPropertyName);
+            }, () => !(this.Model.Enabled));
         }
+
+
+        public const string EnabledPropertyName = "Enabled";
 
         public Visibility Enabled
         {
@@ -49,5 +61,8 @@ namespace HogKeysUI.ViewModel
 
         public RelayCommand ShowOutputsCommand { get; private set; }
 
+        public RelayCommand EnableCommand { get; private set; }
+
+        public RelayCommand DisableCommand { get; private set; }
     }
 }

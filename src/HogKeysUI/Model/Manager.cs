@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using net.willshouse.HogKeys.IO;
 using net.willshouse.HogKeys.IO.Inputs.Switches;
 using net.willshouse.HogKeys.IO.Inputs;
+using System.Timers;
 
 namespace HogKeysUI.Model
 {
@@ -18,9 +19,13 @@ namespace HogKeysUI.Model
     {
 
         private ISimAdapter _simAdapter;
+        
 
         #region Properties
-        
+
+        public Timer PollingTimer { get; private set; }
+
+
         /// <summary>
         /// The <see cref="SimPort" /> property's name.
         /// The port the simulator is listening to
@@ -156,14 +161,39 @@ namespace HogKeysUI.Model
         public Manager(ISimAdapter simAdapter)
         {
             _simAdapter = simAdapter;
+            this.PollingTimer = new Timer();
+            PollingTimer.Enabled = false;
+            PollingTimer.Interval = 1000;
+            PollingTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             GenerateTestData();
             foreach (var board in _boards)
             {
-                board.Initialize(_simAdapter);
+                board.Initialize();
+                if (board is IOutputs )
+                {
+                    _simAdapter.MessageReceived += (board as IOutputs).SimListenerMessageReceived;
+                }
             }
         }
 
+        void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            Poll();
+        }
+
         #endregion
+
+        public void StartPolling()
+        {
+            PollingTimer.Enabled = true;
+            _simAdapter.StartListening();
+        }
+
+        public void StopPolling()
+        {
+            PollingTimer.Enabled = false;
+            _simAdapter.StopListening();
+        }
 
         public void Poll()
         {
@@ -176,46 +206,63 @@ namespace HogKeysUI.Model
 
         private void GenerateTestData()
         {
+            ToggleSwitch sasYR = new ToggleSwitch("SASYawR");
+            sasYR.DeviceId = 38;
+            sasYR.ButtonId = 3005;
+            sasYR.Values.Add("-1");
+            sasYR.Values.Add("1");
+            sasYR.Pins.Add(1);
+            sasYR.Enabled = true;
 
-            //pokeys test data
-            ToggleOutput test1;
-            test1 = new ToggleOutput();
-            test1.Name = "TestOutput1";
+            ToggleOutput TOTrim = new ToggleOutput();
+            TOTrim.Name = "TOTrim";
+            TOTrim.Description = "TakeOff Trim";
+            TOTrim.Offset = 10003;
+            TOTrim.Index.Add(0);
+            TOTrim.LogicOnValue = 0.2;
+            TOTrim.BusIndex = 0;
+            TOTrim.ByteIndex = 0;
+            TOTrim.Enabled = true;
 
-            ToggleSwitch test2 = new ToggleSwitch("test3");
-            test2.Values.Add("-1");
-            test2.Values.Add("1");
-            test2.Pins.Add(31);
-            test2.Enabled = true;
+            AnalogInput yawtrim = new AnalogInput();
+            yawtrim.Name = "Yaw Trim";
+            yawtrim.DeviceId = 38;
+            yawtrim.ButtonId = 3013;
+            yawtrim.MinValue = -1;
+            yawtrim.MaxValue = 1;
+            yawtrim.Index = 0;
+            yawtrim.CalMin = 90;
+            yawtrim.CalMax = 4050;
+            yawtrim.Enabled = true;
 
-            AnalogInput analog01 = new AnalogInput("test Analog1");
-            analog01.CalMin = 0;
-            analog01.CalMax = 1023;
-            analog01.Index = 0;
-            analog01.MinValue = -1;
-            analog01.MaxValue = 1;
-
-            AnalogInput analog02 = new AnalogInput("test Analog2");
-            analog01.CalMin = 0;
-            analog01.CalMax = 1023;
-            analog01.Index = 0;
-            analog01.MinValue = -1;
-            analog01.MaxValue = 1;
-            analog01.Enabled = true;
-
-            PokeysBoard pokeysBoard = new PokeysBoard();
+            PokeysBoard pokeysBoard = new PokeysBoard(_simAdapter);
             pokeysBoard.DriverIndex = 0;
             pokeysBoard.Id = 1;
             pokeysBoard.Name = "My Test Board";
-            pokeysBoard.Enabled = false;
+            pokeysBoard.Enabled = true;
 
-            pokeysBoard.Outputs.Add((Output)test1);
-            pokeysBoard.Inputs.Add((Input)test2);
-            pokeysBoard.Inputs.Add((Input)analog02);
-           
+            pokeysBoard.Outputs.Add((Output)TOTrim);
+            pokeysBoard.Inputs.Add((Input)yawtrim);
+            pokeysBoard.Inputs.Add((Input)sasYR);
+
             Boards.Add(pokeysBoard);
 
-            InputBoard arduinoBoard = new InputBoard();
+          
+
+            AnalogInput analog01 = new AnalogInput("StallVol");
+            analog01.CalMin = 0;
+            analog01.CalMax = 1023;
+            analog01.Index = 0;
+            analog01.MinValue = 0;
+            analog01.MaxValue = 1;
+            analog01.DeviceId = 52;
+            analog01.ButtonId = 3001;
+            analog01.Enabled = true;
+          
+
+            
+
+            InputBoard arduinoBoard = new InputBoard(_simAdapter);
             arduinoBoard.DriverIndex = 0;
             arduinoBoard.Id = 2;
             arduinoBoard.Name = "Arduino Analog Board";
