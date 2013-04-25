@@ -289,7 +289,7 @@
       <ButtonId>3010</ButtonId>
       <Type>ToggleSwitch</Type>
       <Pins>
-        <int>64</int>
+        <int>96</int>
       </Pins>
       <Values>
         <string>0</string>
@@ -394,19 +394,241 @@
         <string>1</string>
       </Values>
     </Input>
+    <Input xsi:type="AnalogInput">
+      <Name>Yaw Trim</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>38</DeviceId>
+      <ButtonId>3013</ButtonId>
+      <Type>Analog</Type>
+      <MinValue>-1</MinValue>
+      <MaxValue>1</MaxValue>
+      <Index>0</Index>
+      <CalMin>90</CalMin>
+      <CalMax>4050</CalMax>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>MasterArm</Name>
+      <Description>Master Arm On</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3001</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>97</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>MATrain</Name>
+      <Description>Master Arm Train</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3001</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>105</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>0</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>GunPACArm</Name>
+      <Description>Gun Pac Arm</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3002</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>113</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>GunArm</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3002</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>121</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>0</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>LaserArm</Name>
+      <Description>Laser Arm</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3003</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>2</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>LaserTrn</Name>
+      <Description>Laser Train</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3003</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>10</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>0</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>TGPOn</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3004</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>18</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>AltSCEBaro</Name>
+      <Description>SCE Baro Mode</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3005</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>26</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>AltSCERadar</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3005</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>34</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>0</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>HUDDay</Name>
+      <Description>Hud Mode Day</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3006</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>42</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>HUDNorm</Name>
+      <Description>Hud Mode Normal Mode</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3007</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>50</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>CICU</Name>
+      <Description>CICU On/Off</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3008</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>58</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>JTRS</Name>
+      <Description>JTRS On/Off</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3009</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>66</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>IFCCOn</Name>
+      <Description>IFCC On</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3010</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>74</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>IFCCOff</Name>
+      <Description>IFCC Off</Description>
+      <DeviceId>7</DeviceId>
+      <ButtonId>3010</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>82</int>
+      </Pins>
+      <Values>
+        <string>.1</string>
+        <string>0</string>
+      </Values>
+    </Input>
   </Inputs>
   <Outputs>
     <Output xsi:type="ToggleOutput">
-      <Name>TOTrimAnn</Name>
-      <Description>Takeoff Trim</Description>
+      <Name>Master Caution</Name>
+      <Description>Master Caution</Description>
       <Type>ToggleOutput</Type>
       <Offset>10001</Offset>
       <Index>
-        <int>2</int>
+        <int>1</int>
       </Index>
-      <LogicOnValue>0.2</LogicOnValue>
+      <LogicOnValue>0.01</LogicOnValue>
       <BusIndex>0</BusIndex>
-      <ByteIndex>2</ByteIndex>
+      <ByteIndex>1</ByteIndex>
     </Output>
     <Output xsi:type="ToggleOutput">
       <Name>CanopyAnun</Name>
@@ -414,11 +636,23 @@
       <Type>ToggleOutput</Type>
       <Offset>10002</Offset>
       <Index>
-        <int>10</int>
+        <int>7</int>
       </Index>
       <LogicOnValue>0.2</LogicOnValue>
-      <BusIndex>1</BusIndex>
-      <ByteIndex>2</ByteIndex>
+      <BusIndex>0</BusIndex>
+      <ByteIndex>7</ByteIndex>
+    </Output>
+    <Output xsi:type="ToggleOutput">
+      <Name>TakeoffTrim</Name>
+      <Description>Enter Description</Description>
+      <Type>ToggleOutput</Type>
+      <Offset>10003</Offset>
+      <Index>
+        <int>0</int>
+      </Index>
+      <LogicOnValue>0.2</LogicOnValue>
+      <BusIndex>0</BusIndex>
+      <ByteIndex>0</ByteIndex>
     </Output>
   </Outputs>
 </HogKeysConfig>
