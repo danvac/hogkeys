@@ -47,7 +47,7 @@ namespace net.willshouse.HogKeys.Boards
             previousPokeysSwitchValues = new bool[discreteInputCount];
             currentPokeysAnalogValues = new int[analogInputCount];
             previousPokeysAnalogValues = new int[analogInputCount];
-            Enabled = true;
+        
         }
 
         public override void Shutdown()
@@ -160,6 +160,7 @@ namespace net.willshouse.HogKeys.Boards
             // the stuff below could be read from some boards
             discreteInputCount = 128;
             analogInputCount = 7;
+            Enabled = true;
         }
 
         private void ProcessInputs<interfaceType, valueType>(valueType[] currentPokeysValues, valueType[] previousPokeysValues)
