@@ -37,8 +37,10 @@ namespace net.willshouse.HogKeys.Boards
 
         #region Constructors
 
-        public InputBoard()
+        public InputBoard(ISimAdapter adapter)
+            : base(adapter)
         {
+            simAdapter = adapter;
             driver = new HogDuino_DLL.HogDuino();
             Inputs = new List<Input>();
 
@@ -52,19 +54,34 @@ namespace net.willshouse.HogKeys.Boards
         #endregion
 
 
-        public override void Initialize(ISimAdapter adapter)
+        public override void Initialize()
         {
-            simAdapter = adapter;
+
             int devices = driver.EnumerateDevices();
             if (devices == 0 | devices < DriverIndex)
             {
                 //throw new Exception(String.Format("HogDuino Device not found at index: {0}, ListenerPort: {1}", DriverIndex, "placeHolder"));
+                Enabled = false;
+                return;
             }
             connected = driver.ConnectToDevice(DriverIndex);
+            if (!connected)
+            {
+                Enabled = false;
+                return;
+            }
             analogInputCount = 8; // this value will come from the board in the future
             currentAnalogValues = new int[analogInputCount];
             previousAnalogValues = new int[analogInputCount];
 
+            Enabled = true;
+        }
+
+        public override void Shutdown()
+        {
+            Enabled = false;
+            connected = false;
+            driver.Disconnect();
 
         }
 
@@ -73,19 +90,18 @@ namespace net.willshouse.HogKeys.Boards
             //driver.Ping(); // placeholder to make sure everything works
             // need to implement driver.connected call and check everywhere if its connected
 
-            if ((driver.Connected) && (Inputs != null) && (Inputs.Count > 0))
+            if ((driver.Connected) && (this.Enabled) && (Inputs != null) && (Inputs.Count > 0))
             {
                 if (driver.GetAllAnalogInputs(ref currentAnalogValues))
                 {
                     ProcessInputs<IState<int>, int>(currentAnalogValues, previousAnalogValues);
-
                 }
             }
         }
 
         public int PollAnalogIndex(int index)
         {
-            if (driver.Connected)
+            if ((driver.Connected) && (this.Enabled))
             {
                 int[] value = new int[analogInputCount];
                 driver.GetAllAnalogInputs(ref value);
@@ -94,7 +110,7 @@ namespace net.willshouse.HogKeys.Boards
 
             else return 0;
         }
-        
+
 
         private void ProcessInputs<interfaceType, valueType>(valueType[] currentValues, valueType[] previousValues)
             where interfaceType : IState<valueType>

@@ -9,13 +9,14 @@ namespace net.willshouse.HogKeys.Boards
         /// Returns the Index of the board according to the driver
         /// </summary>
 
-        protected Board()
+        protected Board(ISimAdapter adapter)
+                    
         {
 
         }
 
-        public abstract void Initialize(ISimAdapter adapter);
-                    
+        public abstract void Initialize();
+        public abstract void Shutdown();
         
         public int DriverIndex { get; set; }
 

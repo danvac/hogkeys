@@ -63,6 +63,37 @@ namespace HogKeysUI.ViewModel
             }
         }
 
+        /// <summary>
+        /// The <see cref="Interval" /> property's name.
+        /// </summary>
+        public const string IntervalPropertyName = "Interval";
+
+        
+
+        /// <summary>
+        /// Sets and gets the Interval property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public double Interval
+        {
+            get
+            {
+                return (1000/(Model.PollingTimer.Interval));
+            }
+
+            set
+            {
+                if ((1000 / (Model.PollingTimer.Interval)) == value)
+                {
+                    return;
+                }
+
+                RaisePropertyChanging(IntervalPropertyName);
+                
+                Model.PollingTimer.Interval = (1000 / value);
+                RaisePropertyChanged(IntervalPropertyName);
+            }
+        }
         
 
         

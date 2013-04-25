@@ -71,6 +71,9 @@ namespace HogKeysUI.ViewModel
 
         public RelayCommand PollOnceCommand { get; private set; }
 
+        public RelayCommand StartPollingCommand { get; private set; }
+
+        public RelayCommand StopPollingCommand { get; private set; }
 
         #region Constructor
 
@@ -82,6 +85,8 @@ namespace HogKeysUI.ViewModel
             _manager = manager;
             ShowSettingsCommand = new RelayCommand(ShowSettings, () => true);
             PollOnceCommand = new RelayCommand(_manager.Poll, () => true);
+            StartPollingCommand = new RelayCommand(_manager.StartPolling,() => !(_manager.PollingTimer.Enabled));
+            StopPollingCommand = new RelayCommand(_manager.StopPolling,() => _manager.PollingTimer.Enabled);
            
             Boards = new ObservableCollection<BoardViewModel>();
             Messenger.Default.Register<ViewModelBase>(this, OnWorkSpaceCloseMessage);
