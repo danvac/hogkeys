@@ -86,6 +86,7 @@ namespace HogKeysUI.ViewModel
             Boards = new ObservableCollection<BoardViewModel>();
             Messenger.Default.Register<ViewModelBase>(this, OnWorkSpaceCloseMessage);
             Messenger.Default.Register<IInputs>(this, ShowInputs);
+            Messenger.Default.Register<IOutputs>(this, ShowOutputs);
             foreach (var board in _manager.Boards)
             {
                 Boards.Add(new BoardViewModel(board));
@@ -111,7 +112,13 @@ namespace HogKeysUI.ViewModel
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }
-        
+
+        void ShowOutputs(IOutputs model)
+        {
+            var workspace = new OutputsViewModel(model);
+            this.Workspaces.Add(workspace);
+            this.SetActiveWorkspace(workspace);
+        }
 
         void SetActiveWorkspace(ViewModelBase workspace)
         {
