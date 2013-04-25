@@ -9,7 +9,7 @@ namespace net.willshouse.HogKeys.SimulatorAdapter.Adapters
 {
     public sealed class DCSAdapter : ISimAdapter
     {
-        private static readonly DCSAdapter instance = new DCSAdapter();
+        //private static readonly DCSAdapter instance = new DCSAdapter();
         private UdpClient client,sender;
         private IPEndPoint endPoint;
         private Thread thread;
@@ -31,10 +31,10 @@ namespace net.willshouse.HogKeys.SimulatorAdapter.Adapters
         }
 
         
-        public static DCSAdapter Instance
-        {
-            get { return instance; }
-        }
+        //public static DCSAdapter Instance
+        //{
+        //    get { return instance; }
+        //}
 
         public void StartListening()
         {
@@ -59,7 +59,7 @@ namespace net.willshouse.HogKeys.SimulatorAdapter.Adapters
             }
         }
 
-        private DCSAdapter() {
+        public DCSAdapter() {
         sender = new UdpClient();
         }
 

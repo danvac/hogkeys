@@ -12,7 +12,7 @@ namespace net.willshouse.HogKeys.Boards
     {
 
         private ISimAdapter simAdapter;
-        private static readonly Manager instance = new Manager();
+        //private static readonly Manager instance = new Manager();
 
         public BindingSource Boards { get; set; }
 
@@ -34,12 +34,12 @@ namespace net.willshouse.HogKeys.Boards
             set { simAdapter.Host = value; }
         }
 
-        public static Manager Instance
-        {
-            get { return instance; }
-        }
+        //public static Manager Instance
+        //{
+        //    get { return instance; }
+        //}
 
-        private Manager()
+        public Manager()
         {
             Boards = new BindingSource();
             simAdapter = DCSAdapter.Instance;
@@ -60,7 +60,7 @@ namespace net.willshouse.HogKeys.Boards
                 catch (Exception ex)
                 {
                     // in the future send out an error event and let the gui deal with it
-                    MessageBox.Show(ex.Message, "MANAGER-DEBUG");
+              //      MessageBox.Show(ex.Message, "MANAGER-DEBUG");
                 }
             }
         }
