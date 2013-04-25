@@ -63,7 +63,6 @@
         />
         </DockPanel>
     </DataTemplate>
-
     <DataTemplate x:Key="WorkspacesTemplate">
         <TabControl 
       IsSynchronizedWithCurrentItem="True" 
@@ -72,19 +71,21 @@
            Margin="4"
       />
     </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
         <vw:Settings/>
     </DataTemplate>
-    
     <DataTemplate DataType="{x:Type vm:InputsViewModel}">
         <vw:InputsListView/>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:OutputsViewModel}">
+        <vw:OutputsListView/>
     </DataTemplate>
 
     <LinearGradientBrush x:Key="Brush_HeaderBackground" StartPoint="0.5,0" EndPoint="0.5,1">
         <GradientStop Color="#66000088" Offset="0" />
         <GradientStop Color="#BB000088" Offset="1" />
     </LinearGradientBrush>
+    
     <Style x:Key="MainBorderStyle" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="WhiteSmoke" />
         <Setter Property="BorderBrush" Value="LightGray" />

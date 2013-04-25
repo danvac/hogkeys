@@ -70,11 +70,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\OutputViewModel.cs" />
+    <Compile Include="ViewModel\OutputsViewModel.cs" />
     <Compile Include="ViewModel\InputsViewModel.cs" />
     <Compile Include="ViewModel\InputViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="Views\BoardsListView.xaml.cs">
       <DependentUpon>BoardsListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputsListView.xaml.cs">
+      <DependentUpon>OutputsListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InputsListView.xaml.cs">
       <DependentUpon>InputsListView.xaml</DependentUpon>
@@ -96,6 +101,10 @@
     <Page Include="Views\BoardsListView.xaml">
       <SubType>Form</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputsListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\InputsListView.xaml">
       <SubType>Form</SubType>

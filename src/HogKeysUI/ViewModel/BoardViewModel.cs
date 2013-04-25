@@ -27,7 +27,7 @@ namespace HogKeysUI.ViewModel
             // TODO: Complete member initialization
             this.Model = board;
             ShowInputsCommand = new RelayCommand(() => Messenger.Default.Send<IInputs>(this.Model as IInputs), () => Model is IInputs);
-            ShowOutputsCommand = new RelayCommand(() => { }, () => Model is IOutputs);
+            ShowOutputsCommand = new RelayCommand(() => Messenger.Default.Send<IOutputs>(this.Model as IOutputs), () => Model is IOutputs);
            
 
         }

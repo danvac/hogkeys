@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="HogKeysUI.Views.OutputsListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ignore="http://www.ignore.com"
+        mc:Ignorable="d ignore"
+        MinHeight="300" MinWidth="300">
+
+    <Grid>
+<DataGrid ItemsSource="{Binding Path=Outputs}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Enabled" Binding="{Binding Model.Enabled}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Model.Name}"  />
+                <DataGridTextColumn Header="Value" Binding="{Binding Model.State}" />
+                <DataGridTextColumn Header="Offset" Binding="{Binding Model.Offset}"/>
+                <DataGridTextColumn Header="Description" Binding="{Binding Model.Description}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
