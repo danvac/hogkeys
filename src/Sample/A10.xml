@@ -616,6 +616,122 @@
         <string>0</string>
       </Values>
     </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>EGIPWR</Name>
+      <Description>EGI Power On/Off</Description>
+      <DeviceId>22</DeviceId>
+      <ButtonId>3006</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>47</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>CDUPWR</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>22</DeviceId>
+      <ButtonId>3005</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>55</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="MultiSwitch">
+      <Name>SteerPTSW</Name>
+      <Description>Steer Point Select Switch</Description>
+      <DeviceId>22</DeviceId>
+      <ButtonId>3001</ButtonId>
+      <Type>MultiSwitch</Type>
+      <Pins>
+        <int>63</int>
+        <int>71</int>
+        <int>79</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>.1</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="MultiSwitch">
+      <Name>CDUPGSel</Name>
+      <Description>CDU Page Select</Description>
+      <DeviceId>22</DeviceId>
+      <ButtonId>3004</ButtonId>
+      <Type>MultiSwitch</Type>
+      <Pins>
+        <int>103</int>
+        <int>111</int>
+        <int>119</int>
+        <int>127</int>
+      </Pins>
+      <Values>
+        <string>-1</string>
+        <string>.1</string>
+        <string>.2</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>NextWP</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>22</DeviceId>
+      <ButtonId>3003</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>87</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="ToggleSwitch">
+      <Name>PrevWP</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>22</DeviceId>
+      <ButtonId>3003</ButtonId>
+      <Type>ToggleSwitch</Type>
+      <Pins>
+        <int>95</int>
+      </Pins>
+      <Values>
+        <string>0</string>
+        <string>-1</string>
+      </Values>
+    </Input>
+    <Input xsi:type="AnalogInput">
+      <Name>StallVol</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>52</DeviceId>
+      <ButtonId>3001</ButtonId>
+      <Type>Analog</Type>
+      <MinValue>0</MinValue>
+      <MaxValue>1</MaxValue>
+      <Index>3</Index>
+      <CalMin>14</CalMin>
+      <CalMax>4076</CalMax>
+    </Input>
+    <Input xsi:type="AnalogInput">
+      <Name>PeakVol</Name>
+      <Description>Enter Description</Description>
+      <DeviceId>52</DeviceId>
+      <ButtonId>3002</ButtonId>
+      <Type>Analog</Type>
+      <MinValue>0</MinValue>
+      <MaxValue>1</MaxValue>
+      <Index>2</Index>
+      <CalMin>14</CalMin>
+      <CalMax>4077</CalMax>
+    </Input>
   </Inputs>
   <Outputs>
     <Output xsi:type="ToggleOutput">
