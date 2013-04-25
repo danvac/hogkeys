@@ -10,15 +10,21 @@
         xmlns:ignore="http://www.ignore.com"
         mc:Ignorable="d ignore"
     >
+
+    <LinearGradientBrush x:Key="Brush_HeaderBackground" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Color="#66000088" Offset="0" />
+        <GradientStop Color="#BB000088" Offset="1" />
+    </LinearGradientBrush>
+
     <!--
     Template for Displaying the BoardViewModel in the BoardsListView
     -->
     <DataTemplate x:Key="BoardTemplate" x:Name="BoardTemplate">
-        <Grid Height="50" HorizontalAlignment="Stretch" Margin="0,2" Background="Green">
+        <Grid Height="50" HorizontalAlignment="Stretch" Margin="0,2" Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Rectangle Fill="Gray" RadiusX="1" RadiusY="1" Stroke="#8D000000" Visibility="{Binding Enabled}">
+            <Rectangle Fill="{StaticResource Brush_HeaderBackground}" RadiusX="1" RadiusY="1"  Visibility="{Binding Enabled}">
                
             </Rectangle>
             <StackPanel>
@@ -81,10 +87,7 @@
         <vw:OutputsListView/>
     </DataTemplate>
 
-    <LinearGradientBrush x:Key="Brush_HeaderBackground" StartPoint="0.5,0" EndPoint="0.5,1">
-        <GradientStop Color="#66000088" Offset="0" />
-        <GradientStop Color="#BB000088" Offset="1" />
-    </LinearGradientBrush>
+  
     
     <Style x:Key="MainBorderStyle" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="WhiteSmoke" />

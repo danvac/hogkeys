@@ -36,7 +36,7 @@ namespace HogKeysUI.ViewModel
         {
             get
             {
-                return Model.Enabled ? Visibility.Collapsed : Visibility.Visible;
+                return Model.Enabled ? Visibility.Visible : Visibility.Collapsed;
             }
         }
         public Board Model
