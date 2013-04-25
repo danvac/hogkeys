@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using net.willshouse.HogKeys.IO;
 using net.willshouse.HogKeys.IO.Inputs;
 using net.willshouse.HogKeys.SimulatorAdapter;
+using System.Collections.Generic;
 
 namespace net.willshouse.HogKeys.Boards
 {
@@ -18,9 +19,9 @@ namespace net.willshouse.HogKeys.Boards
 
         public int DiscreteInputCount { get { return discreteInputCount; } }
         public int AnalogInputCount { get { return analogInputCount; } }
-        public BindingSource Inputs
+        public List<Input> Inputs
         { get; set; }
-        public BindingSource Outputs
+        public List<Output> Outputs
         { get; set; }
 
 
@@ -28,10 +29,10 @@ namespace net.willshouse.HogKeys.Boards
             : base()
         {
             device = new PoKeysDevice_DLL.PoKeysDevice();
-            Inputs = new BindingSource();
-            Inputs.DataSource = typeof(Input);
-            Outputs = new BindingSource();
-            Outputs.DataSource = typeof(Output);
+            Inputs = new List<Input>();
+
+            Outputs = new List<Output>();
+            
             connected = false;
         }
 

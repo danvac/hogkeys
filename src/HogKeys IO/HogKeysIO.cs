@@ -5,7 +5,21 @@ namespace net.willshouse.HogKeys.IO
     public abstract class HogKeysIO : INotifyPropertyChanged
     {
         protected string state, name, description;
+        protected bool enabled;
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public bool Enabled {
+            get { return enabled; }
+            set
+            {
+                if (enabled == value)
+                {
+                    return;
+                }
+                enabled = value;
+                NotifyPropertyChanged("Enabled");
+            }
+        }
 
         public string Name
         {

@@ -23,7 +23,19 @@ namespace net.willshouse.HogKeys.Boards
 
         public int Id { get; set; }
 
+        public bool Enabled { get; set; }
+
         public abstract bool Connected { get;}
+
+        public string Type
+        {
+            get
+            {
+                string type = this.GetType().ToString();
+                var i = type.LastIndexOf(".");
+                return type.Substring(i + 1);
+            }
+        }
 
 
 
